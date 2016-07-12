@@ -28,4 +28,9 @@ public class FizzBuzzTest {
     public void should_get_fizz_given_number_multiple_of_3() {
         assertThat(fizzBuzz.of(6)).isEqualTo("Fizz");
     }
+
+    @Test
+    public void should_get_buzz_given_5_as_number() {
+        assertThat(fizzBuzz.of(5)).isEqualTo("Buzz");
+    }
 }
