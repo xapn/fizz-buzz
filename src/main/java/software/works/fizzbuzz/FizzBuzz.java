@@ -6,7 +6,7 @@ public class FizzBuzz {
     private static final String BUZZ = "Buzz";
 
     public String of(int number) {
-        if (number % 15 == 0) {
+        if (number % 3 == 0 && number % 5 == 0) {
             return FIZZ + BUZZ;
         } else if (number % 3 == 0) {
             return FIZZ;
