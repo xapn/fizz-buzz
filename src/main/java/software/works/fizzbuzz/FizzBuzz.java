@@ -5,13 +5,11 @@ public class FizzBuzz {
     private static final String FIZZ = "Fizz";
     private static final String BUZZ = "Buzz";
 
-    private int start;
-
     public String of(int value) {
         return playAtFizzBuzz(value);
     }
 
-    private String playAtFizzBuzz(int value) {
+    String playAtFizzBuzz(int value) {
         Number number = new Number(value);
 
         if (number.isMultipleOf3() || number.isMultipleOf5()) {
@@ -21,26 +19,15 @@ public class FizzBuzz {
         }
     }
 
+    public FizzBuzzRange from(int start) {
+        return new FizzBuzzRange(this, start);
+    }
+
     private String fizzIfMultipleOf3(Number number) {
         return number.isMultipleOf3() ? FIZZ : "";
     }
 
     private String buzzIfMultipleOf5(Number number) {
         return number.isMultipleOf5() ? BUZZ : "";
-    }
-
-    public FizzBuzz from(int start) {
-        this.start = start;
-        return this;
-    }
-
-    public String to(int end) {
-        StringBuilder result = new StringBuilder();
-
-        for (int value = start; value <= end; value++) {
-            result.append(playAtFizzBuzz(value)).append(" ");
-        }
-
-        return result.substring(0, result.length() - 1).toString();
     }
 }
