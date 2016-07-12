@@ -8,6 +8,10 @@ public class FizzBuzz {
     private int start;
 
     public String of(int value) {
+        return playAtFizzBuzz(value);
+    }
+
+    private String playAtFizzBuzz(int value) {
         Number number = new Number(value);
 
         if (number.isMultipleOf3() || number.isMultipleOf5()) {
@@ -34,7 +38,7 @@ public class FizzBuzz {
         StringBuilder result = new StringBuilder();
 
         for (int value = start; value <= end; value++) {
-            result.append(of(value)).append(" ");
+            result.append(playAtFizzBuzz(value)).append(" ");
         }
 
         return result.substring(0, result.length() - 1).toString();
