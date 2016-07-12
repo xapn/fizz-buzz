@@ -1,0 +1,21 @@
+package software.works.fizzbuzz;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class FizzBuzzTest {
+
+    private FizzBuzz fizzBuzz;
+
+    @Before
+    public void prepareFixtures() {
+        fizzBuzz = new FizzBuzz();
+    }
+
+    @Test
+    public void should_get_number_given_not_multiple_of_3_or_5() {
+        assertThat(fizzBuzz.of(1)).isEqualTo(String.valueOf(1));
+    }
+}
