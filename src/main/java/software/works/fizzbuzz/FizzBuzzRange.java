@@ -21,7 +21,7 @@ public class FizzBuzzRange {
 
     public String to(int end) {
         return IntStream.rangeClosed(start, end) //
-                .mapToObj(value -> player.playAtFizzBuzz(value)) //
+                .mapToObj(player::playAtFizzBuzz) //
                 .collect(Collectors.joining(DELIMITER));
     }
 }
