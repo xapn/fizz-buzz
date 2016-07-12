@@ -9,6 +9,7 @@ public class FizzBuzzTest {
 
     private static final String FIZZ = "Fizz";
     private static final String BUZZ = "Buzz";
+    private static final String FIZZ_BUZZ = "FizzBuzz";
 
     private FizzBuzz fizzBuzz;
 
@@ -40,5 +41,10 @@ public class FizzBuzzTest {
     @Test
     public void should_get_buzz_given_number_multiple_of_5() {
         assertThat(fizzBuzz.of(10)).isEqualTo(BUZZ);
+    }
+
+    @Test
+    public void should_get_fizzbuzz_given_15_as_number() {
+        assertThat(fizzBuzz.of(15)).isEqualTo(FIZZ_BUZZ);
     }
 }
