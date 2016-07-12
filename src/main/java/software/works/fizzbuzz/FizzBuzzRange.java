@@ -1,6 +1,11 @@
 package software.works.fizzbuzz;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class FizzBuzzRange {
+
+    private static final String DELIMITER = " ";
 
     private Player player;
     private int start;
@@ -15,12 +20,8 @@ public class FizzBuzzRange {
     }
 
     public String to(int end) {
-        StringBuilder result = new StringBuilder();
-
-        for (int value = start; value <= end; value++) {
-            result.append(player.playAtFizzBuzz(value)).append(" ");
-        }
-
-        return result.substring(0, result.length() - 1).toString();
+        return IntStream.rangeClosed(start, end) //
+                .mapToObj(player::playAtFizzBuzz) //
+                .collect(Collectors.joining(DELIMITER));
     }
 }
