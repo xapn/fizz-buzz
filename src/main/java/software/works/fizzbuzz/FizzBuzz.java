@@ -2,9 +2,9 @@ package software.works.fizzbuzz;
 
 import java.util.LinkedList;
 
-import software.works.fizzbuzz.rule.VariationsCombiningPlayer;
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
+import software.works.fizzbuzz.rule.VariationsCombiningPlayer;
 
 public class FizzBuzz {
 
@@ -16,15 +16,13 @@ public class FizzBuzz {
     }
 
     public String of(int value) {
-        if (!players.isEmpty()) {
-            player = new VariationsCombiningPlayer(players);
-        }
+        combineVariations();
         chooseClassicPlayerByDefault();
-
         return player.playAtFizzBuzz(value);
     }
 
     public FizzBuzzRange from(int start) {
+        combineVariations();
         chooseClassicPlayerByDefault();
         return new FizzBuzzRange(player).from(start);
     }
@@ -42,6 +40,12 @@ public class FizzBuzz {
     private void chooseClassicPlayerByDefault() {
         if (player == null) {
             player = new DivisionPlayer();
+        }
+    }
+
+    private void combineVariations() {
+        if (!players.isEmpty()) {
+            player = new VariationsCombiningPlayer(players);
         }
     }
 }
