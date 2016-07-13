@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FizzBuzzTest {
+public class FizzBuzzWhenNumberHasFactorsTest {
 
     private static final String FIZZ = "Fizz";
     private static final String BUZZ = "Buzz";
@@ -15,7 +15,7 @@ public class FizzBuzzTest {
 
     @Before
     public void prepareFixtures() {
-        fizzBuzz = new FizzBuzz();
+        fizzBuzz = new FizzBuzz().whenNumberHasFactors();
     }
 
     @Test
