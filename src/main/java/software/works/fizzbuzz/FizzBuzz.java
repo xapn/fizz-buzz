@@ -45,7 +45,11 @@ public class FizzBuzz {
 
     private void combineVariations() {
         if (!players.isEmpty()) {
-            player = new VariationsCombiningPlayer(players);
+            if (players.size() == 1) {
+                player = players.getFirst();
+            } else {
+                player = new VariationsCombiningPlayer(players);
+            }
         }
     }
 }
