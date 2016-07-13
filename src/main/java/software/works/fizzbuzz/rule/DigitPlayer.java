@@ -4,11 +4,14 @@ import software.works.fizzbuzz.Player;
 
 public class DigitPlayer implements Player {
 
+    private static final String THREE = "3";
+    private static final String FIVE = "5";
+
     @Override
     public String playAtFizzBuzz(int value) {
         String numericChain = String.valueOf(value);
 
-        if (numericChain.contains("3") || numericChain.contains("5")) {
+        if (numericChain.contains(THREE) || numericChain.contains(FIVE)) {
             return fizzIfContaining3(numericChain) + buzzIfContaining5(numericChain);
         } else {
             return numericChain;
@@ -16,10 +19,10 @@ public class DigitPlayer implements Player {
     }
 
     private String fizzIfContaining3(String numericChain) {
-        return numericChain.contains("3") ? FIZZ : "";
+        return numericChain.contains(THREE) ? FIZZ : "";
     }
 
     private String buzzIfContaining5(String numericChain) {
-        return numericChain.contains("5") ? BUZZ : "";
+        return numericChain.contains(FIVE) ? BUZZ : "";
     }
 }
