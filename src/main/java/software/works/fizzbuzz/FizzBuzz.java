@@ -1,11 +1,14 @@
 package software.works.fizzbuzz;
 
+import software.works.fizzbuzz.rule.DigitPlayer;
+import software.works.fizzbuzz.rule.DivisionPlayer;
+
 public class FizzBuzz {
 
     private Player player;
 
     public FizzBuzz() {
-        player = new Player();
+        player = new DivisionPlayer();
     }
 
     public String of(int value) {

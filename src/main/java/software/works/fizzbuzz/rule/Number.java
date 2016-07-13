@@ -1,6 +1,6 @@
-package software.works.fizzbuzz;
+package software.works.fizzbuzz.rule;
 
-class Number {
+public class Number {
 
     private int value;
     private boolean isMultipleOf3;

@@ -1,9 +1,11 @@
-package software.works.fizzbuzz;
+package software.works.fizzbuzz.rule;
 
-class DigitPlayer extends Player {
+import software.works.fizzbuzz.Player;
+
+public class DigitPlayer implements Player {
 
     @Override
-    String playAtFizzBuzz(int value) {
+    public String playAtFizzBuzz(int value) {
         String numericChain = String.valueOf(value);
 
         if (numericChain.contains("3") || numericChain.contains("5")) {
