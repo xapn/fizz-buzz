@@ -8,10 +8,12 @@ public class FizzBuzz {
     private Player player;
 
     public String of(int value) {
+        chooseClassicPlayerByDefault();
         return player.playAtFizzBuzz(value);
     }
 
     public FizzBuzzRange from(int start) {
+        chooseClassicPlayerByDefault();
         return new FizzBuzzRange(player).from(start);
     }
 
@@ -23,5 +25,11 @@ public class FizzBuzz {
     public FizzBuzz whenNumberContainsDigits() {
         player = new DigitPlayer();
         return this;
+    }
+
+    private void chooseClassicPlayerByDefault() {
+        if (player == null) {
+            player = new DivisionPlayer();
+        }
     }
 }
