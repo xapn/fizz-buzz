@@ -2,8 +2,8 @@ package software.works.fizzbuzz;
 
 class Player {
 
-    private static final String FIZZ = "Fizz";
-    private static final String BUZZ = "Buzz";
+    protected static final String FIZZ = "Fizz";
+    protected static final String BUZZ = "Buzz";
 
     String playAtFizzBuzz(int value) {
         Number number = new Number(value);

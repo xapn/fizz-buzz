@@ -15,4 +15,9 @@ public class FizzBuzz {
     public FizzBuzzRange from(int start) {
         return new FizzBuzzRange(player).from(start);
     }
+
+    public FizzBuzz whenNumberContainsDigits() {
+        player = new DigitPlayer();
+        return this;
+    }
 }
