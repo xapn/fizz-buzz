@@ -2,6 +2,8 @@ package software.works.fizzbuzz;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.function.BiPredicate;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,24 +32,26 @@ public class FizzBuzzWhenCombiningVariationsTest {
         assertThat(fizzBuzzOf(30)).isEqualTo("FizzFizzBuzz");
     }
 
+    @Test
+    public void should_get_fizzfizzbuzzbuzz_given_315_as_number() {
+        // assertThat(fizzBuzz.of(315)).isEqualTo("FizzFizzBuzzBuzz");
+        assertThat(fizzBuzzOf(315)).isEqualTo("FizzFizzBuzzBuzz");
+    }
+
     String fizzBuzzOf(int value) {
         StringBuilder result = new StringBuilder();
 
         result //
-                .append(multipleOf3(value) ? "Fizz" : "") //
-                .append(contains3(value) ? "Fizz" : "") //
-                .append(multipleOf5(value) ? "Buzz" : "") //
-                .append(contains5(value) ? "Buzz" : "");
+                .append(word("Fizz", value, isMultipleOf, 3)) //
+                .append(word("Fizz", value, containsDigit, 3)) //
+                .append(word("Buzz", value, isMultipleOf, 5)) //
+                .append(word("Buzz", value, containsDigit, 5));
 
         return result.toString();
     }
 
-    boolean multipleOf3(int value) {
-        return value % 3 == 0;
-    }
-
-    boolean contains3(int value) {
-        return String.valueOf(value).contains("3");
+    String word(String word, int value, BiPredicate<Integer, Integer> predicate, int invariant) {
+        return predicate.test(value, invariant) ? word : "";
     }
 
     boolean multipleOf5(int value) {
@@ -58,8 +62,7 @@ public class FizzBuzzWhenCombiningVariationsTest {
         return String.valueOf(value).contains("5");
     }
 
-    @Test
-    public void should_get_fizzfizzbuzzbuzz_given_315_as_number() {
-        assertThat(fizzBuzz.of(315)).isEqualTo("FizzFizzBuzzBuzz");
-    }
+    BiPredicate<Integer, Integer> isMultipleOf = (value, factor) -> value % factor == 0;
+    BiPredicate<Integer, Integer> containsDigit = (value, digit) -> String.valueOf(value)
+            .contains(String.valueOf(digit));
 }
