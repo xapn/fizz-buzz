@@ -1,17 +1,16 @@
-package software.works.fizzbuzz;
+package software.works.fizzbuzz.rule;
 
-class Number {
+class Multiple extends Number {
 
-    private int value;
     private boolean isMultipleOf3;
     private boolean isMultipleOf5;
 
-    Number(int value) {
-        this.value = value;
-        checkIfThisNumberIsMultiple();
+    Multiple(int value) {
+        super(value);
     }
 
-    void checkIfThisNumberIsMultiple() {
+    @Override
+    void checkProperties() {
         isMultipleOf3 = value % 3 == 0;
         isMultipleOf5 = value % 5 == 0;
     }
@@ -22,10 +21,5 @@ class Number {
 
     public boolean isMultipleOf5() {
         return isMultipleOf5;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(value);
     }
 }
