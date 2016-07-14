@@ -4,25 +4,22 @@ import software.works.fizzbuzz.Player;
 
 public class DigitPlayer implements Player {
 
-    private static final String THREE = "3";
-    private static final String FIVE = "5";
-
     @Override
     public String playAtFizzBuzz(int value) {
-        String numericChain = String.valueOf(value);
+        Digits digits = new Digits(value);
 
-        if (numericChain.contains(THREE) || numericChain.contains(FIVE)) {
-            return fizzIfContaining3(numericChain) + buzzIfContaining5(numericChain);
+        if (digits.contains3() || digits.contains5()) {
+            return fizzIfContaining3(digits) + buzzIfContaining5(digits);
         } else {
-            return numericChain;
+            return digits.toString();
         }
     }
 
-    private String fizzIfContaining3(String numericChain) {
-        return numericChain.contains(THREE) ? FIZZ : "";
+    private String fizzIfContaining3(Digits digits) {
+        return digits.contains3() ? FIZZ : "";
     }
 
-    private String buzzIfContaining5(String numericChain) {
-        return numericChain.contains(FIVE) ? BUZZ : "";
+    private String buzzIfContaining5(Digits digits) {
+        return digits.contains5() ? BUZZ : "";
     }
 }

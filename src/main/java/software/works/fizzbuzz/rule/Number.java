@@ -1,8 +1,8 @@
 package software.works.fizzbuzz.rule;
 
-public class Number {
+class Number {
 
-    private int value;
+    protected int value;
     private boolean isMultipleOf3;
     private boolean isMultipleOf5;
 
