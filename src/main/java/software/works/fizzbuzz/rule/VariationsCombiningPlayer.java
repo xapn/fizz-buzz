@@ -30,7 +30,7 @@ public class VariationsCombiningPlayer implements Player {
     @Override
     public String playAtFizzBuzz(int value) {
         return predicates.stream() //
-                .map(predicate -> predicate.fizzBuzz(value)) //
+                .map(predicate -> predicate.fizzBuzzOf(value)) //
                 .collect(joining());
     }
 }
