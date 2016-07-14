@@ -26,7 +26,36 @@ public class FizzBuzzWhenCombiningVariationsTest {
 
     @Test
     public void should_get_fizzfizzbuzz_given_30_as_number() {
-        assertThat(fizzBuzz.of(30)).isEqualTo("FizzFizzBuzz");
+        // assertThat(fizzBuzz.of(30)).isEqualTo("FizzFizzBuzz");
+        assertThat(fizzBuzzOf(30)).isEqualTo("FizzFizzBuzz");
+    }
+
+    String fizzBuzzOf(int value) {
+        StringBuilder result = new StringBuilder();
+
+        result //
+                .append(multipleOf3(value) ? "Fizz" : "") //
+                .append(contains3(value) ? "Fizz" : "") //
+                .append(multipleOf5(value) ? "Buzz" : "") //
+                .append(contains5(value) ? "Buzz" : "");
+
+        return result.toString();
+    }
+
+    boolean multipleOf3(int value) {
+        return value % 3 == 0;
+    }
+
+    boolean contains3(int value) {
+        return String.valueOf(value).contains("3");
+    }
+
+    boolean multipleOf5(int value) {
+        return value % 5 == 0;
+    }
+
+    boolean contains5(int value) {
+        return String.valueOf(value).contains("5");
     }
 
     @Test
