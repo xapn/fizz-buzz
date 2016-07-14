@@ -20,10 +20,10 @@ public class DigitPlayer extends AbstractPlayer {
 
     @Override
     public String playAtFizzBuzz(int value) {
-        Digits digits = new Digits(value);
+        Number number = new Number(value);
 
-        String fizzBuzz = digits.toFizzBuzzIfItSatisfies(fizzIfContains3)
-                + digits.toFizzBuzzIfItSatisfies(buzzIfContains5);
-        return fizzBuzz.isEmpty() ? digits.toString() : fizzBuzz;
+        String fizzBuzz = number.toFizzBuzzIfItSatisfies(fizzIfContains3)
+                + number.toFizzBuzzIfItSatisfies(buzzIfContains5);
+        return fizzBuzz.isEmpty() ? number.toString() : fizzBuzz;
     }
 }

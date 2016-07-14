@@ -20,10 +20,10 @@ public class DivisionPlayer extends AbstractPlayer {
 
     @Override
     public String playAtFizzBuzz(int value) {
-        Multiple multiple = new Multiple(value);
+        Number number = new Number(value);
 
-        String fizzBuzz = multiple.toFizzBuzzIfItSatisfies(fizzIfMultipleOf3)
-                + multiple.toFizzBuzzIfItSatisfies(buzzIfMultipleOf5);
-        return fizzBuzz.isEmpty() ? multiple.toString() : fizzBuzz;
+        String fizzBuzz = number.toFizzBuzzIfItSatisfies(fizzIfMultipleOf3)
+                + number.toFizzBuzzIfItSatisfies(buzzIfMultipleOf5);
+        return fizzBuzz.isEmpty() ? number.toString() : fizzBuzz;
     }
 }
