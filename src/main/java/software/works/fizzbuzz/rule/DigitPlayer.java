@@ -1,25 +1,29 @@
 package software.works.fizzbuzz.rule;
 
-import software.works.fizzbuzz.Player;
+import static software.works.fizzbuzz.rule.NumberPredicates.CONTAINS_DIGIT;
 
-public class DigitPlayer implements Player {
+import java.util.Arrays;
+
+public class DigitPlayer extends AbstractPlayer {
+
+    private FizzBuzzPredicate fizzIfContains3;
+    private FizzBuzzPredicate buzzIfContains5;
+
+    public DigitPlayer() {
+        fizzIfContains3 = wordIf(FIZZ, CONTAINS_DIGIT.appliedTo(3));
+        buzzIfContains5 = wordIf(BUZZ, CONTAINS_DIGIT.appliedTo(5));
+        predicates = Arrays.asList( //
+                fizzIfContains3, //
+                buzzIfContains5 //
+        );
+    }
 
     @Override
     public String playAtFizzBuzz(int value) {
         Digits digits = new Digits(value);
 
-        if (digits.contains3() || digits.contains5()) {
-            return fizzIfContaining3(digits) + buzzIfContaining5(digits);
-        } else {
-            return digits.toString();
-        }
-    }
-
-    private String fizzIfContaining3(Digits digits) {
-        return digits.contains3() ? FIZZ : "";
-    }
-
-    private String buzzIfContaining5(Digits digits) {
-        return digits.contains5() ? BUZZ : "";
+        String fizzBuzz = digits.toFizzBuzzIfItSatisfies(fizzIfContains3)
+                + digits.toFizzBuzzIfItSatisfies(buzzIfContains5);
+        return fizzBuzz.isEmpty() ? digits.toString() : fizzBuzz;
     }
 }

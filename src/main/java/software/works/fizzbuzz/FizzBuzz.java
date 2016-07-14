@@ -1,6 +1,7 @@
 package software.works.fizzbuzz;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -9,10 +10,10 @@ import software.works.fizzbuzz.rule.VariationsCombiningPlayer;
 public class FizzBuzz {
 
     private Player player;
-    private LinkedList<Player> players;
+    private List<Player> players;
 
     public FizzBuzz() {
-        players = new LinkedList<>();
+        players = new ArrayList<>();
     }
 
     public String of(int value) {
@@ -28,12 +29,12 @@ public class FizzBuzz {
     }
 
     public FizzBuzz whenNumberHasFactors() {
-        players.addLast(new DivisionPlayer());
+        players.add(new DivisionPlayer());
         return this;
     }
 
     public FizzBuzz whenNumberContainsDigits() {
-        players.addLast(new DigitPlayer());
+        players.add(new DigitPlayer());
         return this;
     }
 
@@ -46,7 +47,7 @@ public class FizzBuzz {
     private void combineVariations() {
         if (!players.isEmpty()) {
             if (players.size() == 1) {
-                player = players.getFirst();
+                player = players.get(0);
             } else {
                 player = new VariationsCombiningPlayer(players);
             }
