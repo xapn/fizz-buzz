@@ -2,6 +2,7 @@ package software.works.fizzbuzz.rule;
 
 import static java.util.stream.Collectors.joining;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,7 +11,21 @@ import software.works.fizzbuzz.Player;
 
 abstract class AbstractPlayer implements Player {
 
-    protected List<FizzBuzzPredicate> predicates;
+    private List<FizzBuzzPredicate> predicates;
+
+    AbstractPlayer() {
+        predicates = new ArrayList<>();
+        definePredicates(predicates);
+        validatePredicates(predicates);
+    }
+
+    private void validatePredicates(List<FizzBuzzPredicate> predicates) {
+        if (predicates == null || predicates.isEmpty()) {
+            throw new IllegalStateException("No predicate found!");
+        }
+    }
+
+    protected abstract void definePredicates(List<FizzBuzzPredicate> predicates);
 
     protected FizzBuzzPredicate wordIf(String word, Predicate<Integer> predicate) {
         return value -> predicate.test(value) ? word : "";
