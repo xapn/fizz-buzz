@@ -7,10 +7,10 @@ class Digits extends Number {
 
     public Digits(int value) {
         super(value);
-        checkIfThisNumberContainsDigits();
     }
 
-    private void checkIfThisNumberContainsDigits() {
+    @Override
+    void checkProperties() {
         String digits = String.valueOf(value);
         contains3 = digits.contains("3");
         contains5 = digits.contains("5");
