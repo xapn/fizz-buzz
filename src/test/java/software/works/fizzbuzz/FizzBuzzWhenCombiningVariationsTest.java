@@ -42,16 +42,20 @@ public class FizzBuzzWhenCombiningVariationsTest {
         StringBuilder result = new StringBuilder();
 
         result //
-                .append(word("Fizz", value, isMultipleOf, 3)) //
-                .append(word("Fizz", value, containsDigit, 3)) //
-                .append(word("Buzz", value, isMultipleOf, 5)) //
-                .append(word("Buzz", value, containsDigit, 5));
+                .append(word("Fizz", ifThis(value, isMultipleOf, 3))) //
+                .append(word("Fizz", ifThis(value, containsDigit, 3))) //
+                .append(word("Buzz", ifThis(value, isMultipleOf, 5))) //
+                .append(word("Buzz", ifThis(value, containsDigit, 5)));
 
         return result.toString();
     }
 
-    String word(String word, int value, BiPredicate<Integer, Integer> predicate, int invariant) {
-        return predicate.test(value, invariant) ? word : "";
+    String word(String word, boolean ifChecked) {
+        return ifChecked ? word : "";
+    }
+
+    boolean ifThis(Integer value, BiPredicate<Integer, Integer> predicate, Integer invariant) {
+        return predicate.test(value, invariant);
     }
 
     boolean multipleOf5(int value) {
