@@ -42,31 +42,35 @@ public class FizzBuzzWhenCombiningVariationsTest {
         StringBuilder result = new StringBuilder();
 
         result //
-                .append(word("Fizz", ifThis(value, isMultipleOf, 3))) //
-                .append(word("Fizz", ifThis(value, containsDigit, 3))) //
-                .append(word("Buzz", ifThis(value, isMultipleOf, 5))) //
-                .append(word("Buzz", ifThis(value, containsDigit, 5)));
+                .append(word(fizzIfMultipleOf3, value)) //
+                .append(word(fizzIfContains3, value)) //
+                .append(word(buzzIfMultipleOf5, value)) //
+                .append(word(buzzIfContains5, value));
 
         return result.toString();
     }
 
-    String word(String word, boolean ifChecked) {
-        return ifChecked ? word : "";
+    String word(FizzBuzzPredicate predicate, int value) {
+        return predicate.fizzBuzz(value);
     }
+
+    @FunctionalInterface
+    static interface FizzBuzzPredicate {
+        String fizzBuzz(int value);
+    }
+
+    FizzBuzzPredicate fizzIfMultipleOf3 = (value) -> ifThis(value, Predicates.isMultipleOf, 3) ? "Fizz" : "";
+    FizzBuzzPredicate fizzIfContains3 = (value) -> ifThis(value, Predicates.containsDigit, 3) ? "Fizz" : "";
+    FizzBuzzPredicate buzzIfMultipleOf5 = (value) -> ifThis(value, Predicates.isMultipleOf, 5) ? "Buzz" : "";
+    FizzBuzzPredicate buzzIfContains5 = (value) -> ifThis(value, Predicates.containsDigit, 5) ? "Buzz" : "";
 
     boolean ifThis(Integer value, BiPredicate<Integer, Integer> predicate, Integer invariant) {
         return predicate.test(value, invariant);
     }
 
-    boolean multipleOf5(int value) {
-        return value % 5 == 0;
+    static class Predicates {
+        static BiPredicate<Integer, Integer> isMultipleOf = (value, factor) -> value % factor == 0;
+        static BiPredicate<Integer, Integer> containsDigit = (value, digit) -> String.valueOf(value)
+                .contains(String.valueOf(digit));
     }
-
-    boolean contains5(int value) {
-        return String.valueOf(value).contains("5");
-    }
-
-    BiPredicate<Integer, Integer> isMultipleOf = (value, factor) -> value % factor == 0;
-    BiPredicate<Integer, Integer> containsDigit = (value, digit) -> String.valueOf(value)
-            .contains(String.valueOf(digit));
 }
