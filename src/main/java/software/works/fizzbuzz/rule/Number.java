@@ -11,6 +11,10 @@ abstract class Number {
 
     abstract void checkProperties();
 
+    String toFizzBuzzIfItSatisfies(FizzBuzzPredicate predicate) {
+        return predicate.fizzBuzz(value);
+    }
+
     @Override
     public String toString() {
         return String.valueOf(value);
