@@ -14,21 +14,25 @@ abstract class AbstractPlayer implements Player {
     private List<FizzBuzzPredicate> predicates;
 
     AbstractPlayer() {
+        managePredicates();
+    }
+
+    private void managePredicates() {
         predicates = new ArrayList<>();
-        definePredicates(predicates);
+        recordPredicates(predicates);
         validatePredicates(predicates);
+    }
+
+    protected abstract void recordPredicates(List<FizzBuzzPredicate> predicates);
+
+    final protected FizzBuzzPredicate wordIf(String word, Predicate<Integer> predicate) {
+        return value -> predicate.test(value) ? word : "";
     }
 
     private void validatePredicates(List<FizzBuzzPredicate> predicates) {
         if (predicates == null || predicates.isEmpty()) {
             throw new IllegalStateException("No predicate found!");
         }
-    }
-
-    protected abstract void definePredicates(List<FizzBuzzPredicate> predicates);
-
-    protected FizzBuzzPredicate wordIf(String word, Predicate<Integer> predicate) {
-        return value -> predicate.test(value) ? word : "";
     }
 
     @Override

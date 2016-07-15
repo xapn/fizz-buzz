@@ -7,7 +7,7 @@ import java.util.List;
 public class DigitPlayer extends AbstractPlayer {
 
     @Override
-    protected void definePredicates(List<FizzBuzzPredicate> predicates) {
+    protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
         predicates.add(wordIf(FIZZ, CONTAINS_DIGIT.appliedTo(3)));
         predicates.add(wordIf(BUZZ, CONTAINS_DIGIT.appliedTo(5)));
     }
