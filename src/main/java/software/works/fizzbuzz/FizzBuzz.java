@@ -9,7 +9,6 @@ import software.works.fizzbuzz.rule.VariationsCombiningPlayer;
 
 public class FizzBuzz {
 
-    private Player player;
     private List<Player> players;
 
     public FizzBuzz() {
@@ -17,15 +16,11 @@ public class FizzBuzz {
     }
 
     public String of(int value) {
-        combineVariations();
-        chooseClassicPlayerByDefault();
-        return player.playAtFizzBuzz(value);
+        return chosenPlayer().playAtFizzBuzz(value);
     }
 
     public FizzBuzzRange from(int start) {
-        combineVariations();
-        chooseClassicPlayerByDefault();
-        return new FizzBuzzRange(player).from(start);
+        return new FizzBuzzRange(chosenPlayer()).from(start);
     }
 
     public FizzBuzz whenNumberHasFactors() {
@@ -38,13 +33,14 @@ public class FizzBuzz {
         return this;
     }
 
-    private void chooseClassicPlayerByDefault() {
-        if (player == null) {
-            player = new DivisionPlayer();
-        }
+    private Player chosenPlayer() {
+        Player player = combineVariations(players);
+        return chooseClassicPlayerByDefaultIfUnknown(player);
     }
 
-    private void combineVariations() {
+    private Player combineVariations(List<Player> players) {
+        Player player = null;
+
         if (!players.isEmpty()) {
             if (players.size() == 1) {
                 player = players.get(0);
@@ -52,5 +48,14 @@ public class FizzBuzz {
                 player = new VariationsCombiningPlayer(players);
             }
         }
+
+        return player;
+    }
+
+    private Player chooseClassicPlayerByDefaultIfUnknown(Player player) {
+        if (player == null) {
+            player = new DivisionPlayer();
+        }
+        return player;
     }
 }
