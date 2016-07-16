@@ -59,7 +59,7 @@ public class FizzBuzzWhenNumberContainsDigitsTest {
     }
 
     @Test
-    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_several_numbers() {
+    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_numbers() {
         assertThat(fizzBuzz.from(1).to(45)).isEqualTo(
                 "1 2 Fizz 4 Buzz 6 7 8 9 10 11 12 Fizz 14 Buzz 16 17 18 19 20 21 22 Fizz 24 Buzz 26 27 28 29 Fizz Fizz Fizz Fizz Fizz FizzBuzz Fizz Fizz Fizz Fizz 40 41 42 Fizz 44 Buzz");
     }

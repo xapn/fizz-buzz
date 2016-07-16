@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.Player;
 
 abstract class AbstractPlayer implements Player {
+
+    private static final String DELIMITER = " ";
 
     private List<FizzBuzzPredicate> predicates;
 
@@ -38,7 +41,13 @@ abstract class AbstractPlayer implements Player {
                 .collect(joining());
 
         return fizzBuzz.isEmpty() ? String.valueOf(value) : fizzBuzz;
-    };
+    }
+
+    public String playAtFizzBuzz(int... values) {
+        return IntStream.of(values) //
+                .mapToObj(this::playAtFizzBuzz) //
+                .collect(joining(DELIMITER));
+    }
 
     final List<FizzBuzzPredicate> getPredicates() {
         return Collections.unmodifiableList(predicates);

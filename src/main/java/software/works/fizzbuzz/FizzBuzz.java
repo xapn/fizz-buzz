@@ -16,6 +16,10 @@ public class FizzBuzz {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
     }
 
+    public String of(int... values) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(values);
+    }
+
     public FizzBuzzRange from(int start) {
         return new FizzBuzzRange(playerBuilder.chosenPlayer()).from(start);
     }

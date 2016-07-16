@@ -54,7 +54,12 @@ public class FizzBuzzWhenNumberHasFactorsTest {
     }
 
     @Test
-    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_several_numbers() {
+    public void should_get_fizz_or_buzz_given_several_numbers() {
+        assertThat(fizzBuzz.of(3, 5, 15)).isEqualTo("Fizz Buzz FizzBuzz");
+    }
+
+    @Test
+    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_numbers() {
         assertThat(fizzBuzz.from(1).to(15)).isEqualTo("1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz");
     }
 }
