@@ -6,4 +6,6 @@ public interface Player {
     static final String BUZZ = "Buzz";
 
     String playAtFizzBuzz(int value);
+
+    String playAtFizzBuzz(int... values);
 }
