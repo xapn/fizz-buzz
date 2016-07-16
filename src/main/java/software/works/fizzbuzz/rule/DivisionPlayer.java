@@ -6,6 +6,10 @@ import java.util.List;
 
 public class DivisionPlayer extends AbstractPlayer {
 
+    public DivisionPlayer() {
+        managePredicates();
+    }
+
     @Override
     protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
         predicates.add(wordIf(FIZZ, IS_MULTIPLE_OF.appliedTo(3)));

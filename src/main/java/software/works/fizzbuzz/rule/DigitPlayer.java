@@ -6,6 +6,10 @@ import java.util.List;
 
 public class DigitPlayer extends AbstractPlayer {
 
+    public DigitPlayer() {
+        managePredicates();
+    }
+
     @Override
     protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
         predicates.add(wordIf(FIZZ, CONTAINS_DIGIT.appliedTo(3)));

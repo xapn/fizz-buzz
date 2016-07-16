@@ -1,31 +1,35 @@
 package software.works.fizzbuzz.rule;
 
-import static java.util.stream.Collectors.joining;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import software.works.fizzbuzz.Player;
 
-public class VariationsCombiningPlayer implements Player {
+public class VariationsCombiningPlayer extends AbstractPlayer {
 
-    private List<FizzBuzzPredicate> allPredicates;
+    private List<Player> players;
 
     public VariationsCombiningPlayer(List<Player> players) {
-        allPredicates = recordPredicates(players);
+        this.players = players;
+        managePredicates();
     }
 
-    private List<FizzBuzzPredicate> recordPredicates(List<Player> players) {
-        List<FizzBuzzPredicate> allPredicates = new ArrayList<>();
+    @Override
+    protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
+        List<FizzBuzzPredicate> combinedPredicates = combinePredicatesFromPlayers(players);
+        predicates.addAll(combinedPredicates);
+    }
+
+    private List<FizzBuzzPredicate> combinePredicatesFromPlayers(List<Player> players) {
+        List<FizzBuzzPredicate> combined = new ArrayList<>();
 
         for (int index = 0; index < maximalNumberOfPredicatesByPlayer(players).get(); index++) {
-            allPredicates.addAll(onePredicateByPlayer(index, players));
+            combined.addAll(onePredicateByPlayer(index, players));
         }
 
-        return allPredicates;
+        return combined;
     }
 
     private Optional<Integer> maximalNumberOfPredicatesByPlayer(List<Player> players) {
@@ -45,16 +49,5 @@ public class VariationsCombiningPlayer implements Player {
         }
 
         return predicatesOneByPlayer;
-    }
-
-    FizzBuzzPredicate wordIf(String word, Predicate<Integer> predicate) {
-        return (value) -> predicate.test(value) ? word : "";
-    }
-
-    @Override
-    public String playAtFizzBuzz(int value) {
-        return allPredicates.stream() //
-                .map(predicate -> predicate.fizzBuzzOf(value)) //
-                .collect(joining());
     }
 }

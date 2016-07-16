@@ -15,6 +15,11 @@ public class FizzBuzzWhenCombiningVariationsTest {
     }
 
     @Test
+    public void should_get_number_given_1_as_number() {
+        assertThat(fizzBuzz.of(1)).isEqualTo("1");
+    }
+
+    @Test
     public void should_get_fizzfizz_given_3_as_number() {
         assertThat(fizzBuzz.of(3)).isEqualTo("FizzFizz");
     }

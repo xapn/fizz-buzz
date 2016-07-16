@@ -13,11 +13,7 @@ abstract class AbstractPlayer implements Player {
 
     private List<FizzBuzzPredicate> predicates;
 
-    AbstractPlayer() {
-        managePredicates();
-    }
-
-    private void managePredicates() {
+    final protected void managePredicates() {
         predicates = new ArrayList<>();
         recordPredicates(predicates);
         validatePredicates(predicates);
@@ -44,7 +40,7 @@ abstract class AbstractPlayer implements Player {
         return fizzBuzz.isEmpty() ? String.valueOf(value) : fizzBuzz;
     };
 
-    List<FizzBuzzPredicate> getPredicates() {
+    final List<FizzBuzzPredicate> getPredicates() {
         return Collections.unmodifiableList(predicates);
     }
 }
