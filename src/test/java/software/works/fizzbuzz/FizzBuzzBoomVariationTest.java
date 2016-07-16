@@ -15,7 +15,7 @@ public class FizzBuzzBoomVariationTest {
     }
 
     @Test
-    public void should_get_boom_given_7_as_number() {
-        assertThat(fizzBuzzBoom.of(7)).isEqualTo("Boom");
+    public void should_get_boomboom_given_7_as_number() {
+        assertThat(fizzBuzzBoom.of(7)).isEqualTo("BoomBoom");
     }
 }

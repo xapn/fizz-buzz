@@ -2,20 +2,33 @@ package software.works.fizzbuzz.rule;
 
 import static software.works.fizzbuzz.rule.NumberPredicates.CONTAINS_DIGIT;
 
+import java.util.Arrays;
 import java.util.List;
+
+import software.works.fizzbuzz.Word;
 
 public class DigitPlayer extends AbstractPlayer {
 
-    static final String FIZZ = "Fizz";
-    static final String BUZZ = "Buzz";
+    private List<Word> words;
 
     public DigitPlayer() {
+        defineDefaultWords();
         managePredicates();
+    }
+
+    public DigitPlayer(Word... words) {
+        this.words = Arrays.asList(words);
+        managePredicates();
+    }
+
+    private void defineDefaultWords() {
+        words = Arrays.asList(new Word("Fizz", 3), new Word("Buzz", 5));
     }
 
     @Override
     protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
-        predicates.add(wordIf(FIZZ, CONTAINS_DIGIT.appliedTo(3)));
-        predicates.add(wordIf(BUZZ, CONTAINS_DIGIT.appliedTo(5)));
+        words.stream().forEachOrdered(word -> {
+            predicates.add(wordIf(word.getWord(), CONTAINS_DIGIT.appliedTo(word.getNumber())));
+        });
     }
 }
