@@ -2,34 +2,31 @@ package software.works.fizzbuzz;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
+import software.works.fizzbuzz.rule.PlayerBuilder;
 
 public class FizzBuzz {
 
-    private Player player;
+    private PlayerBuilder playerBuilder;
+
+    public FizzBuzz() {
+        playerBuilder = new PlayerBuilder();
+    }
 
     public String of(int value) {
-        chooseClassicPlayerByDefault();
-        return player.playAtFizzBuzz(value);
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
     }
 
     public FizzBuzzRange from(int start) {
-        chooseClassicPlayerByDefault();
-        return new FizzBuzzRange(player).from(start);
+        return new FizzBuzzRange(playerBuilder.chosenPlayer()).from(start);
     }
 
     public FizzBuzz whenNumberHasFactors() {
-        player = new DivisionPlayer();
+        playerBuilder.append(new DivisionPlayer());
         return this;
     }
 
     public FizzBuzz whenNumberContainsDigits() {
-        player = new DigitPlayer();
+        playerBuilder.append(new DigitPlayer());
         return this;
-    }
-
-    private void chooseClassicPlayerByDefault() {
-        if (player == null) {
-            player = new DivisionPlayer();
-        }
     }
 }

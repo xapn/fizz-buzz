@@ -1,25 +1,18 @@
 package software.works.fizzbuzz.rule;
 
-import software.works.fizzbuzz.Player;
+import static software.works.fizzbuzz.rule.NumberPredicates.IS_MULTIPLE_OF;
 
-public class DivisionPlayer implements Player {
+import java.util.List;
+
+public class DivisionPlayer extends AbstractPlayer {
+
+    public DivisionPlayer() {
+        managePredicates();
+    }
 
     @Override
-    public String playAtFizzBuzz(int value) {
-        Multiple multiple = new Multiple(value);
-
-        if (multiple.isMultipleOf3() || multiple.isMultipleOf5()) {
-            return fizzIfMultipleOf3(multiple) + buzzIfMultipleOf5(multiple);
-        } else {
-            return String.valueOf(multiple);
-        }
-    }
-
-    private String fizzIfMultipleOf3(Multiple multiple) {
-        return multiple.isMultipleOf3() ? FIZZ : "";
-    }
-
-    private String buzzIfMultipleOf5(Multiple multiple) {
-        return multiple.isMultipleOf5() ? BUZZ : "";
+    protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
+        predicates.add(wordIf(FIZZ, IS_MULTIPLE_OF.appliedTo(3)));
+        predicates.add(wordIf(BUZZ, IS_MULTIPLE_OF.appliedTo(5)));
     }
 }
