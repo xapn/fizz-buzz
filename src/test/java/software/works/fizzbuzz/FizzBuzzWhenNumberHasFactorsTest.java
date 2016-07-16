@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FizzBuzzTest {
+public class FizzBuzzWhenNumberHasFactorsTest {
 
     private static final String FIZZ = "Fizz";
     private static final String BUZZ = "Buzz";
@@ -15,7 +15,7 @@ public class FizzBuzzTest {
 
     @Before
     public void prepareFixtures() {
-        fizzBuzz = new FizzBuzz();
+        fizzBuzz = new FizzBuzz().whenNumberHasFactors();
     }
 
     @Test
@@ -54,7 +54,12 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_several_numbers() {
+    public void should_get_fizz_or_buzz_given_several_numbers() {
+        assertThat(fizzBuzz.of(3, 5, 15)).isEqualTo("Fizz Buzz FizzBuzz");
+    }
+
+    @Test
+    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_numbers() {
         assertThat(fizzBuzz.from(1).to(15)).isEqualTo("1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz");
     }
 }

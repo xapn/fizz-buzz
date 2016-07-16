@@ -1,18 +1,36 @@
 package software.works.fizzbuzz;
 
+import software.works.fizzbuzz.rule.DigitPlayer;
+import software.works.fizzbuzz.rule.DivisionPlayer;
+import software.works.fizzbuzz.rule.PlayerBuilder;
+
 public class FizzBuzz {
 
-    private Player player;
+    private PlayerBuilder playerBuilder;
 
     public FizzBuzz() {
-        player = new Player();
+        playerBuilder = new PlayerBuilder();
     }
 
     public String of(int value) {
-        return player.playAtFizzBuzz(value);
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
+    }
+
+    public String of(int... values) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(values);
     }
 
     public FizzBuzzRange from(int start) {
-        return new FizzBuzzRange(player).from(start);
+        return new FizzBuzzRange(playerBuilder.chosenPlayer()).from(start);
+    }
+
+    public FizzBuzz whenNumberHasFactors() {
+        playerBuilder.append(new DivisionPlayer());
+        return this;
+    }
+
+    public FizzBuzz whenNumberContainsDigits() {
+        playerBuilder.append(new DigitPlayer());
+        return this;
     }
 }
