@@ -33,4 +33,11 @@ public class FizzBuzz {
         playerBuilder.append(new DigitPlayer());
         return this;
     }
+
+    public FizzBuzz boom() {
+        playerBuilder.append(new DivisionPlayer( //
+                new Word("Boom", 7) //
+        ));
+        return this;
+    }
 }

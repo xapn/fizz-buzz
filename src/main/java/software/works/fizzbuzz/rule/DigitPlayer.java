@@ -6,6 +6,9 @@ import java.util.List;
 
 public class DigitPlayer extends AbstractPlayer {
 
+    static final String FIZZ = "Fizz";
+    static final String BUZZ = "Buzz";
+
     public DigitPlayer() {
         managePredicates();
     }
