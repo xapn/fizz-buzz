@@ -35,15 +35,12 @@ public class FizzBuzz {
     }
 
     public FizzBuzz boom() {
-        playerBuilder.append(new DivisionPlayer( //
-                new Word("Fizz", 3), //
-                new Word("Buzz", 5), //
-                new Word("Boom", 7) //
-        )).append(new DigitPlayer( //
-                new Word("Fizz", 3), //
-                new Word("Buzz", 5), //
-                new Word("Boom", 7) //
-        ));
+        playerBuilder //
+                .append(new Word("Fizz", 3)) //
+                .append(new Word("Buzz", 5)) //
+                .append(new Word("Boom", 7)) //
+                .append(new DivisionPlayer()) //
+                .append(new DigitPlayer());
         return this;
     }
 }

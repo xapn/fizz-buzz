@@ -9,12 +9,23 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.Player;
+import software.works.fizzbuzz.Word;
 
 abstract class AbstractPlayer implements Player {
 
     private static final String DELIMITER = " ";
 
     private List<FizzBuzzPredicate> predicates;
+    protected List<Word> words;
+
+    @Override
+    public void adoptWords(List<Word> words) {
+        if (words == null || words.isEmpty()) {
+            throw new IllegalStateException("No word found!");
+        } else {
+            this.words = words;
+        }
+    }
 
     final protected void managePredicates() {
         predicates = new ArrayList<>();

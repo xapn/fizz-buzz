@@ -12,8 +12,11 @@ public class VariationsCombiningPlayer extends AbstractPlayer {
     private List<Player> players;
 
     public VariationsCombiningPlayer(List<Player> players) {
-        this.players = players;
-        managePredicates();
+        if (players == null || players.isEmpty()) {
+            throw new IllegalStateException("No player found!");
+        } else {
+            this.players = players;
+        }
     }
 
     @Override

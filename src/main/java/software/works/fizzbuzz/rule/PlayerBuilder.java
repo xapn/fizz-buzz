@@ -1,16 +1,25 @@
 package software.works.fizzbuzz.rule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import software.works.fizzbuzz.Player;
+import software.works.fizzbuzz.Word;
 
 public class PlayerBuilder {
 
+    private List<Word> words;
     private List<Player> players;
 
     public PlayerBuilder() {
+        words = new ArrayList<>();
         players = new ArrayList<>();
+    }
+
+    public PlayerBuilder append(Word word) {
+        words.add(word);
+        return this;
     }
 
     public PlayerBuilder append(Player player) {
@@ -20,7 +29,13 @@ public class PlayerBuilder {
 
     public Player chosenPlayer() {
         Player player = combineVariations(players);
-        return chooseClassicPlayerByDefaultIfUnknown(player);
+        player = chooseClassicPlayerByDefaultIfUnknown(player);
+
+        words = chooseDefaultWordsIfNotDefined(words);
+        player.adoptWords(words);
+        ((AbstractPlayer) player).managePredicates();
+
+        return player;
     }
 
     private Player combineVariations(List<Player> players) {
@@ -30,6 +45,10 @@ public class PlayerBuilder {
             if (players.size() == 1) {
                 player = players.get(0);
             } else {
+                players.stream().forEach(p -> {
+                    p.adoptWords(chooseDefaultWordsIfNotDefined(words));
+                    ((AbstractPlayer) p).managePredicates();
+                });
                 player = new VariationsCombiningPlayer(players);
             }
         }
@@ -42,5 +61,12 @@ public class PlayerBuilder {
             player = new DivisionPlayer();
         }
         return player;
+    }
+
+    private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
+        if (words == null || words.isEmpty()) {
+            words.addAll(Arrays.asList(new Word("Fizz", 3), new Word("Buzz", 5)));
+        }
+        return words;
     }
 }
