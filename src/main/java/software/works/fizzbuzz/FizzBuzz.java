@@ -1,5 +1,9 @@
 package software.works.fizzbuzz;
 
+import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
+import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
+
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
@@ -36,9 +40,9 @@ public class FizzBuzz {
 
     public FizzBuzz boom() {
         playerBuilder //
-                .append(new Word("Fizz", 3)) //
-                .append(new Word("Buzz", 5)) //
-                .append(new Word("Boom", 7)) //
+                .append(FIZZ) //
+                .append(BUZZ) //
+                .append(BOOM) //
                 .append(new DivisionPlayer()) //
                 .append(new DigitPlayer());
         return this;

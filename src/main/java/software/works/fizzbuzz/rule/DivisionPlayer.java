@@ -4,8 +4,6 @@ import static software.works.fizzbuzz.rule.NumberPredicates.IS_MULTIPLE_OF;
 
 import java.util.List;
 
-import software.works.fizzbuzz.Word;
-
 public class DivisionPlayer extends AbstractPlayer {
 
     @Override

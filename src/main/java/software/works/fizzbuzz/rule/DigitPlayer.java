@@ -4,8 +4,6 @@ import static software.works.fizzbuzz.rule.NumberPredicates.CONTAINS_DIGIT;
 
 import java.util.List;
 
-import software.works.fizzbuzz.Word;
-
 public class DigitPlayer extends AbstractPlayer {
 
     @Override

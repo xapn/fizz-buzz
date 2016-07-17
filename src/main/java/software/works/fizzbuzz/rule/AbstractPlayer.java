@@ -9,7 +9,6 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.Player;
-import software.works.fizzbuzz.Word;
 
 abstract class AbstractPlayer implements Player {
 

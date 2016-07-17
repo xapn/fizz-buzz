@@ -1,11 +1,13 @@
 package software.works.fizzbuzz.rule;
 
+import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import software.works.fizzbuzz.Player;
-import software.works.fizzbuzz.Word;
 
 public class PlayerBuilder {
 
@@ -20,6 +22,10 @@ public class PlayerBuilder {
     public PlayerBuilder append(Word word) {
         words.add(word);
         return this;
+    }
+
+    public PlayerBuilder append(DictionaryWord dictionaryWord) {
+        return append(dictionaryWord.getWord());
     }
 
     public PlayerBuilder append(Player player) {
@@ -65,7 +71,7 @@ public class PlayerBuilder {
 
     private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
         if (words == null || words.isEmpty()) {
-            words.addAll(Arrays.asList(new Word("Fizz", 3), new Word("Buzz", 5)));
+            words.addAll(Arrays.asList(FIZZ.getWord(), BUZZ.getWord()));
         }
         return words;
     }
