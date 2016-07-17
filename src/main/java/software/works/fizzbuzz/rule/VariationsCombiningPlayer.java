@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import software.works.fizzbuzz.Player;
 
-public class VariationsCombiningPlayer extends AbstractPlayer {
+class VariationsCombiningPlayer extends AbstractPlayer {
 
     private List<Player> players;
 

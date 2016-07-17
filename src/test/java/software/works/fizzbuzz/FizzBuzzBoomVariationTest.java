@@ -28,4 +28,15 @@ public class FizzBuzzBoomVariationTest {
     public void should_get_boomboom_given_7_as_number() {
         assertThat(fizzBuzzBoom.of(7)).isEqualTo("BoomBoom");
     }
+
+    @Test
+    public void should_get_fizzfizzbuzzboomboom_given_7539() {
+        assertThat(fizzBuzzBoom.of(7539)).isEqualTo("FizzFizzBuzzBoomBoom");
+    }
+
+    @Test
+    public void should_get_fizz_buzz_or_boom_given_a_range_of_numbers() {
+        assertThat(fizzBuzzBoom.from(1).to(15))
+                .isEqualTo("1 2 FizzFizz 4 BuzzBuzz Fizz BoomBoom 8 Fizz Buzz 11 Fizz Fizz Boom FizzBuzzBuzz");
+    }
 }

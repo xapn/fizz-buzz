@@ -63,7 +63,7 @@ public class PlayerBuilder {
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
         List<FizzBuzzPredicate> predicates = new ArrayList<>();
         words.stream().forEachOrdered(word -> {
-            predicates.add(wordIf(word.getWord(), numberPredicate.appliedTo(word.getNumber())));
+            predicates.add(wordIf(word.getWord(), numberPredicate.appliedTo(word.getProperty())));
         });
         return predicates;
     }

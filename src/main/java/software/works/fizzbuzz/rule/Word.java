@@ -3,16 +3,16 @@ package software.works.fizzbuzz.rule;
 public class Word {
 
     private String word;
-    private int number;
+    private int property;
 
-    public Word(String word, int number) {
+    public Word(String word, int property) {
         this.word = word;
-        this.number = number;
+        this.property = property;
         validate();
     }
 
     private void validate() {
-        if (word == null || word.isEmpty() || number < 0) {
+        if (word == null || word.isEmpty() || property < 0) {
             throw new IllegalStateException(
                     "Invalid word: " + word + " must be a word associated to a positive integer as property!");
         }
@@ -22,12 +22,12 @@ public class Word {
         return word;
     }
 
-    public int getNumber() {
-        return number;
+    public int getProperty() {
+        return property;
     }
 
     @Override
     public String toString() {
-        return String.format("{word: %s, number: %d}", word, number);
+        return String.format("{word: %s, property: %d}", word, property);
     }
 }
