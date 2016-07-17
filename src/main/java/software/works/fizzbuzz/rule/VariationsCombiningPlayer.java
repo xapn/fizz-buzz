@@ -16,11 +16,17 @@ public class VariationsCombiningPlayer extends AbstractPlayer {
             throw new IllegalStateException("No player found!");
         } else {
             this.players = players;
+            managePredicates();
         }
     }
 
-    @Override
-    protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
+    void managePredicates() {
+        predicates = new ArrayList<>();
+        recordPredicates(predicates);
+        validatePredicates(predicates);
+    }
+
+    private void recordPredicates(List<FizzBuzzPredicate> predicates) {
         List<FizzBuzzPredicate> combinedPredicates = combinePredicatesFromPlayers(players);
         predicates.addAll(combinedPredicates);
     }
@@ -52,5 +58,11 @@ public class VariationsCombiningPlayer extends AbstractPlayer {
         }
 
         return predicatesOneByPlayer;
+    }
+
+    private void validatePredicates(List<FizzBuzzPredicate> predicates) {
+        if (predicates == null || predicates.isEmpty()) {
+            throw new IllegalStateException("No predicate found!");
+        }
     }
 }

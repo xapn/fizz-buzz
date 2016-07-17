@@ -6,6 +6,7 @@ import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import software.works.fizzbuzz.Player;
 
@@ -34,14 +35,20 @@ public class PlayerBuilder {
     }
 
     public Player chosenPlayer() {
+        words = chooseDefaultWordsIfNotDefined(words);
+
+        chooseClassicPlayerByDefaultIfUnknown(players);
         buildPlayers(players);
         Player player = combineVariations(players);
-        player = chooseClassicPlayerByDefaultIfUnknown(player);
-
-        words = chooseDefaultWordsIfNotDefined(words);
-        buildPlayer(player);
 
         return player;
+    }
+
+    private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
+        if (words == null || words.isEmpty()) {
+            words.addAll(Arrays.asList(FIZZ.getWord(), BUZZ.getWord()));
+        }
+        return words;
     }
 
     private void buildPlayers(List<Player> players) {
@@ -49,8 +56,20 @@ public class PlayerBuilder {
     }
 
     private void buildPlayer(Player player) {
-        player.adoptWords(chooseDefaultWordsIfNotDefined(words));
-        ((AbstractPlayer) player).managePredicates();
+        AbstractPlayer abstractPlayer = (AbstractPlayer) player;
+        abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
+    }
+
+    private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
+        List<FizzBuzzPredicate> predicates = new ArrayList<>();
+        words.stream().forEachOrdered(word -> {
+            predicates.add(wordIf(word.getWord(), numberPredicate.appliedTo(word.getNumber())));
+        });
+        return predicates;
+    }
+
+    private FizzBuzzPredicate wordIf(String word, Predicate<Integer> predicate) {
+        return value -> predicate.test(value) ? word : "";
     }
 
     private Player combineVariations(List<Player> players) {
@@ -67,17 +86,10 @@ public class PlayerBuilder {
         return player;
     }
 
-    private Player chooseClassicPlayerByDefaultIfUnknown(Player player) {
-        if (player == null) {
-            player = new DivisionPlayer();
+    private List<Player> chooseClassicPlayerByDefaultIfUnknown(List<Player> players) {
+        if (players.isEmpty()) {
+            players.add(new DivisionPlayer());
         }
-        return player;
-    }
-
-    private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
-        if (words == null || words.isEmpty()) {
-            words.addAll(Arrays.asList(FIZZ.getWord(), BUZZ.getWord()));
-        }
-        return words;
+        return players;
     }
 }
