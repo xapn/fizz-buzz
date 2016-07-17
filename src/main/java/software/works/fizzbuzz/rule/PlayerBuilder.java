@@ -34,14 +34,23 @@ public class PlayerBuilder {
     }
 
     public Player chosenPlayer() {
+        buildPlayers(players);
         Player player = combineVariations(players);
         player = chooseClassicPlayerByDefaultIfUnknown(player);
 
         words = chooseDefaultWordsIfNotDefined(words);
-        player.adoptWords(words);
-        ((AbstractPlayer) player).managePredicates();
+        buildPlayer(player);
 
         return player;
+    }
+
+    private void buildPlayers(List<Player> players) {
+        players.stream().forEach(this::buildPlayer);
+    }
+
+    private void buildPlayer(Player player) {
+        player.adoptWords(chooseDefaultWordsIfNotDefined(words));
+        ((AbstractPlayer) player).managePredicates();
     }
 
     private Player combineVariations(List<Player> players) {
@@ -51,10 +60,6 @@ public class PlayerBuilder {
             if (players.size() == 1) {
                 player = players.get(0);
             } else {
-                players.stream().forEach(p -> {
-                    p.adoptWords(chooseDefaultWordsIfNotDefined(words));
-                    ((AbstractPlayer) p).managePredicates();
-                });
                 player = new VariationsCombiningPlayer(players);
             }
         }
