@@ -53,4 +53,9 @@ public class FizzBuzzSeparatorsTest {
     public void should_get_fizzbuzz_given_dash_as_predefined_separator() {
         assertThat(fizzBuzz.separatedByDash().of(3, 5)).isEqualTo("Fizz - Buzz");
     }
+
+    @Test
+    public void should_get_fizzbuzz_given_exclamation_mark_as_predefined_separator() {
+        assertThat(fizzBuzz.punctuatedByExclamationMark().of(3, 5)).isEqualTo("Fizz! Buzz!");
+    }
 }

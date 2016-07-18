@@ -12,10 +12,12 @@ import software.works.fizzbuzz.Player;
 public class PlayerBuilder {
 
     private static final String DEFAULT_WORD_SEPARATOR = " ";
+    private static final String DEFAULT_FINAL_PUNCTUATION = "";
 
     private List<Word> words;
     private List<Player> players;
     private String wordSeparator;
+    private String finalPunctuation;
 
     public PlayerBuilder() {
         words = new ArrayList<>();
@@ -31,9 +33,13 @@ public class PlayerBuilder {
         return append(dictionaryWord.getWord());
     }
 
-    public PlayerBuilder append(String wordSeparator) {
+    public PlayerBuilder separateWordsBy(String wordSeparator) {
         this.wordSeparator = wordSeparator;
         return this;
+    }
+
+    public void completeSentenceWith(String finalPunctuation) {
+        this.finalPunctuation = finalPunctuation;
     }
 
     public PlayerBuilder append(Player player) {
@@ -45,6 +51,7 @@ public class PlayerBuilder {
         words = chooseDefaultWordsIfNotDefined(words);
         chooseClassicPlayerByDefaultIfUnknown(players);
         chooseDefaultWordSeparatorIfNotDefined();
+        chooseDefaultFinalPunctuationIfNotDefined();
 
         buildPlayers(players);
         Player player = combineVariations(players);
@@ -55,6 +62,12 @@ public class PlayerBuilder {
     private void chooseDefaultWordSeparatorIfNotDefined() {
         if (wordSeparator == null) {
             wordSeparator = DEFAULT_WORD_SEPARATOR;
+        }
+    }
+
+    private void chooseDefaultFinalPunctuationIfNotDefined() {
+        if (finalPunctuation == null) {
+            finalPunctuation = DEFAULT_FINAL_PUNCTUATION;
         }
     }
 
@@ -73,6 +86,7 @@ public class PlayerBuilder {
         AbstractPlayer abstractPlayer = (AbstractPlayer) player;
         abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
         abstractPlayer.setWordSeparator(wordSeparator);
+        abstractPlayer.setFinalPunctuation(finalPunctuation);
     }
 
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {

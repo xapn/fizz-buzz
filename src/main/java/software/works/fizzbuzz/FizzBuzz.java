@@ -55,7 +55,7 @@ public class FizzBuzz {
     }
 
     public FizzBuzz separatedBy(String wordSeparator) {
-        playerBuilder.append(wordSeparator);
+        playerBuilder.separateWordsBy(wordSeparator);
         return this;
     }
 
@@ -85,5 +85,10 @@ public class FizzBuzz {
 
     public FizzBuzz separatedByDash() {
         return separatedBy(DASH_SEPARATOR);
+    }
+
+    public FizzBuzz punctuatedByExclamationMark() {
+        playerBuilder.separateWordsBy("! ").completeSentenceWith("!");
+        return this;
     }
 }
