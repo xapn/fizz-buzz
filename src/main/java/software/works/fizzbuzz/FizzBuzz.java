@@ -13,6 +13,7 @@ public class FizzBuzz {
     private static final String COMMA_SEPARATOR = ", ";
     private static final String SEMI_COLON_SEPARATOR = "; ";
     private static final String LINE_FEED_SEPARATOR = "\n";
+    private static final String SLASH_SEPARATOR = " / ";
 
     private PlayerBuilder playerBuilder;
 
@@ -65,5 +66,9 @@ public class FizzBuzz {
 
     public FizzBuzz separatedByLineFeed() {
         return separatedBy(LINE_FEED_SEPARATOR);
+    }
+
+    public FizzBuzz separatedBySlash() {
+        return separatedBy(SLASH_SEPARATOR);
     }
 }
