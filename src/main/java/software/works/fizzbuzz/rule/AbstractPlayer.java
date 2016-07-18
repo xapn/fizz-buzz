@@ -14,7 +14,7 @@ abstract class AbstractPlayer implements Player {
     protected List<FizzBuzzPredicate> predicates;
     private String wordSeparator;
     private String finalPunctuation;
-    private boolean numberMustBePrinted;
+    private boolean numbersMustBePrinted;
 
     @Override
     public String playAtFizzBuzz(int value) {
@@ -24,7 +24,7 @@ abstract class AbstractPlayer implements Player {
 
         if (fizzBuzz.isEmpty()) {
             fizzBuzz = String.valueOf(value);
-        } else if (numberMustBePrinted) {
+        } else if (numbersMustBePrinted) {
             fizzBuzz += " (" + value + ")";
         }
         return fizzBuzz;
@@ -61,7 +61,7 @@ abstract class AbstractPlayer implements Player {
         this.finalPunctuation = finalPunctuation;
     }
 
-    void setNumberMustBePrinted(boolean numberMustBePrinted) {
-        this.numberMustBePrinted = numberMustBePrinted;
+    void setNumbersMustBePrinted(boolean numbersMustBePrinted) {
+        this.numbersMustBePrinted = numbersMustBePrinted;
     }
 }

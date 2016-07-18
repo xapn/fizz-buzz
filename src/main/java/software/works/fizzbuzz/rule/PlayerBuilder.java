@@ -88,7 +88,7 @@ public class PlayerBuilder {
         abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
         abstractPlayer.setWordSeparator(wordSeparator);
         abstractPlayer.setFinalPunctuation(finalPunctuation);
-        abstractPlayer.setNumberMustBePrinted(numbersMustBePrinted);
+        abstractPlayer.setNumbersMustBePrinted(numbersMustBePrinted);
     }
 
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
@@ -106,7 +106,11 @@ public class PlayerBuilder {
             if (players.size() == 1) {
                 player = players.get(0);
             } else {
-                player = new VariationsCombiningPlayer(players);
+                VariationsCombiningPlayer variationsCombiningPlayer = new VariationsCombiningPlayer(players);
+                variationsCombiningPlayer.setWordSeparator(wordSeparator);
+                variationsCombiningPlayer.setFinalPunctuation(finalPunctuation);
+                variationsCombiningPlayer.setNumbersMustBePrinted(numbersMustBePrinted);
+                player = variationsCombiningPlayer;
             }
         }
 

@@ -83,4 +83,9 @@ public class FizzBuzzSeparatorsTest {
     public void should_get_numbers_between_brackets_after_words_given_a_range_of_numbers() {
         assertThat(fizzBuzz.withNumbers().from(1).to(5)).isEqualTo("1 2 Fizz (3) 4 Buzz (5)");
     }
+
+    @Test
+    public void should_get_numbers_between_brackets_after_words_separated_by_comma_given_a_range_of_numbers() {
+        assertThat(fizzBuzz.withNumbers().separatedByComma().from(1).to(5)).isEqualTo("1, 2, Fizz (3), 4, Buzz (5)");
+    }
 }
