@@ -18,6 +18,7 @@ public class PlayerBuilder {
     private List<Player> players;
     private String wordSeparator;
     private String finalPunctuation;
+    private boolean numbersMustBePrinted;
 
     public PlayerBuilder() {
         words = new ArrayList<>();
@@ -87,6 +88,7 @@ public class PlayerBuilder {
         abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
         abstractPlayer.setWordSeparator(wordSeparator);
         abstractPlayer.setFinalPunctuation(finalPunctuation);
+        abstractPlayer.setNumberMustBePrinted(numbersMustBePrinted);
     }
 
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
@@ -116,5 +118,9 @@ public class PlayerBuilder {
             players.add(new DivisionPlayer());
         }
         return players;
+    }
+
+    public void printNumbersBetweenBrackets() {
+        numbersMustBePrinted = true;
     }
 }

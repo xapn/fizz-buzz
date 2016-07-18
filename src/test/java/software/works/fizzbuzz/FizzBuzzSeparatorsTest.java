@@ -78,4 +78,9 @@ public class FizzBuzzSeparatorsTest {
     public void should_get_fizzbuzz_given_period_as_predefined_punctuation() {
         assertThat(fizzBuzz.punctuatedByPeriod().of(3, 5)).isEqualTo("Fizz. Buzz.");
     }
+
+    @Test
+    public void should_get_numbers_between_brackets_after_words_given_a_range_of_numbers() {
+        assertThat(fizzBuzz.withNumbers().from(1).to(5)).isEqualTo("1 2 Fizz (3) 4 Buzz (5)");
+    }
 }
