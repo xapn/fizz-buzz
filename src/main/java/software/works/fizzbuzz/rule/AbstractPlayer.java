@@ -10,10 +10,10 @@ import software.works.fizzbuzz.Player;
 
 abstract class AbstractPlayer implements Player {
 
-    private static final String DELIMITER = " ";
-
     private NumberPredicate numberPredicate;
     protected List<FizzBuzzPredicate> predicates;
+    private String wordSeparator;
+    private String finalPunctuation;
 
     @Override
     public String playAtFizzBuzz(int value) {
@@ -27,7 +27,8 @@ abstract class AbstractPlayer implements Player {
     public String playAtFizzBuzz(int... values) {
         return IntStream.of(values) //
                 .mapToObj(this::playAtFizzBuzz) //
-                .collect(joining(DELIMITER));
+                .collect(joining(wordSeparator)) //
+                + finalPunctuation;
     }
 
     NumberPredicate getNumberPredicate() {
@@ -44,5 +45,13 @@ abstract class AbstractPlayer implements Player {
 
     void setPredicates(List<FizzBuzzPredicate> predicates) {
         this.predicates = predicates;
+    }
+
+    void setWordSeparator(String wordSeparator) {
+        this.wordSeparator = wordSeparator;
+    }
+
+    void setFinalPunctuation(String finalPunctuation) {
+        this.finalPunctuation = finalPunctuation;
     }
 }

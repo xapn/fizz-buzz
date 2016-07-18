@@ -10,6 +10,17 @@ import software.works.fizzbuzz.rule.PlayerBuilder;
 
 public class FizzBuzz {
 
+    private static final String COMMA_SEPARATOR = ", ";
+    private static final String SEMI_COLON_SEPARATOR = "; ";
+    private static final String LINE_FEED_SEPARATOR = "\n";
+    private static final String SLASH_SEPARATOR = " / ";
+    private static final String BACKSLASH_SEPARATOR = " \\ ";
+    private static final String DASH_SEPARATOR = " - ";
+    private static final String FRENCH_SEMI_COLON_SEPARATOR = " ; ";
+    private static final String EXCLAMATION_MARK = "!";
+    private static final String FRENCH_EXCLAMATION_MARK = " !";
+    private static final String FULL_STOP = ".";
+
     private PlayerBuilder playerBuilder;
 
     public FizzBuzz() {
@@ -44,5 +55,59 @@ public class FizzBuzz {
                 .append(new DivisionPlayer()) //
                 .append(new DigitPlayer());
         return this;
+    }
+
+    public FizzBuzz separatedBy(String wordSeparator) {
+        playerBuilder.separateWordsBy(wordSeparator);
+        return this;
+    }
+
+    public FizzBuzz separatedByComma() {
+        return separatedBy(COMMA_SEPARATOR);
+    }
+
+    public FizzBuzz separatedBySemiColon() {
+        return separatedBy(SEMI_COLON_SEPARATOR);
+    }
+
+    public FizzBuzz separatedByFrenchSemiColon() {
+        return separatedBy(FRENCH_SEMI_COLON_SEPARATOR);
+    }
+
+    public FizzBuzz separatedByLineFeed() {
+        return separatedBy(LINE_FEED_SEPARATOR);
+    }
+
+    public FizzBuzz separatedBySlash() {
+        return separatedBy(SLASH_SEPARATOR);
+    }
+
+    public FizzBuzz separatedByBackslash() {
+        return separatedBy(BACKSLASH_SEPARATOR);
+    }
+
+    public FizzBuzz separatedByDash() {
+        return separatedBy(DASH_SEPARATOR);
+    }
+
+    public FizzBuzz punctuatedBy(String punctuation) {
+        playerBuilder.separateWordsBy(punctuation + " ").completeSentenceWith(punctuation);
+        return this;
+    }
+
+    public FizzBuzz punctuatedByExclamationMark() {
+        return punctuatedBy(EXCLAMATION_MARK);
+    }
+
+    public FizzBuzz punctuatedByFrenchExclamationMark() {
+        return punctuatedBy(FRENCH_EXCLAMATION_MARK);
+    }
+
+    public FizzBuzz punctuatedByFullStop() {
+        return punctuatedBy(FULL_STOP);
+    }
+
+    public FizzBuzz punctuatedByPeriod() {
+        return punctuatedByFullStop();
     }
 }

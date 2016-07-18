@@ -11,8 +11,13 @@ import software.works.fizzbuzz.Player;
 
 public class PlayerBuilder {
 
+    private static final String DEFAULT_WORD_SEPARATOR = " ";
+    private static final String DEFAULT_FINAL_PUNCTUATION = "";
+
     private List<Word> words;
     private List<Player> players;
+    private String wordSeparator;
+    private String finalPunctuation;
 
     public PlayerBuilder() {
         words = new ArrayList<>();
@@ -28,6 +33,15 @@ public class PlayerBuilder {
         return append(dictionaryWord.getWord());
     }
 
+    public PlayerBuilder separateWordsBy(String wordSeparator) {
+        this.wordSeparator = wordSeparator;
+        return this;
+    }
+
+    public void completeSentenceWith(String finalPunctuation) {
+        this.finalPunctuation = finalPunctuation;
+    }
+
     public PlayerBuilder append(Player player) {
         players.add(player);
         return this;
@@ -35,12 +49,26 @@ public class PlayerBuilder {
 
     public Player chosenPlayer() {
         words = chooseDefaultWordsIfNotDefined(words);
-
         chooseClassicPlayerByDefaultIfUnknown(players);
+        chooseDefaultWordSeparatorIfNotDefined();
+        chooseDefaultFinalPunctuationIfNotDefined();
+
         buildPlayers(players);
         Player player = combineVariations(players);
 
         return player;
+    }
+
+    private void chooseDefaultWordSeparatorIfNotDefined() {
+        if (wordSeparator == null) {
+            wordSeparator = DEFAULT_WORD_SEPARATOR;
+        }
+    }
+
+    private void chooseDefaultFinalPunctuationIfNotDefined() {
+        if (finalPunctuation == null) {
+            finalPunctuation = DEFAULT_FINAL_PUNCTUATION;
+        }
     }
 
     private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
@@ -57,6 +85,8 @@ public class PlayerBuilder {
     private void buildPlayer(Player player) {
         AbstractPlayer abstractPlayer = (AbstractPlayer) player;
         abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
+        abstractPlayer.setWordSeparator(wordSeparator);
+        abstractPlayer.setFinalPunctuation(finalPunctuation);
     }
 
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
