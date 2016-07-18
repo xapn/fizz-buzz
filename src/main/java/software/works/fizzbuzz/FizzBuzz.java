@@ -45,4 +45,9 @@ public class FizzBuzz {
                 .append(new DigitPlayer());
         return this;
     }
+
+    public FizzBuzz separatedBy(String wordSeparator) {
+        playerBuilder.append(wordSeparator);
+        return this;
+    }
 }

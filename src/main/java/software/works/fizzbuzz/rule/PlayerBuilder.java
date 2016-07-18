@@ -11,8 +11,11 @@ import software.works.fizzbuzz.Player;
 
 public class PlayerBuilder {
 
+    private static final String DEFAULT_WORD_SEPARATOR = " ";
+
     private List<Word> words;
     private List<Player> players;
+    private String wordSeparator;
 
     public PlayerBuilder() {
         words = new ArrayList<>();
@@ -28,6 +31,11 @@ public class PlayerBuilder {
         return append(dictionaryWord.getWord());
     }
 
+    public PlayerBuilder append(String wordSeparator) {
+        this.wordSeparator = wordSeparator;
+        return this;
+    }
+
     public PlayerBuilder append(Player player) {
         players.add(player);
         return this;
@@ -35,12 +43,19 @@ public class PlayerBuilder {
 
     public Player chosenPlayer() {
         words = chooseDefaultWordsIfNotDefined(words);
-
         chooseClassicPlayerByDefaultIfUnknown(players);
+        chooseDefaultWordSeparatorIfNotDefined();
+
         buildPlayers(players);
         Player player = combineVariations(players);
 
         return player;
+    }
+
+    private void chooseDefaultWordSeparatorIfNotDefined() {
+        if (wordSeparator == null) {
+            wordSeparator = DEFAULT_WORD_SEPARATOR;
+        }
     }
 
     private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
@@ -57,6 +72,7 @@ public class PlayerBuilder {
     private void buildPlayer(Player player) {
         AbstractPlayer abstractPlayer = (AbstractPlayer) player;
         abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
+        abstractPlayer.setWordSeparator(wordSeparator);
     }
 
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
