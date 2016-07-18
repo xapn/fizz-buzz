@@ -87,8 +87,12 @@ public class FizzBuzz {
         return separatedBy(DASH_SEPARATOR);
     }
 
-    public FizzBuzz punctuatedByExclamationMark() {
-        playerBuilder.separateWordsBy("! ").completeSentenceWith("!");
+    public FizzBuzz punctuatedBy(String punctuation) {
+        playerBuilder.separateWordsBy(punctuation + " ").completeSentenceWith(punctuation);
         return this;
+    }
+
+    public FizzBuzz punctuatedByExclamationMark() {
+        return punctuatedBy("!");
     }
 }

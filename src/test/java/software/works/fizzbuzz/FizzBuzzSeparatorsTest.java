@@ -55,7 +55,12 @@ public class FizzBuzzSeparatorsTest {
     }
 
     @Test
-    public void should_get_fizzbuzz_given_exclamation_mark_as_predefined_separator() {
+    public void should_get_fizzbuzz_given_punctuation_as_punctuation() {
+        assertThat(fizzBuzz.punctuatedBy("!").of(3, 5)).isEqualTo("Fizz! Buzz!");
+    }
+
+    @Test
+    public void should_get_fizzbuzz_given_exclamation_mark_as_predefined_punctuation() {
         assertThat(fizzBuzz.punctuatedByExclamationMark().of(3, 5)).isEqualTo("Fizz! Buzz!");
     }
 }
