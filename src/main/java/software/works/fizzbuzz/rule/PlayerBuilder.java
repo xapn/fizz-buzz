@@ -6,7 +6,6 @@ import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 import software.works.fizzbuzz.Player;
 
@@ -63,13 +62,9 @@ public class PlayerBuilder {
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
         List<FizzBuzzPredicate> predicates = new ArrayList<>();
         words.stream().forEachOrdered(word -> {
-            predicates.add(wordIf(word.getWord(), numberPredicate.appliedTo(word.getProperty())));
+            predicates.add(word.ifNumberSatisfies(numberPredicate));
         });
         return predicates;
-    }
-
-    private FizzBuzzPredicate wordIf(String word, Predicate<Integer> predicate) {
-        return value -> predicate.test(value) ? word : "";
     }
 
     private Player combineVariations(List<Player> players) {

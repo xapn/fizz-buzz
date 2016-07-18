@@ -40,9 +40,7 @@ public class FizzBuzz {
 
     public FizzBuzz boom() {
         playerBuilder //
-                .append(FIZZ) //
-                .append(BUZZ) //
-                .append(BOOM) //
+                .append(FIZZ).append(BUZZ).append(BOOM) //
                 .append(new DivisionPlayer()) //
                 .append(new DigitPlayer());
         return this;
