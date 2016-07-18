@@ -63,4 +63,14 @@ public class FizzBuzzSeparatorsTest {
     public void should_get_fizzbuzz_given_exclamation_mark_as_predefined_punctuation() {
         assertThat(fizzBuzz.punctuatedByExclamationMark().of(3, 5)).isEqualTo("Fizz! Buzz!");
     }
+
+    @Test
+    public void should_get_fizzbuzz_given_full_stop_mark_as_predefined_punctuation() {
+        assertThat(fizzBuzz.punctuatedByFullStop().of(3, 5)).isEqualTo("Fizz. Buzz.");
+    }
+
+    @Test
+    public void should_get_fizzbuzz_given_period_as_predefined_punctuation() {
+        assertThat(fizzBuzz.punctuatedByPeriod().of(3, 5)).isEqualTo("Fizz. Buzz.");
+    }
 }
