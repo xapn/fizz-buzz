@@ -10,6 +10,8 @@ import software.works.fizzbuzz.rule.PlayerBuilder;
 
 public class FizzBuzz {
 
+    private static final String COMMA_SEPARATOR = ", ";
+
     private PlayerBuilder playerBuilder;
 
     public FizzBuzz() {
@@ -48,6 +50,11 @@ public class FizzBuzz {
 
     public FizzBuzz separatedBy(String wordSeparator) {
         playerBuilder.append(wordSeparator);
+        return this;
+    }
+
+    public FizzBuzz separatedByComma() {
+        playerBuilder.append(COMMA_SEPARATOR);
         return this;
     }
 }
