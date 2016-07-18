@@ -23,4 +23,9 @@ public class FizzBuzzSeparatorsTest {
     public void should_get_fizzbuzz_given_comma_as_predefined_separator() {
         assertThat(fizzBuzz.separatedByComma().of(3, 5)).isEqualTo("Fizz, Buzz");
     }
+
+    @Test
+    public void should_get_fizzbuzz_given_semicolon_as_predefined_separator() {
+        assertThat(fizzBuzz.separatedBySemiColon().of(3, 5)).isEqualTo("Fizz; Buzz");
+    }
 }

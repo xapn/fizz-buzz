@@ -11,6 +11,7 @@ import software.works.fizzbuzz.rule.PlayerBuilder;
 public class FizzBuzz {
 
     private static final String COMMA_SEPARATOR = ", ";
+    private static final String SEMI_COLON_SEPARATOR = "; ";
 
     private PlayerBuilder playerBuilder;
 
@@ -55,6 +56,11 @@ public class FizzBuzz {
 
     public FizzBuzz separatedByComma() {
         playerBuilder.append(COMMA_SEPARATOR);
+        return this;
+    }
+
+    public FizzBuzz separatedBySemiColon() {
+        playerBuilder.append(SEMI_COLON_SEPARATOR);
         return this;
     }
 }
