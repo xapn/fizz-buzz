@@ -30,6 +30,11 @@ public class FizzBuzzSeparatorsTest {
     }
 
     @Test
+    public void should_get_fizzbuzz_given_french_semicolon_as_predefined_separator() {
+        assertThat(fizzBuzz.separatedByFrenchSemiColon().of(3, 5)).isEqualTo("Fizz ; Buzz");
+    }
+
+    @Test
     public void should_get_fizzbuzz_given_line_feed_as_predefined_separator() {
         assertThat(fizzBuzz.separatedByLineFeed().of(3, 5)).isEqualTo("Fizz\nBuzz");
     }
@@ -42,5 +47,10 @@ public class FizzBuzzSeparatorsTest {
     @Test
     public void should_get_fizzbuzz_given_backslash_as_predefined_separator() {
         assertThat(fizzBuzz.separatedByBackslash().of(3, 5)).isEqualTo("Fizz \\ Buzz");
+    }
+
+    @Test
+    public void should_get_fizzbuzz_given_dash_as_predefined_separator() {
+        assertThat(fizzBuzz.separatedByDash().of(3, 5)).isEqualTo("Fizz - Buzz");
     }
 }
