@@ -110,4 +110,9 @@ public class FizzBuzz {
     public FizzBuzz punctuatedByPeriod() {
         return punctuatedByFullStop();
     }
+
+    public FizzBuzz withNumbers() {
+        playerBuilder.printNumbersBetweenBrackets();
+        return this;
+    }
 }

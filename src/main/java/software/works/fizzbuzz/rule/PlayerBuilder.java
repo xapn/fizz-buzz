@@ -11,17 +11,14 @@ import software.works.fizzbuzz.Player;
 
 public class PlayerBuilder {
 
-    private static final String DEFAULT_WORD_SEPARATOR = " ";
-    private static final String DEFAULT_FINAL_PUNCTUATION = "";
-
     private List<Word> words;
     private List<Player> players;
-    private String wordSeparator;
-    private String finalPunctuation;
+    private PlayerConfiguration configuration;
 
     public PlayerBuilder() {
         words = new ArrayList<>();
         players = new ArrayList<>();
+        configuration = new PlayerConfiguration();
     }
 
     public PlayerBuilder append(Word word) {
@@ -34,12 +31,13 @@ public class PlayerBuilder {
     }
 
     public PlayerBuilder separateWordsBy(String wordSeparator) {
-        this.wordSeparator = wordSeparator;
+        configuration.setWordSeparator(wordSeparator);
         return this;
     }
 
-    public void completeSentenceWith(String finalPunctuation) {
-        this.finalPunctuation = finalPunctuation;
+    public PlayerBuilder completeSentenceWith(String finalPunctuation) {
+        configuration.setFinalPunctuation(finalPunctuation);
+        return this;
     }
 
     public PlayerBuilder append(Player player) {
@@ -50,25 +48,11 @@ public class PlayerBuilder {
     public Player chosenPlayer() {
         words = chooseDefaultWordsIfNotDefined(words);
         chooseClassicPlayerByDefaultIfUnknown(players);
-        chooseDefaultWordSeparatorIfNotDefined();
-        chooseDefaultFinalPunctuationIfNotDefined();
 
         buildPlayers(players);
         Player player = combineVariations(players);
 
         return player;
-    }
-
-    private void chooseDefaultWordSeparatorIfNotDefined() {
-        if (wordSeparator == null) {
-            wordSeparator = DEFAULT_WORD_SEPARATOR;
-        }
-    }
-
-    private void chooseDefaultFinalPunctuationIfNotDefined() {
-        if (finalPunctuation == null) {
-            finalPunctuation = DEFAULT_FINAL_PUNCTUATION;
-        }
     }
 
     private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
@@ -85,8 +69,7 @@ public class PlayerBuilder {
     private void buildPlayer(Player player) {
         AbstractPlayer abstractPlayer = (AbstractPlayer) player;
         abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
-        abstractPlayer.setWordSeparator(wordSeparator);
-        abstractPlayer.setFinalPunctuation(finalPunctuation);
+        abstractPlayer.setConfiguration(configuration);
     }
 
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
@@ -104,7 +87,7 @@ public class PlayerBuilder {
             if (players.size() == 1) {
                 player = players.get(0);
             } else {
-                player = new VariationsCombiningPlayer(players);
+                player = new VariationsCombiningPlayer(players, configuration);
             }
         }
 
@@ -116,5 +99,9 @@ public class PlayerBuilder {
             players.add(new DivisionPlayer());
         }
         return players;
+    }
+
+    public void printNumbersBetweenBrackets() {
+        configuration.setNumbersMustBePrinted(true);
     }
 }
