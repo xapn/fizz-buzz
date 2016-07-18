@@ -1,18 +1,10 @@
 package software.works.fizzbuzz.rule;
 
-import static software.works.fizzbuzz.rule.NumberPredicates.CONTAINS_DIGIT;
-
-import java.util.List;
+import static software.works.fizzbuzz.rule.NumberPredicate.CONTAINS_DIGIT;
 
 public class DigitPlayer extends AbstractPlayer {
 
     public DigitPlayer() {
-        managePredicates();
-    }
-
-    @Override
-    protected void recordPredicates(List<FizzBuzzPredicate> predicates) {
-        predicates.add(wordIf(FIZZ, CONTAINS_DIGIT.appliedTo(3)));
-        predicates.add(wordIf(BUZZ, CONTAINS_DIGIT.appliedTo(5)));
+        setNumberPredicate(CONTAINS_DIGIT);
     }
 }

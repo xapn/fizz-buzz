@@ -2,10 +2,8 @@ package software.works.fizzbuzz.rule;
 
 import static java.util.stream.Collectors.joining;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.Player;
@@ -14,25 +12,8 @@ abstract class AbstractPlayer implements Player {
 
     private static final String DELIMITER = " ";
 
-    private List<FizzBuzzPredicate> predicates;
-
-    final protected void managePredicates() {
-        predicates = new ArrayList<>();
-        recordPredicates(predicates);
-        validatePredicates(predicates);
-    }
-
-    protected abstract void recordPredicates(List<FizzBuzzPredicate> predicates);
-
-    final protected FizzBuzzPredicate wordIf(String word, Predicate<Integer> predicate) {
-        return value -> predicate.test(value) ? word : "";
-    }
-
-    private void validatePredicates(List<FizzBuzzPredicate> predicates) {
-        if (predicates == null || predicates.isEmpty()) {
-            throw new IllegalStateException("No predicate found!");
-        }
-    }
+    private NumberPredicate numberPredicate;
+    protected List<FizzBuzzPredicate> predicates;
 
     @Override
     public String playAtFizzBuzz(int value) {
@@ -49,7 +30,19 @@ abstract class AbstractPlayer implements Player {
                 .collect(joining(DELIMITER));
     }
 
-    final List<FizzBuzzPredicate> getPredicates() {
+    NumberPredicate getNumberPredicate() {
+        return numberPredicate;
+    }
+
+    protected void setNumberPredicate(NumberPredicate numberPredicate) {
+        this.numberPredicate = numberPredicate;
+    }
+
+    protected List<FizzBuzzPredicate> getPredicates() {
         return Collections.unmodifiableList(predicates);
+    }
+
+    void setPredicates(List<FizzBuzzPredicate> predicates) {
+        this.predicates = predicates;
     }
 }

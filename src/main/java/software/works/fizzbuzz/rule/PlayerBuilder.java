@@ -1,16 +1,31 @@
 package software.works.fizzbuzz.rule;
 
+import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import software.works.fizzbuzz.Player;
 
 public class PlayerBuilder {
 
+    private List<Word> words;
     private List<Player> players;
 
     public PlayerBuilder() {
+        words = new ArrayList<>();
         players = new ArrayList<>();
+    }
+
+    public PlayerBuilder append(Word word) {
+        words.add(word);
+        return this;
+    }
+
+    public PlayerBuilder append(DictionaryWord dictionaryWord) {
+        return append(dictionaryWord.getWord());
     }
 
     public PlayerBuilder append(Player player) {
@@ -19,8 +34,37 @@ public class PlayerBuilder {
     }
 
     public Player chosenPlayer() {
+        words = chooseDefaultWordsIfNotDefined(words);
+
+        chooseClassicPlayerByDefaultIfUnknown(players);
+        buildPlayers(players);
         Player player = combineVariations(players);
-        return chooseClassicPlayerByDefaultIfUnknown(player);
+
+        return player;
+    }
+
+    private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
+        if (words == null || words.isEmpty()) {
+            words.addAll(Arrays.asList(FIZZ.getWord(), BUZZ.getWord()));
+        }
+        return words;
+    }
+
+    private void buildPlayers(List<Player> players) {
+        players.stream().forEach(this::buildPlayer);
+    }
+
+    private void buildPlayer(Player player) {
+        AbstractPlayer abstractPlayer = (AbstractPlayer) player;
+        abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
+    }
+
+    private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
+        List<FizzBuzzPredicate> predicates = new ArrayList<>();
+        words.stream().forEachOrdered(word -> {
+            predicates.add(word.ifNumberSatisfies(numberPredicate));
+        });
+        return predicates;
     }
 
     private Player combineVariations(List<Player> players) {
@@ -37,10 +81,10 @@ public class PlayerBuilder {
         return player;
     }
 
-    private Player chooseClassicPlayerByDefaultIfUnknown(Player player) {
-        if (player == null) {
-            player = new DivisionPlayer();
+    private List<Player> chooseClassicPlayerByDefaultIfUnknown(List<Player> players) {
+        if (players.isEmpty()) {
+            players.add(new DivisionPlayer());
         }
-        return player;
+        return players;
     }
 }
