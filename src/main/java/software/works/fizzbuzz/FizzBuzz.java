@@ -18,6 +18,7 @@ public class FizzBuzz {
     private static final String DASH_SEPARATOR = " - ";
     private static final String FRENCH_SEMI_COLON_SEPARATOR = " ; ";
     private static final String EXCLAMATION_MARK = "!";
+    private static final String FRENCH_EXCLAMATION_MARK = " !";
     private static final String FULL_STOP = ".";
 
     private PlayerBuilder playerBuilder;
@@ -96,6 +97,10 @@ public class FizzBuzz {
 
     public FizzBuzz punctuatedByExclamationMark() {
         return punctuatedBy(EXCLAMATION_MARK);
+    }
+
+    public FizzBuzz punctuatedByFrenchExclamationMark() {
+        return punctuatedBy(FRENCH_EXCLAMATION_MARK);
     }
 
     public FizzBuzz punctuatedByFullStop() {

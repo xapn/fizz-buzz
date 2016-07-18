@@ -65,6 +65,11 @@ public class FizzBuzzSeparatorsTest {
     }
 
     @Test
+    public void should_get_fizzbuzz_given_french_exclamation_mark_as_predefined_punctuation() {
+        assertThat(fizzBuzz.punctuatedByFrenchExclamationMark().of(3, 5)).isEqualTo("Fizz ! Buzz !");
+    }
+
+    @Test
     public void should_get_fizzbuzz_given_full_stop_mark_as_predefined_punctuation() {
         assertThat(fizzBuzz.punctuatedByFullStop().of(3, 5)).isEqualTo("Fizz. Buzz.");
     }
