@@ -12,6 +12,7 @@ public class FizzBuzz {
 
     private static final String COMMA_SEPARATOR = ", ";
     private static final String SEMI_COLON_SEPARATOR = "; ";
+    private static final String LINE_FEED_SEPARATOR = "\n";
 
     private PlayerBuilder playerBuilder;
 
@@ -55,12 +56,14 @@ public class FizzBuzz {
     }
 
     public FizzBuzz separatedByComma() {
-        playerBuilder.append(COMMA_SEPARATOR);
-        return this;
+        return separatedBy(COMMA_SEPARATOR);
     }
 
     public FizzBuzz separatedBySemiColon() {
-        playerBuilder.append(SEMI_COLON_SEPARATOR);
-        return this;
+        return separatedBy(SEMI_COLON_SEPARATOR);
+    }
+
+    public FizzBuzz separatedByLineFeed() {
+        return separatedBy(LINE_FEED_SEPARATOR);
     }
 }
