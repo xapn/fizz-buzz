@@ -8,6 +8,7 @@ class PlayerConfiguration {
     private String wordSeparator;
     private String finalPunctuation;
     private boolean numbersMustBePrinted;
+    private boolean wordsMustBePrintedOnlyOnce;
 
     public PlayerConfiguration() {
         setUpDefaultParameterValues();
@@ -40,5 +41,13 @@ class PlayerConfiguration {
 
     void setNumbersMustBePrinted(boolean numbersMustBePrinted) {
         this.numbersMustBePrinted = numbersMustBePrinted;
+    }
+
+    boolean wordsMustBePrintedOnlyOnce() {
+        return wordsMustBePrintedOnlyOnce;
+    }
+
+    void setWordsMustBePrintedOnlyOnce(boolean wordsMustBePrintedOnlyOnce) {
+        this.wordsMustBePrintedOnlyOnce = wordsMustBePrintedOnlyOnce;
     }
 }

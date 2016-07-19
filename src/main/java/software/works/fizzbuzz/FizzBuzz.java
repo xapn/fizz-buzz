@@ -115,4 +115,9 @@ public class FizzBuzz {
         playerBuilder.printNumbersBetweenBrackets();
         return this;
     }
+
+    public FizzBuzz wordsOnlyOnce() {
+        playerBuilder.printWordsOnlyOnce();
+        return this;
+    }
 }

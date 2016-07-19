@@ -1,5 +1,7 @@
 package software.works.fizzbuzz.rule;
 
+import java.util.function.BiPredicate;
+
 class Word {
 
     private String word;
@@ -20,6 +22,10 @@ class Word {
 
     FizzBuzzPredicate ifNumberSatisfies(NumberPredicate predicate) {
         return value -> predicate.appliedTo(property).test(value) ? word : "";
+    }
+
+    FizzBuzzPredicate ifNumberSatisfies(BiPredicate<Integer, Integer> predicate) {
+        return value -> predicate.test(value, property) ? word : "";
     }
 
     @Override
