@@ -1,4 +1,4 @@
-[FizzBuzz](https://en.wikipedia.org/wiki/Fizz_buzz)
+[FizzBuzz](https://en.wikipedia.org/wiki/Fizz_buzz) is originally a game to help kids to learn the mathematical division by playing with numbers. If a number has a given factor, it is replaced with the matching word: "Fizz" when divisible by 3, "Buzz" when divisible by 5. Later FizzBuzz becomes a well-known short programming problem to select developer candidates. As I was reading further information about FizzBuzz, I realized the problem could be more difficult thanks to many variations, for learning kids as much as for programmers. Thus this game is here an opportunity to play with the Java programming language features as well as some programming paradigms such as the object-oriented and functional ones, while building a fluent API.
 
 # Usage
 
