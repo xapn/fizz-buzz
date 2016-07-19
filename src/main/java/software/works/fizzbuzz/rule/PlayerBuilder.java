@@ -1,11 +1,13 @@
 package software.works.fizzbuzz.rule;
 
+import static java.util.stream.Collectors.toList;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import software.works.fizzbuzz.Player;
 
@@ -46,20 +48,42 @@ public class PlayerBuilder {
     }
 
     public Player chosenPlayer() {
-        words = chooseDefaultWordsIfNotDefined(words);
+        words = chooseDefaultWordsIfNotSpecified(words);
         chooseClassicPlayerByDefaultIfUnknown(players);
+        Player definitivePlayer = null;
 
-        buildPlayers(players);
-        Player player = combineVariations(players);
+        if (configuration.wordsMustBePrintedOnlyOnce()) {
+            definitivePlayer = buildWordOrientedPlayer();
+        } else {
+            buildPlayers(players);
+            definitivePlayer = combineVariations(players);
+        }
 
-        return player;
+        return definitivePlayer;
     }
 
-    private List<Word> chooseDefaultWordsIfNotDefined(List<Word> words) {
+    private List<Word> chooseDefaultWordsIfNotSpecified(List<Word> words) {
         if (words == null || words.isEmpty()) {
             words.addAll(Arrays.asList(FIZZ.getWord(), BUZZ.getWord()));
         }
         return words;
+    }
+
+    private Player buildWordOrientedPlayer() {
+        List<NumberPredicate> allNumberPredicates = players.stream() //
+                .map(player -> {
+                    return ((AbstractPlayer) player).getNumberPredicate();
+                }).collect(Collectors.toList());
+        List<FizzBuzzPredicate> wordOrientedPredicates = words.stream() //
+                .map(word -> word.ifNumberSatisfies(allNumberPredicates)).collect(toList());
+        Player wordOrientedPlayer = new AbstractPlayer() {
+            {
+                setConfiguration(configuration);
+                setPredicates(wordOrientedPredicates);
+            }
+        };
+
+        return wordOrientedPlayer;
     }
 
     private void buildPlayers(List<Player> players) {
@@ -103,5 +127,10 @@ public class PlayerBuilder {
 
     public void printNumbersBetweenBrackets() {
         configuration.setNumbersMustBePrinted(true);
+    }
+
+    public PlayerBuilder printWordsOnlyOnce() {
+        configuration.setWordsMustBePrintedOnlyOnce(true);
+        return this;
     }
 }

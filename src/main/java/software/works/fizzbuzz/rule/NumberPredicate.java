@@ -17,4 +17,8 @@ enum NumberPredicate {
     Predicate<Integer> appliedTo(int property) {
         return value -> predicate.test(value, property);
     }
+
+    BiPredicate<Integer, Integer> getPredicate() {
+        return predicate;
+    }
 }

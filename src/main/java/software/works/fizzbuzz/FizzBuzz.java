@@ -53,7 +53,8 @@ public class FizzBuzz {
         playerBuilder //
                 .append(FIZZ).append(BUZZ).append(BOOM) //
                 .append(new DivisionPlayer()) //
-                .append(new DigitPlayer());
+                .append(new DigitPlayer()) //
+                .printWordsOnlyOnce();
         return this;
     }
 
@@ -113,6 +114,11 @@ public class FizzBuzz {
 
     public FizzBuzz withNumbers() {
         playerBuilder.printNumbersBetweenBrackets();
+        return this;
+    }
+
+    public FizzBuzz wordsOnlyOnce() {
+        playerBuilder.printWordsOnlyOnce();
         return this;
     }
 }

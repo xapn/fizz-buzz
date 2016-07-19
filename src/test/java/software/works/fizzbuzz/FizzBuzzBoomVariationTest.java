@@ -15,28 +15,28 @@ public class FizzBuzzBoomVariationTest {
     }
 
     @Test
-    public void should_get_fizzfizz_given_3_as_number() {
-        assertThat(fizzBuzzBoom.of(3)).isEqualTo("FizzFizz");
+    public void should_get_fizz_given_3_as_number() {
+        assertThat(fizzBuzzBoom.of(3)).isEqualTo("Fizz");
     }
 
     @Test
-    public void should_get_buzzbuzz_given_5_as_number() {
-        assertThat(fizzBuzzBoom.of(5)).isEqualTo("BuzzBuzz");
+    public void should_get_buzz_given_5_as_number() {
+        assertThat(fizzBuzzBoom.of(5)).isEqualTo("Buzz");
     }
 
     @Test
-    public void should_get_boomboom_given_7_as_number() {
-        assertThat(fizzBuzzBoom.of(7)).isEqualTo("BoomBoom");
+    public void should_get_boom_given_7_as_number() {
+        assertThat(fizzBuzzBoom.of(7)).isEqualTo("Boom");
     }
 
     @Test
-    public void should_get_fizzfizzbuzzboomboom_given_7539() {
-        assertThat(fizzBuzzBoom.of(7539)).isEqualTo("FizzFizzBuzzBoomBoom");
+    public void should_get_fizzbuzzboom_given_7539() {
+        assertThat(fizzBuzzBoom.of(7539)).isEqualTo("FizzBuzzBoom");
     }
 
     @Test
     public void should_get_fizz_buzz_or_boom_given_a_range_of_numbers() {
         assertThat(fizzBuzzBoom.from(1).to(15))
-                .isEqualTo("1 2 FizzFizz 4 BuzzBuzz Fizz BoomBoom 8 Fizz Buzz 11 Fizz Fizz Boom FizzBuzzBuzz");
+                .isEqualTo("1 2 Fizz 4 Buzz Fizz Boom 8 Fizz Buzz 11 Fizz Fizz Boom FizzBuzz");
     }
 }
