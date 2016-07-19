@@ -53,7 +53,8 @@ public class FizzBuzz {
         playerBuilder //
                 .append(FIZZ).append(BUZZ).append(BOOM) //
                 .append(new DivisionPlayer()) //
-                .append(new DigitPlayer());
+                .append(new DigitPlayer()) //
+                .printWordsOnlyOnce();
         return this;
     }
 
