@@ -7,15 +7,16 @@ import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import software.works.fizzbuzz.Player;
 
 public class PlayerBuilder {
 
-    private List<Word> words;
-    private List<Player> players;
-    private PlayerConfiguration configuration;
+    private static final List<Word> DEFAULT_WORDS = Arrays.asList(FIZZ.getWord(), BUZZ.getWord());
+
+    private final List<Word> words;
+    private final List<Player> players;
+    private final PlayerConfiguration configuration;
 
     public PlayerBuilder() {
         words = new ArrayList<>();
@@ -48,12 +49,12 @@ public class PlayerBuilder {
     }
 
     public Player chosenPlayer() {
-        words = chooseDefaultWordsIfNotSpecified(words);
+        chooseDefaultWordsIfNotSpecified(words);
         chooseClassicPlayerByDefaultIfUnknown(players);
         Player definitivePlayer = null;
 
         if (configuration.wordsMustBePrintedOnlyOnce()) {
-            definitivePlayer = buildWordOrientedPlayer();
+            definitivePlayer = buildWordOrientedPlayer(players);
         } else {
             buildPlayers(players);
             definitivePlayer = combineVariations(players);
@@ -62,26 +63,20 @@ public class PlayerBuilder {
         return definitivePlayer;
     }
 
-    private List<Word> chooseDefaultWordsIfNotSpecified(List<Word> words) {
-        if (words == null || words.isEmpty()) {
-            words.addAll(Arrays.asList(FIZZ.getWord(), BUZZ.getWord()));
+    private void chooseDefaultWordsIfNotSpecified(List<Word> words) {
+        if (words.isEmpty()) {
+            words.addAll(DEFAULT_WORDS);
         }
-        return words;
     }
 
-    private Player buildWordOrientedPlayer() {
+    private Player buildWordOrientedPlayer(List<Player> players) {
         List<NumberPredicate> allNumberPredicates = players.stream() //
-                .map(player -> {
-                    return ((AbstractPlayer) player).getNumberPredicate();
-                }).collect(Collectors.toList());
+                .map(player -> ((AbstractPlayer) player).getNumberPredicate()) //
+                .collect(toList());
         List<FizzBuzzPredicate> wordOrientedPredicates = words.stream() //
-                .map(word -> word.ifNumberSatisfies(allNumberPredicates)).collect(toList());
-        Player wordOrientedPlayer = new AbstractPlayer() {
-            {
-                setConfiguration(configuration);
-                setPredicates(wordOrientedPredicates);
-            }
-        };
+                .map(word -> word.ifNumberSatisfies(allNumberPredicates)) //
+                .collect(toList());
+        Player wordOrientedPlayer = new AbstractPlayer(wordOrientedPredicates, configuration) {};
 
         return wordOrientedPlayer;
     }
@@ -92,26 +87,15 @@ public class PlayerBuilder {
 
     private void buildPlayer(Player player) {
         AbstractPlayer abstractPlayer = (AbstractPlayer) player;
-        if (configuration.wordsMustBePrintedNTimes()) {
-            abstractPlayer.setPredicates(buildOccurrenceOrientedPredicates(abstractPlayer.getNumberPredicate()));
-        } else {
-            abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
-        }
+        abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
         abstractPlayer.setConfiguration(configuration);
     }
 
     private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
         List<FizzBuzzPredicate> predicates = new ArrayList<>();
         words.stream().forEachOrdered(word -> {
-            predicates.add(word.ifNumberSatisfies(numberPredicate));
-        });
-        return predicates;
-    }
-
-    private List<FizzBuzzPredicate> buildOccurrenceOrientedPredicates(NumberPredicate numberPredicate) {
-        List<FizzBuzzPredicate> predicates = new ArrayList<>();
-        words.stream().forEachOrdered(word -> {
-            predicates.add(word.nTimesIfNumberSatisfies(numberPredicate));
+            predicates.add(configuration.wordsMustBePrintedNTimes() ? word.nTimesIfNumberSatisfies(numberPredicate)
+                    : word.ifNumberSatisfies(numberPredicate));
         });
         return predicates;
     }

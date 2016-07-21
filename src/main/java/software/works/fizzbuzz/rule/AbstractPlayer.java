@@ -14,6 +14,13 @@ abstract class AbstractPlayer implements Player {
     protected List<FizzBuzzPredicate> predicates;
     private PlayerConfiguration configuration;
 
+    AbstractPlayer() {}
+
+    AbstractPlayer(List<FizzBuzzPredicate> predicates, PlayerConfiguration configuration) {
+        this.predicates = predicates;
+        this.configuration = configuration;
+    }
+
     @Override
     public String playAtFizzBuzz(int value) {
         String fizzBuzz = predicates.stream() //
