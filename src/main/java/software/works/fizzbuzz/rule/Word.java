@@ -37,6 +37,20 @@ class Word {
         return value -> predicate.test(value, property) ? word : "";
     }
 
+    FizzBuzzPredicate nTimesIfNumberSatisfies(NumberPredicate numberPredicate) {
+        return value -> {
+            StringBuilder result = new StringBuilder();
+
+            int remaining = value;
+            while (remaining % property == 0) {
+                result.append(word);
+                remaining /= property;
+            }
+
+            return result.toString();
+        };
+    }
+
     @Override
     public String toString() {
         return String.format("{word: %s, property: %d}", word, property);

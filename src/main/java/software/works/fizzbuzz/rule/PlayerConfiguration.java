@@ -9,6 +9,7 @@ class PlayerConfiguration {
     private String finalPunctuation;
     private boolean numbersMustBePrinted;
     private boolean wordsMustBePrintedOnlyOnce;
+    private boolean wordsMustBePrintedNTimes;
 
     public PlayerConfiguration() {
         setUpDefaultParameterValues();
@@ -49,5 +50,13 @@ class PlayerConfiguration {
 
     void setWordsMustBePrintedOnlyOnce(boolean wordsMustBePrintedOnlyOnce) {
         this.wordsMustBePrintedOnlyOnce = wordsMustBePrintedOnlyOnce;
+    }
+
+    boolean wordsMustBePrintedNTimes() {
+        return wordsMustBePrintedNTimes;
+    }
+
+    void setWordsMustBePrintedNTimes(boolean wordsMustBePrintedNTimes) {
+        this.wordsMustBePrintedNTimes = wordsMustBePrintedNTimes;
     }
 }

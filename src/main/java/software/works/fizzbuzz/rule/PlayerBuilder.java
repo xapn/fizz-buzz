@@ -92,7 +92,11 @@ public class PlayerBuilder {
 
     private void buildPlayer(Player player) {
         AbstractPlayer abstractPlayer = (AbstractPlayer) player;
-        abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
+        if (configuration.wordsMustBePrintedNTimes()) {
+            abstractPlayer.setPredicates(buildOccurrenceOrientedPredicates(abstractPlayer.getNumberPredicate()));
+        } else {
+            abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
+        }
         abstractPlayer.setConfiguration(configuration);
     }
 
@@ -100,6 +104,14 @@ public class PlayerBuilder {
         List<FizzBuzzPredicate> predicates = new ArrayList<>();
         words.stream().forEachOrdered(word -> {
             predicates.add(word.ifNumberSatisfies(numberPredicate));
+        });
+        return predicates;
+    }
+
+    private List<FizzBuzzPredicate> buildOccurrenceOrientedPredicates(NumberPredicate numberPredicate) {
+        List<FizzBuzzPredicate> predicates = new ArrayList<>();
+        words.stream().forEachOrdered(word -> {
+            predicates.add(word.nTimesIfNumberSatisfies(numberPredicate));
         });
         return predicates;
     }
@@ -131,6 +143,11 @@ public class PlayerBuilder {
 
     public PlayerBuilder printWordsOnlyOnce() {
         configuration.setWordsMustBePrintedOnlyOnce(true);
+        return this;
+    }
+
+    public PlayerBuilder printWordsNTimes() {
+        configuration.setWordsMustBePrintedNTimes(true);
         return this;
     }
 }

@@ -121,4 +121,9 @@ public class FizzBuzz {
         playerBuilder.printWordsOnlyOnce();
         return this;
     }
+
+    public FizzBuzz wordsNTimes() {
+        playerBuilder.printWordsNTimes();
+        return this;
+    }
 }
