@@ -3,6 +3,7 @@ package software.works.fizzbuzz;
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
+import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -60,6 +61,7 @@ public class FizzBuzz {
 
     public FizzBuzz woof() {
         playerBuilder //
+                .append(FIZZ).append(BUZZ).append(WOOF) //
                 .append(new DivisionPlayer()) //
                 .append(new DigitPlayer());
         return this;

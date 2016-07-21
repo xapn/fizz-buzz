@@ -4,7 +4,8 @@ public enum DictionaryWord {
 
     FIZZ("Fizz", 3), //
     BUZZ("Buzz", 5), //
-    BOOM("Boom", 7);
+    BOOM("Boom", 7), //
+    WOOF("Woof", 7); //
 
     private Word word;
 
