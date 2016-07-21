@@ -3,6 +3,8 @@ package software.works.fizzbuzz.rule;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class Word {
 
@@ -41,14 +43,27 @@ class Word {
         return value -> {
             StringBuilder result = new StringBuilder();
 
-            int remaining = value;
-            while (remaining % property == 0) {
-                result.append(word);
-                remaining /= property;
+            switch (numberPredicate) {
+            case IS_MULTIPLE_OF:
+                int remaining = value;
+                while (remaining % property == 0) {
+                    result.append(word);
+                    remaining /= property;
+                }
+                break;
+            case CONTAINS_DIGIT:
+                Matcher digitMatcher = Pattern.compile(String.valueOf(property)).matcher(String.valueOf(value));
+                while (digitMatcher.find()) {
+                    result.append(word);
+                }
+                break;
+            default:
+                break;
             }
 
             return result.toString();
         };
+
     }
 
     @Override

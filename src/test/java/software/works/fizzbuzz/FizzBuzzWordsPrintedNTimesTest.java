@@ -16,6 +16,11 @@ public class FizzBuzzWordsPrintedNTimesTest {
 
     @Test
     public void should_get_fizzfizz_given_9_as_number() {
-        assertThat(fizzBuzz.of(9)).isEqualTo("FizzFizz");
+        assertThat(fizzBuzz.whenNumberHasFactors().of(9)).isEqualTo("FizzFizz");
+    }
+
+    @Test
+    public void should_get_fizzfizz_given_331_as_number() {
+        assertThat(fizzBuzz.whenNumberContainsDigits().of(331)).isEqualTo("FizzFizz");
     }
 }
