@@ -58,6 +58,13 @@ public class FizzBuzz {
         return this;
     }
 
+    public FizzBuzz woof() {
+        playerBuilder //
+                .append(new DivisionPlayer()) //
+                .append(new DigitPlayer());
+        return this;
+    }
+
     public FizzBuzz separatedBy(String wordSeparator) {
         playerBuilder.separateWordsBy(wordSeparator);
         return this;
