@@ -27,4 +27,14 @@ public class FizzBuzzWoofVariationTest {
     public void should_get_woofwoof_given_7_as_number() {
         assertThat(fizzBuzzWoof.of(7)).isEqualTo("WoofWoof");
     }
+
+    @Test
+    public void should_get_fizzfizz_given_18_as_number() {
+        assertThat(fizzBuzzWoof.of(18)).isEqualTo("FizzFizz");
+    }
+
+    @Test
+    public void should_get_fizzfizzfizz_given_303_as_number() {
+        assertThat(fizzBuzzWoof.of(303)).isEqualTo("FizzFizzFizz");
+    }
 }
