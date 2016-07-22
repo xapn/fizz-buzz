@@ -106,16 +106,20 @@ public class PlayerBuilder {
             if (players.size() == 1) {
                 player = players.get(0);
             } else {
-                player = new VariationsCombiningPlayer(players.stream().map(p -> (OrdinaryPlayer) p).collect(toList()),
-                        configuration);
+                VariationAssembler variationAssembler = new VariationAssembler(ordinaryPlayers());
+                List<FizzBuzzFunction> assembledFizzBuzzFunctions = variationAssembler.assembleFizzBuzzFunctions();
+                player = new OrdinaryPlayer(assembledFizzBuzzFunctions, configuration);
             }
         }
 
         return player;
     }
 
-    private List<NumberPredicatePlayer> chooseClassicPlayerByDefaultIfUnknown(
-            List<NumberPredicatePlayer> players) {
+    private List<OrdinaryPlayer> ordinaryPlayers() {
+        return players.stream().map(p -> (OrdinaryPlayer) p).collect(toList());
+    }
+
+    private List<NumberPredicatePlayer> chooseClassicPlayerByDefaultIfUnknown(List<NumberPredicatePlayer> players) {
         if (players.isEmpty()) {
             players.add(new DivisionPlayer());
         }
