@@ -15,7 +15,7 @@ public class PlayerBuilder {
     private static final List<Word> DEFAULT_WORDS = Arrays.asList(FIZZ.getWord(), BUZZ.getWord());
 
     private final List<Word> words;
-    private final List<Player> players;
+    private final List<NumberPredicatePlayer> players;
     private final PlayerConfiguration configuration;
 
     public PlayerBuilder() {
@@ -43,7 +43,7 @@ public class PlayerBuilder {
         return this;
     }
 
-    public PlayerBuilder append(Player player) {
+    public PlayerBuilder append(NumberPredicatePlayer player) {
         players.add(player);
         return this;
     }
@@ -69,52 +69,53 @@ public class PlayerBuilder {
         }
     }
 
-    private Player buildWordOrientedPlayer(List<Player> players) {
+    private Player buildWordOrientedPlayer(List<NumberPredicatePlayer> players) {
         List<NumberPredicate> allNumberPredicates = players.stream() //
-                .map(player -> ((AbstractPlayer) player).getNumberPredicate()) //
+                .map(player -> player.getNumberPredicate()) //
                 .collect(toList());
-        List<FizzBuzzPredicate> wordOrientedPredicates = words.stream() //
+        List<FizzBuzzFunction> wordOrientedFunctions = words.stream() //
                 .map(word -> word.ifNumberSatisfies(allNumberPredicates)) //
                 .collect(toList());
-        Player wordOrientedPlayer = new AbstractPlayer(wordOrientedPredicates, configuration) {};
+        Player wordOrientedPlayer = new OrdinaryPlayer(wordOrientedFunctions, configuration) {};
 
         return wordOrientedPlayer;
     }
 
-    private void buildPlayers(List<Player> players) {
+    private void buildPlayers(List<NumberPredicatePlayer> players) {
         players.stream().forEach(this::buildPlayer);
     }
 
-    private void buildPlayer(Player player) {
-        AbstractPlayer abstractPlayer = (AbstractPlayer) player;
-        abstractPlayer.setPredicates(buildPredicates(abstractPlayer.getNumberPredicate()));
-        abstractPlayer.setConfiguration(configuration);
+    private void buildPlayer(NumberPredicatePlayer player) {
+        player.setFizzBuzzFunctions(buildFizzBuzzFunctions(player.getNumberPredicate()));
+        player.setConfiguration(configuration);
     }
 
-    private List<FizzBuzzPredicate> buildPredicates(NumberPredicate numberPredicate) {
-        List<FizzBuzzPredicate> predicates = new ArrayList<>();
+    private List<FizzBuzzFunction> buildFizzBuzzFunctions(NumberPredicate numberPredicate) {
+        List<FizzBuzzFunction> fizzBuzzFunctions = new ArrayList<>();
         words.stream().forEachOrdered(word -> {
-            predicates.add(configuration.wordsMustBePrintedNTimes() ? word.nTimesIfNumberSatisfies(numberPredicate)
-                    : word.ifNumberSatisfies(numberPredicate));
+            fizzBuzzFunctions.add(configuration.wordsMustBePrintedNTimes()
+                    ? word.nTimesIfNumberSatisfies(numberPredicate) : word.ifNumberSatisfies(numberPredicate));
         });
-        return predicates;
+        return fizzBuzzFunctions;
     }
 
-    private Player combineVariations(List<Player> players) {
+    private Player combineVariations(List<NumberPredicatePlayer> players) {
         Player player = null;
 
         if (!players.isEmpty()) {
             if (players.size() == 1) {
                 player = players.get(0);
             } else {
-                player = new VariationsCombiningPlayer(players, configuration);
+                player = new VariationsCombiningPlayer(players.stream().map(p -> (OrdinaryPlayer) p).collect(toList()),
+                        configuration);
             }
         }
 
         return player;
     }
 
-    private List<Player> chooseClassicPlayerByDefaultIfUnknown(List<Player> players) {
+    private List<NumberPredicatePlayer> chooseClassicPlayerByDefaultIfUnknown(
+            List<NumberPredicatePlayer> players) {
         if (players.isEmpty()) {
             players.add(new DivisionPlayer());
         }

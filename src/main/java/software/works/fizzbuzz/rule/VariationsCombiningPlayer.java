@@ -7,63 +7,63 @@ import java.util.Optional;
 
 import software.works.fizzbuzz.Player;
 
-class VariationsCombiningPlayer extends AbstractPlayer {
+class VariationsCombiningPlayer extends OrdinaryPlayer {
 
     private List<Player> players;
 
-    public VariationsCombiningPlayer(List<Player> players, PlayerConfiguration configuration) {
+    VariationsCombiningPlayer(List<Player> players, PlayerConfiguration configuration) {
         if (players == null || players.isEmpty()) {
             throw new IllegalStateException("No player found!");
         } else {
             this.players = players;
             setConfiguration(configuration);
-            managePredicates();
+            manageFizzBuzzFunctions();
         }
     }
 
-    void managePredicates() {
-        predicates = new ArrayList<>();
-        recordPredicates(predicates);
-        validatePredicates(predicates);
+    void manageFizzBuzzFunctions() {
+        fizzBuzzFunctions = new ArrayList<>();
+        record(fizzBuzzFunctions);
+        validate(fizzBuzzFunctions);
     }
 
-    private void recordPredicates(List<FizzBuzzPredicate> predicates) {
-        List<FizzBuzzPredicate> combinedPredicates = combinePredicatesFromPlayers(players);
-        predicates.addAll(combinedPredicates);
+    private void record(List<FizzBuzzFunction> fizzBuzzFunctions) {
+        List<FizzBuzzFunction> combinedFunctions = combineFunctionsFromPlayers(players);
+        fizzBuzzFunctions.addAll(combinedFunctions);
     }
 
-    private List<FizzBuzzPredicate> combinePredicatesFromPlayers(List<Player> players) {
-        List<FizzBuzzPredicate> combined = new ArrayList<>();
+    private List<FizzBuzzFunction> combineFunctionsFromPlayers(List<Player> players) {
+        List<FizzBuzzFunction> combined = new ArrayList<>();
 
-        for (int index = 0; index < maximalNumberOfPredicatesByPlayer(players).get(); index++) {
-            combined.addAll(onePredicateByPlayer(index, players));
+        for (int index = 0; index < maximalNumberOfFunctionsByPlayer(players).get(); index++) {
+            combined.addAll(oneFizzBuzzFunctionByPlayer(index, players));
         }
 
         return combined;
     }
 
-    private Optional<Integer> maximalNumberOfPredicatesByPlayer(List<Player> players) {
+    private Optional<Integer> maximalNumberOfFunctionsByPlayer(List<Player> players) {
         return players.stream() //
-                .map(player -> ((AbstractPlayer) player).getPredicates().size()) //
+                .map(player -> ((OrdinaryPlayer) player).getFizzBuzzFunctions().size()) //
                 .max(Comparator.naturalOrder());
     }
 
-    private List<FizzBuzzPredicate> onePredicateByPlayer(int index, List<Player> players) {
-        List<FizzBuzzPredicate> predicatesOneByPlayer = new ArrayList<>(players.size());
+    private List<FizzBuzzFunction> oneFizzBuzzFunctionByPlayer(int index, List<Player> players) {
+        List<FizzBuzzFunction> functionsOneByPlayer = new ArrayList<>(players.size());
 
         for (Player player : players) {
-            List<FizzBuzzPredicate> playerPredicates = ((AbstractPlayer) player).getPredicates();
-            if (index < playerPredicates.size()) {
-                predicatesOneByPlayer.add(playerPredicates.get(index));
+            List<FizzBuzzFunction> playerFunctions = ((OrdinaryPlayer) player).getFizzBuzzFunctions();
+            if (index < playerFunctions.size()) {
+                functionsOneByPlayer.add(playerFunctions.get(index));
             }
         }
 
-        return predicatesOneByPlayer;
+        return functionsOneByPlayer;
     }
 
-    private void validatePredicates(List<FizzBuzzPredicate> predicates) {
-        if (predicates == null || predicates.isEmpty()) {
-            throw new IllegalStateException("No predicate found!");
+    private void validate(List<FizzBuzzFunction> fizzBuzzFunctions) {
+        if (fizzBuzzFunctions == null || fizzBuzzFunctions.isEmpty()) {
+            throw new IllegalStateException("No FizzBuzz function found!");
         }
     }
 }

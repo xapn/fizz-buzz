@@ -8,23 +8,22 @@ import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.Player;
 
-abstract class AbstractPlayer implements Player {
+class OrdinaryPlayer implements Player {
 
-    private NumberPredicate numberPredicate;
-    protected List<FizzBuzzPredicate> predicates;
+    protected List<FizzBuzzFunction> fizzBuzzFunctions;
     private PlayerConfiguration configuration;
 
-    AbstractPlayer() {}
+    protected OrdinaryPlayer() {}
 
-    AbstractPlayer(List<FizzBuzzPredicate> predicates, PlayerConfiguration configuration) {
-        this.predicates = predicates;
+    OrdinaryPlayer(List<FizzBuzzFunction> fizzBuzzFunctions, PlayerConfiguration configuration) {
+        this.fizzBuzzFunctions = fizzBuzzFunctions;
         this.configuration = configuration;
     }
 
     @Override
     public String playAtFizzBuzz(int value) {
-        String fizzBuzz = predicates.stream() //
-                .map(predicate -> predicate.fizzBuzzOf(value)) //
+        String fizzBuzz = fizzBuzzFunctions.stream() //
+                .map(function -> function.fizzBuzzOf(value)) //
                 .collect(joining());
 
         if (fizzBuzz.isEmpty()) {
@@ -42,20 +41,12 @@ abstract class AbstractPlayer implements Player {
                 + configuration.getFinalPunctuation();
     }
 
-    NumberPredicate getNumberPredicate() {
-        return numberPredicate;
+    protected List<FizzBuzzFunction> getFizzBuzzFunctions() {
+        return Collections.unmodifiableList(fizzBuzzFunctions);
     }
 
-    protected void setNumberPredicate(NumberPredicate numberPredicate) {
-        this.numberPredicate = numberPredicate;
-    }
-
-    protected List<FizzBuzzPredicate> getPredicates() {
-        return Collections.unmodifiableList(predicates);
-    }
-
-    void setPredicates(List<FizzBuzzPredicate> predicates) {
-        this.predicates = predicates;
+    void setFizzBuzzFunctions(List<FizzBuzzFunction> fizzBuzzFunctions) {
+        this.fizzBuzzFunctions = fizzBuzzFunctions;
     }
 
     void setConfiguration(PlayerConfiguration configuration) {

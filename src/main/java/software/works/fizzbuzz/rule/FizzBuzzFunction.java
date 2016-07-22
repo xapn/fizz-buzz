@@ -1,7 +1,7 @@
 package software.works.fizzbuzz.rule;
 
 @FunctionalInterface
-interface FizzBuzzPredicate {
+interface FizzBuzzFunction {
 
     /**
      * Return a word according to one predicate.
