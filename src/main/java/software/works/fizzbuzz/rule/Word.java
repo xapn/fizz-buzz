@@ -3,10 +3,10 @@ package software.works.fizzbuzz.rule;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-class Word {
+class Word implements WordPropertyPair {
+
+    private static final String NO_WORD = "";
 
     private String word;
     private int property;
@@ -25,7 +25,7 @@ class Word {
     }
 
     FizzBuzzFunction ifNumberSatisfies(NumberPredicate predicate) {
-        return value -> predicate.appliedTo(property).test(value) ? word : "";
+        return value -> predicate.appliedTo(property).test(value) ? word : NO_WORD;
     }
 
     FizzBuzzFunction ifNumberSatisfies(List<NumberPredicate> numberPredicates) {
@@ -36,38 +36,25 @@ class Word {
     }
 
     private FizzBuzzFunction ifNumberSatisfies(BiPredicate<Integer, Integer> predicate) {
-        return value -> predicate.test(value, property) ? word : "";
+        return value -> predicate.test(value, property) ? word : NO_WORD;
     }
 
     FizzBuzzFunction nTimesIfNumberSatisfies(NumberPredicate numberPredicate) {
-        return value -> {
-            StringBuilder result = new StringBuilder();
-
-            switch (numberPredicate) {
-            case IS_MULTIPLE_OF:
-                int remaining = value;
-                while (remaining % property == 0) {
-                    result.append(word);
-                    remaining /= property;
-                }
-                break;
-            case CONTAINS_DIGIT:
-                Matcher digitMatcher = Pattern.compile(String.valueOf(property)).matcher(String.valueOf(value));
-                while (digitMatcher.find()) {
-                    result.append(word);
-                }
-                break;
-            default:
-                break;
-            }
-
-            return result.toString();
-        };
-
+        return value -> numberPredicate.toWords().apply(value, this);
     }
 
     @Override
     public String toString() {
         return String.format("{word: %s, property: %d}", word, property);
+    }
+
+    @Override
+    public String getWord() {
+        return word;
+    }
+
+    @Override
+    public int getProperty() {
+        return property;
     }
 }
