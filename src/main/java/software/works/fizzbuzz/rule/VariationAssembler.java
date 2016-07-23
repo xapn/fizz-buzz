@@ -48,12 +48,11 @@ class VariationAssembler {
     private List<FizzBuzzFunction> oneFizzBuzzFunctionByPlayer(int index, List<OrdinaryPlayer> players) {
         List<FizzBuzzFunction> functionsOneByPlayer = new ArrayList<>(players.size());
 
-        for (OrdinaryPlayer player : players) {
-            List<FizzBuzzFunction> playerFunctions = player.getFizzBuzzFunctions();
+        players.stream().map(player -> player.getFizzBuzzFunctions()).forEachOrdered(playerFunctions -> {
             if (index < playerFunctions.size()) {
                 functionsOneByPlayer.add(playerFunctions.get(index));
             }
-        }
+        });
 
         return functionsOneByPlayer;
     }

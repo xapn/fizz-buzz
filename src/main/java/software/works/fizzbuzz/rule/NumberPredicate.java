@@ -36,11 +36,11 @@ enum NumberPredicate {
         });
 
     private BiPredicate<Integer, Integer> predicate;
-    private BiFunction<Integer, WordPropertyPair, String> words;
+    private BiFunction<Integer, WordPropertyPair, String> wordOccurrencesFunction;
 
-    NumberPredicate(BiPredicate<Integer, Integer> predicate, BiFunction<Integer, WordPropertyPair, String> words) {
+    NumberPredicate(BiPredicate<Integer, Integer> predicate, BiFunction<Integer, WordPropertyPair, String> wordOccurrencesFunction) {
         this.predicate = predicate;
-        this.words = words;
+        this.wordOccurrencesFunction = wordOccurrencesFunction;
     }
 
     Predicate<Integer> appliedTo(int property) {
@@ -51,7 +51,7 @@ enum NumberPredicate {
         return predicate;
     }
 
-    BiFunction<Integer, WordPropertyPair, String> toWords() {
-        return words;
+    BiFunction<Integer, WordPropertyPair, String> toWordOccurrences() {
+        return wordOccurrencesFunction;
     }
 }

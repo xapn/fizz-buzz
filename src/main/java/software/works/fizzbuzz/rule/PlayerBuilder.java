@@ -79,10 +79,10 @@ public class PlayerBuilder {
         List<NumberPredicate> allNumberPredicates = players.stream() //
                 .map(player -> player.getNumberPredicate()) //
                 .collect(toList());
-        List<FizzBuzzFunction> wordOrientedFunctions = buildWordCentricFunctions(allNumberPredicates);
-        Player wordOrientedPlayer = new OrdinaryPlayer(wordOrientedFunctions, configuration) {};
+        List<FizzBuzzFunction> wordCentricFunctions = buildWordCentricFunctions(allNumberPredicates);
+        Player wordCentricPlayer = new OrdinaryPlayer(wordCentricFunctions, configuration) {};
 
-        return wordOrientedPlayer;
+        return wordCentricPlayer;
     }
 
     private Player buildPredicateCentricPlayer(List<NumberPredicatePlayer> players) {

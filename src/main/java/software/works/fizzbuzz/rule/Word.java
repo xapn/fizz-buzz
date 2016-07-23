@@ -40,7 +40,7 @@ class Word implements WordPropertyPair {
     }
 
     FizzBuzzFunction nTimesIfNumberSatisfies(NumberPredicate numberPredicate) {
-        return value -> numberPredicate.toWords().apply(value, this);
+        return value -> numberPredicate.toWordOccurrences().apply(value, this);
     }
 
     @Override
