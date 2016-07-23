@@ -12,6 +12,7 @@ import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
+import software.works.fizzbuzz.rule.Word;
 
 public class FizzBuzz {
 
@@ -83,6 +84,11 @@ public class FizzBuzz {
         playerBuilder //
                 .append(FIZZ).append(BUZZ).append(POP).append(WHACK).append(ZING).append(CHOP) //
                 .append(new DivisionPlayer());
+        return this;
+    }
+
+    public FizzBuzz word(String word, int number) {
+        playerBuilder.append(new Word(word, number));
         return this;
     }
 
