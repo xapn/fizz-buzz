@@ -6,6 +6,7 @@ import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.POP;
 import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
+import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -79,7 +80,7 @@ public class FizzBuzz {
 
     public FizzBuzz popWhackZingChop() {
         playerBuilder //
-                .append(FIZZ).append(BUZZ).append(POP) //
+                .append(FIZZ).append(BUZZ).append(POP).append(ZING) //
                 .append(new DivisionPlayer());
         return this;
     }
