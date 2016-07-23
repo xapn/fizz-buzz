@@ -2,6 +2,7 @@ package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
 import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.POP;
 import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
@@ -80,7 +81,7 @@ public class FizzBuzz {
 
     public FizzBuzz popWhackZingChop() {
         playerBuilder //
-                .append(FIZZ).append(BUZZ).append(POP).append(WHACK).append(ZING) //
+                .append(FIZZ).append(BUZZ).append(POP).append(WHACK).append(ZING).append(CHOP) //
                 .append(new DivisionPlayer());
         return this;
     }
