@@ -68,6 +68,11 @@ public class FizzBuzz {
         return this;
     }
 
+    public FizzBuzz popWhack() {
+        playerBuilder.append(FIZZ).append(new DivisionPlayer());
+        return this;
+    }
+
     public FizzBuzz separatedBy(String wordSeparator) {
         playerBuilder.separateWordsBy(wordSeparator);
         return this;
