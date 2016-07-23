@@ -38,4 +38,9 @@ public class FizzBuzzPopWhackZingChopVariationTest {
     public void should_get_zing_given_8_as_number() {
         assertThat(fizzBuzzPopWhackZingChop.of(8)).isEqualTo("Zing");
     }
+
+    @Test
+    public void should_get_whack_given_11_as_number() {
+        assertThat(fizzBuzzPopWhackZingChop.of(11)).isEqualTo("Whack");
+    }
 }
