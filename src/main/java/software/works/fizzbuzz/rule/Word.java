@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
-class Word {
+class Word implements WordPropertyPair {
+
+    private static final String NO_WORD = "";
 
     private String word;
     private int property;
@@ -22,23 +24,37 @@ class Word {
         }
     }
 
-    FizzBuzzPredicate ifNumberSatisfies(NumberPredicate predicate) {
-        return value -> predicate.appliedTo(property).test(value) ? word : "";
+    FizzBuzzFunction ifNumberSatisfies(NumberPredicate predicate) {
+        return value -> predicate.appliedTo(property).test(value) ? word : NO_WORD;
     }
 
-    FizzBuzzPredicate ifNumberSatisfies(List<NumberPredicate> numberPredicates) {
+    FizzBuzzFunction ifNumberSatisfies(List<NumberPredicate> numberPredicates) {
         Optional<BiPredicate<Integer, Integer>> merged = numberPredicates.stream() //
-                .map(p -> p.getPredicate()) //
+                .map(p -> p.getPropertyPredicate()) //
                 .reduce((result, current) -> result.or(current));
         return this.ifNumberSatisfies(merged.get());
     }
 
-    private FizzBuzzPredicate ifNumberSatisfies(BiPredicate<Integer, Integer> predicate) {
-        return value -> predicate.test(value, property) ? word : "";
+    private FizzBuzzFunction ifNumberSatisfies(BiPredicate<Integer, Integer> predicate) {
+        return value -> predicate.test(value, property) ? word : NO_WORD;
+    }
+
+    FizzBuzzFunction nTimesIfNumberSatisfies(NumberPredicate numberPredicate) {
+        return value -> numberPredicate.toWordOccurrences().apply(value, this);
     }
 
     @Override
     public String toString() {
         return String.format("{word: %s, property: %d}", word, property);
+    }
+
+    @Override
+    public String getWord() {
+        return word;
+    }
+
+    @Override
+    public int getProperty() {
+        return property;
     }
 }

@@ -1,24 +1,59 @@
 package software.works.fizzbuzz.rule;
 
 import java.util.function.BiPredicate;
-import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import software.works.fizzbuzz.rule.FunctionTypes.ValuePredicate;
+import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.rule.FunctionTypes.WordOccurrencesFunction;
 
 enum NumberPredicate {
 
-    IS_MULTIPLE_OF((value, factor) -> value % factor == 0), //
-    CONTAINS_DIGIT((value, digit) -> String.valueOf(value).contains(String.valueOf(digit)));
+    IS_MULTIPLE_OF( //
+        (value, factor) -> value % factor == 0, //
 
-    private BiPredicate<Integer, Integer> predicate;
+        (value, pair) -> {
+            StringBuilder words = new StringBuilder();
+            int remaining = value;
+            while (remaining % pair.getProperty() == 0) {
+                words.append(pair.getWord());
+                remaining /= pair.getProperty();
+            }
+            return words.toString();
+        }), //
 
-    NumberPredicate(BiPredicate<Integer, Integer> predicate) {
-        this.predicate = predicate;
+    CONTAINS_DIGIT( //
+        (value, digit) -> String.valueOf(value).contains(String.valueOf(digit)), //
+
+        (value, pair) -> {
+            StringBuilder words = new StringBuilder();
+            Matcher digitMatcher = Pattern //
+                    .compile(String.valueOf(pair.getProperty())) //
+                    .matcher(String.valueOf(value));
+            while (digitMatcher.find()) {
+                words.append(pair.getWord());
+            }
+            return words.toString();
+        });
+
+    private PropertyPredicate propertyPredicate;
+    private WordOccurrencesFunction wordOccurrencesFunction;
+
+    NumberPredicate(PropertyPredicate propertyPredicate, WordOccurrencesFunction wordOccurrencesFunction) {
+        this.propertyPredicate = propertyPredicate;
+        this.wordOccurrencesFunction = wordOccurrencesFunction;
     }
 
-    Predicate<Integer> appliedTo(int property) {
-        return value -> predicate.test(value, property);
+    ValuePredicate appliedTo(int property) {
+        return value -> propertyPredicate.test(value, property);
     }
 
-    BiPredicate<Integer, Integer> getPredicate() {
-        return predicate;
+    BiPredicate<Integer, Integer> getPropertyPredicate() {
+        return propertyPredicate;
+    }
+
+    WordOccurrencesFunction toWordOccurrences() {
+        return wordOccurrencesFunction;
     }
 }
