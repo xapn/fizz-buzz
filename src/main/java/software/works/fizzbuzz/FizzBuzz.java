@@ -79,7 +79,7 @@ public class FizzBuzz {
 
     public FizzBuzz popWhackZingChop() {
         playerBuilder //
-                .append(FIZZ) //
+                .append(FIZZ).append(BUZZ) //
                 .append(new DivisionPlayer());
         return this;
     }
