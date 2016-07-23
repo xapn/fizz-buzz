@@ -41,7 +41,7 @@ class OrdinaryPlayer implements Player {
                 + configuration.getFinalPunctuation();
     }
 
-    protected List<FizzBuzzFunction> getFizzBuzzFunctions() {
+    List<FizzBuzzFunction> getFizzBuzzFunctions() {
         return Collections.unmodifiableList(fizzBuzzFunctions);
     }
 

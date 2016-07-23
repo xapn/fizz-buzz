@@ -1,10 +1,12 @@
 package software.works.fizzbuzz.rule;
 
-import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import software.works.fizzbuzz.rule.FunctionTypes.ValuePredicate;
+import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.rule.FunctionTypes.WordOccurrencesFunction;
 
 enum NumberPredicate {
 
@@ -20,7 +22,7 @@ enum NumberPredicate {
             }
             return words.toString();
         }), //
-    
+
     CONTAINS_DIGIT( //
         (value, digit) -> String.valueOf(value).contains(String.valueOf(digit)), //
 
@@ -35,23 +37,23 @@ enum NumberPredicate {
             return words.toString();
         });
 
-    private BiPredicate<Integer, Integer> predicate;
-    private BiFunction<Integer, WordPropertyPair, String> words;
+    private PropertyPredicate propertyPredicate;
+    private WordOccurrencesFunction wordOccurrencesFunction;
 
-    NumberPredicate(BiPredicate<Integer, Integer> predicate, BiFunction<Integer, WordPropertyPair, String> words) {
-        this.predicate = predicate;
-        this.words = words;
+    NumberPredicate(PropertyPredicate propertyPredicate, WordOccurrencesFunction wordOccurrencesFunction) {
+        this.propertyPredicate = propertyPredicate;
+        this.wordOccurrencesFunction = wordOccurrencesFunction;
     }
 
-    Predicate<Integer> appliedTo(int property) {
-        return value -> predicate.test(value, property);
+    ValuePredicate appliedTo(int property) {
+        return value -> propertyPredicate.test(value, property);
     }
 
-    BiPredicate<Integer, Integer> getPredicate() {
-        return predicate;
+    BiPredicate<Integer, Integer> getPropertyPredicate() {
+        return propertyPredicate;
     }
 
-    BiFunction<Integer, WordPropertyPair, String> toWords() {
-        return words;
+    WordOccurrencesFunction toWordOccurrences() {
+        return wordOccurrencesFunction;
     }
 }
