@@ -30,7 +30,7 @@ class Word implements WordPropertyPair {
 
     FizzBuzzFunction ifNumberSatisfies(List<NumberPredicate> numberPredicates) {
         Optional<BiPredicate<Integer, Integer>> merged = numberPredicates.stream() //
-                .map(p -> p.getPredicate()) //
+                .map(p -> p.getPropertyPredicate()) //
                 .reduce((result, current) -> result.or(current));
         return this.ifNumberSatisfies(merged.get());
     }
