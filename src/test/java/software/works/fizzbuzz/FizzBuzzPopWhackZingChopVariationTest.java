@@ -48,4 +48,15 @@ public class FizzBuzzPopWhackZingChopVariationTest {
     public void should_get_chop_given_13_as_number() {
         assertThat(fizzBuzzPopWhackZingChop.of(13)).isEqualTo("Chop");
     }
+
+    @Test
+    public void should_get_fizzbuzzpopwhackzingchop_given_120120_as_number() {
+        assertThat(fizzBuzzPopWhackZingChop.of(120120)).isEqualTo("FizzBuzzPopWhackZingChop");
+    }
+
+    @Test
+    public void should_get_words_given_a_range_of_numbers() {
+        assertThat(fizzBuzzPopWhackZingChop.from(1).to(15))
+                .isEqualTo("1 2 Fizz 4 Buzz Fizz Pop Zing Fizz Buzz Whack Fizz Chop Pop FizzBuzz");
+    }
 }
