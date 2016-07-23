@@ -32,4 +32,9 @@ public class FizzBuzzPopWhackVariationTest {
     public void should_get_pop_given_7_as_number() {
         assertThat(fizzBuzz.popWhack().of(7)).isEqualTo("Pop");
     }
+
+    @Test
+    public void should_get_whack_given_11_as_number() {
+        assertThat(fizzBuzz.popWhack().of(11)).isEqualTo("Whack");
+    }
 }

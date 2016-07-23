@@ -6,7 +6,8 @@ public enum DictionaryWord {
     BUZZ("Buzz", 5), //
     BOOM("Boom", 7), //
     WOOF("Woof", 7), //
-    POP("Pop", 7);
+    POP("Pop", 7), //
+    WHACK("Whack", 11);
 
     private Word word;
 
