@@ -14,7 +14,7 @@ For example: `fizzBuzz.of(3, 5, 15)` returns "Fizz Buzz FizzBuzz".
 
 ## FizzBuzz of a range of numbers
 
-To get the result of FizzBuzz for a a given range of numbers : fizzBuzz.from(start).to(end).  
+To get the result of FizzBuzz for a given range of numbers: fizzBuzz.from(start).to(end).  
 For example: `fizzBuzz.from(1).to(15)` returns "1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz".
 
 Notice that the start and end numbers are *inclusive*.
@@ -25,21 +25,22 @@ You can choose the variation rules to be applied.
 - **Classic FizzBuzz**: fizzBuzz.whenNumberHasFactors() is the rule by default. fizzBuzz.whenNumberHasFactors().of(n) has the same result than fizzBuzz.of(n).
 - **Variation according to digits**: fizzBuzz.whenNumberContainsDigits() is a variation according to the digits contained by a given number. For example: `fizzBuzz.whenNumberContainsDigits().from(1).to(15)` returns "1 2 Fizz 4 Buzz 6 7 8 9 10 11 12 Fizz 14 Buzz" and `fizzBuzz.whenNumberContainsDigits().of(35)` returns "FizzBuzz".
 - **7Boom**: fizzBuzz.boom() is a variation to replace any number containing or divisible by 3, 5 or 7 with "Fizz", "Buzz" and "Boom". For example: `fizzBuzz.boom().from(1).to(15)` returns "1 2 Fizz 4 Buzz Fizz Boom 8 Fizz Buzz 11 Fizz Fizz Boom FizzBuzz" and `fizzBuzz.boom().of(7539)` returns "FizzBuzzBoom".
+- **FizzBuzzWoof**: fizzBuzz.woof() is a variation to replace any number containing or divisible by 3, 5 or 7 with "Fizz", "Buzz" and "Woof", repeated as many times as the condition is true. For example: `fizzBuzz.woof().from(1).to(15)` returns "1 2 FizzFizz 4 BuzzBuzz Fizz WoofWoof 8 FizzFizz Buzz 11 Fizz Fizz Woof FizzBuzzBuzz" and `fizzBuzz.woof().of(35)` returns "FizzBuzzBuzzWoof".
 
 ## Combining some FizzBuzz variations
 
 You can combine some variation rules to be applied by chaining the corresponding methods.  
 For example: `fizzBuzz.whenNumberHasFactors().whenNumberContainsDigits().of(3, 5, 15, 30, 315)` returns "FizzFizz BuzzBuzz FizzBuzzBuzz FizzFizzBuzz FizzFizzBuzzBuzz".
 
-Notice that the variation rules are applied according to the FizzBuzz order: Fizz at first, Buzz after. Also notice that each time a condition is satisfied the matching word is repeated. If you will not, as playing at 7Boom, you can specify it : `fizzBuzz.wordsOnlyOnce().whenNumberHasFactors().whenNumberContainsDigits().of(55)` returns "Buzz" only, instead of "BuzzBuzz".
+Notice that the variation rules are applied according to the FizzBuzz order: Fizz at first, Buzz after. Also notice that each time a condition is satisfied the matching word is repeated. If you will not, as playing at 7Boom, you can specify it: `fizzBuzz.wordsOnlyOnce().whenNumberHasFactors().whenNumberContainsDigits().of(55)` returns "Buzz" only, instead of "BuzzBuzz". On the contrary, if you wish a word was repeated as many times as a condition is true, you can also specify it: `fizzBuzz.wordsNTimes().whenNumberHasFactors().whenNumberContainsDigits().of(55)` returns "BuzzBuzzBuzz".
 
 ## Separating words while printing
 
 You can print the words being separated by predefined or custom separators. The predefined separators are : comma, semi-colon, slash, backslash, dash.  
 For example: `fizzBuzz.separatedByComma().of(3, 5)` returns "Fizz, Buzz" and `fizzBuzz.separatedBy("-*-").of(3, 5)` returns "Fizz-\*-Buzz".
 
-The word separartor can be a predefined or custom punctuation mark. In this case, the all sentence is completed with it. The predefined punctuation marks are : exclamation mark, full stop (period). 
-For example: `fizzBuzz.punctuatedByExclamationMark().of(3, 5)` returns "Fizz! Buzz!" and `fizzBuzz.punctuatedBy("?").of(3, 5)` returns "Fizz? Buzz?".  
+The word separator can be a predefined or custom punctuation mark. In this case, the all sentence is completed with it. The predefined punctuation marks are : exclamation mark, full stop (period).  
+For example: `fizzBuzz.punctuatedByExclamationMark().of(3, 5)` returns "Fizz! Buzz!" and `fizzBuzz.punctuatedBy("?").of(3, 5)` returns "Fizz? Buzz?".
 
 Some French alternatives exist because of one space before some punctuation marks.  
 For example: `fizzBuzz.separatedByFrenchSemiColon().of(3, 5)` returns "Fizz ; Buzz" and `fizzBuzz.separatedByFrenchExclamationMark().of(3, 5)` returns "Fizz ! Buzz !".
@@ -48,6 +49,11 @@ You can even print the fizzbuzzified numbers between brackets just after the Fiz
 For example: `fizzBuzz.separatedByComma().withNumbers().from(1).to(5)` returns "1, 2, Fizz (3), 4, Buzz (5)". 
 
 # Release Notes
+
+## Version 1.3
+
+- Any specified word can be repeated as many times as a given number has a factor or contains a digit.
+- The FizzBuzzWoof variation is implemented: every number divisible by 7 or containing the digit 7 is replaced with "Woof", in addition to the FizzBuzz basics, and a word is repeated as many times as one condition is true.
 
 ## Version 1.2
 
