@@ -29,4 +29,11 @@ public class FizzBuzzWithCustomWordsTest {
     public void should_get_foobaz_given_21_as_number() {
         assertThat(fizzBuzz.word("Foo", 3).word("Bar", 5).word("Baz", 7).of(21)).isEqualTo("FooBaz");
     }
+
+    @Test
+    public void should_get_foo_or_bar_or_baz_given_a_range_of_numbers() {
+        assertThat(fizzBuzz.word("Foo", 3).word("Bar", 5).word("Baz", 7).whenNumberHasFactors()
+                .whenNumberContainsDigits().from(1).to(15))
+                        .isEqualTo("1 2 FooFoo 4 BarBar Foo BazBaz 8 Foo Bar 11 Foo Foo Baz FooBarBar");
+    }
 }
