@@ -87,8 +87,8 @@ public class FizzBuzz {
         return this;
     }
 
-    public FizzBuzz word(String word, int number) {
-        playerBuilder.append(new Word(word, number));
+    public FizzBuzz word(String word, int associatedNumber) {
+        playerBuilder.append(new Word(word, associatedNumber));
         return this;
     }
 
