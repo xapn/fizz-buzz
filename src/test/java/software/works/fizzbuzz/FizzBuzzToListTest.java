@@ -25,4 +25,10 @@ public class FizzBuzzToListTest {
     public void should_collect_words_to_list_given_a_range_of_numbers() {
         assertThat(fizzBuzz.asList().from(1).to(5)).isEqualTo(Arrays.asList("1", "2", "Fizz", "4", "Buzz"));
     }
+
+    @Test
+    public void should_collect_punctuated_words_as_list_given_a_range_of_numbers() {
+        assertThat(fizzBuzz.punctuatedByExclamationMark().asList().from(1).to(5))
+                .isEqualTo(Arrays.asList("1!", "2!", "Fizz!", "4!", "Buzz!"));
+    }
 }

@@ -46,8 +46,13 @@ class OrdinaryPlayer implements Player {
     @Override
     public List<String> playAtFizzBuzzToList(int... values) {
         return IntStream.of(values) //
-                .mapToObj(this::playAtFizzBuzz) //
+                .mapToObj(this::wordPunctuated) //
                 .collect(toList());
+    }
+
+    private String wordPunctuated(int value) {
+        return configuration.getFinalPunctuation().isEmpty() ? playAtFizzBuzz(value)
+                : playAtFizzBuzz(value) + configuration.getFinalPunctuation();
     }
 
     List<FizzBuzzFunction> getFizzBuzzFunctions() {
