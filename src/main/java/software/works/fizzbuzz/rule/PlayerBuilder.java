@@ -139,4 +139,9 @@ public class PlayerBuilder {
         configuration.setWordsMustBePrintedNTimes(true);
         return this;
     }
+
+    public PlayerBuilder collectWordsToList() {
+        configuration.setWordsMustBeCollectedToList(true);
+        return this;
+    }
 }

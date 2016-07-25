@@ -1,6 +1,7 @@
 package software.works.fizzbuzz.rule;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,11 +35,19 @@ class OrdinaryPlayer implements Player {
         return fizzBuzz;
     }
 
+    @Override
     public String playAtFizzBuzz(int... values) {
         return IntStream.of(values) //
                 .mapToObj(this::playAtFizzBuzz) //
                 .collect(joining(configuration.getWordSeparator())) //
                 + configuration.getFinalPunctuation();
+    }
+
+    @Override
+    public List<String> playAtFizzBuzzToList(int... values) {
+        return IntStream.of(values) //
+                .mapToObj(this::playAtFizzBuzz) //
+                .collect(toList());
     }
 
     List<FizzBuzzFunction> getFizzBuzzFunctions() {

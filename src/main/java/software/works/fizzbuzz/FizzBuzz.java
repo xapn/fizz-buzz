@@ -9,6 +9,8 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
+import java.util.List;
+
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
@@ -159,5 +161,17 @@ public class FizzBuzz {
     public FizzBuzz wordsNTimes() {
         playerBuilder.printWordsNTimes();
         return this;
+    }
+
+    public FizzBuzz.FizzBuzzWordsToList toList() {
+        playerBuilder.collectWordsToList();
+        return new FizzBuzzWordsToList();
+    }
+
+    class FizzBuzzWordsToList {
+
+        public List<String> of(int... values) {
+            return playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
+        }
     }
 }
