@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
-class Word implements WordPropertyPair {
+public class Word implements WordPropertyPair {
 
     private static final String NO_WORD = "";
 
     private String word;
     private int property;
 
-    Word(String word, int property) {
+    public Word(String word, int property) {
         this.word = word;
         this.property = property;
         validate();
