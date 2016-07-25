@@ -10,6 +10,7 @@ class PlayerConfiguration {
     private boolean numbersMustBePrinted;
     private boolean wordsMustBePrintedOnlyOnce;
     private boolean wordsMustBePrintedNTimes;
+    private boolean wordsMustBeCollectedToList;
 
     public PlayerConfiguration() {
         setUpDefaultParameterValues();
@@ -58,5 +59,13 @@ class PlayerConfiguration {
 
     void setWordsMustBePrintedNTimes(boolean wordsMustBePrintedNTimes) {
         this.wordsMustBePrintedNTimes = wordsMustBePrintedNTimes;
+    }
+
+    boolean wordsMustBeCollectedToList() {
+        return wordsMustBeCollectedToList;
+    }
+
+    public void setWordsMustBeCollectedToList(boolean wordsMustBeCollectedToList) {
+        this.wordsMustBeCollectedToList = wordsMustBeCollectedToList;
     }
 }

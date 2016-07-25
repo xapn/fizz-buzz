@@ -160,4 +160,9 @@ public class FizzBuzz {
         playerBuilder.printWordsNTimes();
         return this;
     }
+
+    public FizzBuzzWordsToList asList() {
+        playerBuilder.collectWordsToList();
+        return new FizzBuzzWordsToList(playerBuilder);
+    }
 }
