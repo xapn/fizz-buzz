@@ -18,11 +18,11 @@ public class FizzBuzzToListTest {
 
     @Test
     public void should_collect_words_to_list_given_some_arbitrary_numbers() {
-        assertThat(fizzBuzz.toList().of(1, 2, 3, 5, 8)).isEqualTo(Arrays.asList("1", "2", "Fizz", "Buzz", "8"));
+        assertThat(fizzBuzz.asList().of(1, 2, 3, 5, 8)).isEqualTo(Arrays.asList("1", "2", "Fizz", "Buzz", "8"));
     }
 
     @Test
     public void should_collect_words_to_list_given_a_range_of_numbers() {
-        assertThat(fizzBuzz.toList().from(1).to(5)).isEqualTo(Arrays.asList("1", "2", "Fizz", "4", "Buzz"));
+        assertThat(fizzBuzz.asList().from(1).to(5)).isEqualTo(Arrays.asList("1", "2", "Fizz", "4", "Buzz"));
     }
 }
