@@ -1,5 +1,6 @@
 package software.works.fizzbuzz;
 
+import static java.util.stream.Collectors.joining;
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
@@ -8,6 +9,10 @@ import static software.works.fizzbuzz.rule.DictionaryWord.POP;
 import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -164,5 +169,33 @@ public class FizzBuzz {
     public FizzBuzzWordsToList asList() {
         playerBuilder.collectWordsToList();
         return new FizzBuzzWordsToList(playerBuilder);
+    }
+
+    public Integer findTheMostFizzbuzzifiedNumberIn(int... values) {
+        List<String> madeWords = playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
+
+        List<String> knownWords = playerBuilder.getKnownWords();
+        String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
+        Pattern pattern = Pattern.compile(knownWordsRegex);
+
+        int maximalOccurrenceNumber = -1, resultIndex = 0, index = 0;
+
+        for (String madeWord : madeWords) {
+            Matcher matcher = pattern.matcher(madeWord);
+            int occurrenceNumber = 0;
+
+            while (matcher.find()) {
+                occurrenceNumber++;
+            }
+
+            if (occurrenceNumber > maximalOccurrenceNumber) {
+                maximalOccurrenceNumber = occurrenceNumber;
+                resultIndex = index;
+            }
+
+            index++;
+        }
+
+        return values[resultIndex];
     }
 }
