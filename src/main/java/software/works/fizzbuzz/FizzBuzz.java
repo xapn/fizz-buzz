@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -178,6 +179,8 @@ public class FizzBuzz {
 
     class TheMostFizzbuzzifiedNumber {
 
+        private int start;
+
         public Optional<Integer> in(int... values) {
             List<String> madeWords = playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
 
@@ -204,6 +207,15 @@ public class FizzBuzz {
             }
 
             return Optional.ofNullable(resultIndex < 0 ? null : values[resultIndex]);
+        }
+
+        public TheMostFizzbuzzifiedNumber from(int start) {
+            this.start = start;
+            return this;
+        }
+
+        public Optional<Integer> to(int end) {
+            return in(IntStream.rangeClosed(start, end).toArray());
         }
     }
 }

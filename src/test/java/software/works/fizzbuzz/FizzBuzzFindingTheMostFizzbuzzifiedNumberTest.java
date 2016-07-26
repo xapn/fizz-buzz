@@ -28,4 +28,10 @@ public class FizzBuzzFindingTheMostFizzbuzzifiedNumberTest {
     public void should_find_a_fizzbuzzified_number_given_at_least_some_fizzbuzzified_numbers() {
         assertThat(fizzBuzz.findTheMostFizzbuzzifiedNumber().in(1, 3, 4, 5, 15, 20, 22)).hasValue(15);
     }
+
+    @Test
+    public void should_find_a_fizzbuzzified_number_given_a_range_of_numbers() {
+        assertThat(fizzBuzz.whenNumberHasFactors().whenNumberContainsDigits().findTheMostFizzbuzzifiedNumber().from(1)
+                .to(15)).hasValue(15);
+    }
 }
