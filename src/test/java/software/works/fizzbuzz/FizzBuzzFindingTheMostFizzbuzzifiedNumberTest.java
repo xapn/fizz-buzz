@@ -23,4 +23,9 @@ public class FizzBuzzFindingTheMostFizzbuzzifiedNumberTest {
     public void should_find_no_fizzbuzzified_number_given_some_arbitrary_numbers() {
         assertThat(fizzBuzz.findTheMostFizzbuzzifiedNumberIn(1, 2, 4)).isEmpty();
     }
+
+    @Test
+    public void should_find_a_fizzbuzzified_number_given_at_least_some_fizzbuzzified_numbers() {
+        assertThat(fizzBuzz.findTheMostFizzbuzzifiedNumberIn(1, 3, 4, 5, 15, 20, 22)).hasValue(15);
+    }
 }
