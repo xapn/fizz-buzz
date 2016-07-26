@@ -172,31 +172,38 @@ public class FizzBuzz {
         return new FizzBuzzWordsToList(playerBuilder);
     }
 
-    public Optional<Integer> findTheMostFizzbuzzifiedNumberIn(int... values) {
-        List<String> madeWords = playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
+    public TheMostFizzbuzzifiedNumber findTheMostFizzbuzzifiedNumber() {
+        return new TheMostFizzbuzzifiedNumber();
+    }
 
-        List<String> knownWords = playerBuilder.getKnownWords();
-        String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
-        Pattern pattern = Pattern.compile(knownWordsRegex);
+    class TheMostFizzbuzzifiedNumber {
 
-        int maximalOccurrenceNumber = 0, resultIndex = -1, index = 0;
+        public Optional<Integer> in(int... values) {
+            List<String> madeWords = playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
 
-        for (String madeWord : madeWords) {
-            Matcher matcher = pattern.matcher(madeWord);
-            int occurrenceNumber = 0;
+            List<String> knownWords = playerBuilder.getKnownWords();
+            String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
+            Pattern pattern = Pattern.compile(knownWordsRegex);
 
-            while (matcher.find()) {
-                occurrenceNumber++;
+            int maximalOccurrenceNumber = 0, resultIndex = -1, index = 0;
+
+            for (String madeWord : madeWords) {
+                Matcher matcher = pattern.matcher(madeWord);
+                int occurrenceNumber = 0;
+
+                while (matcher.find()) {
+                    occurrenceNumber++;
+                }
+
+                if (occurrenceNumber > maximalOccurrenceNumber) {
+                    maximalOccurrenceNumber = occurrenceNumber;
+                    resultIndex = index;
+                }
+
+                index++;
             }
 
-            if (occurrenceNumber > maximalOccurrenceNumber) {
-                maximalOccurrenceNumber = occurrenceNumber;
-                resultIndex = index;
-            }
-
-            index++;
+            return Optional.ofNullable(resultIndex < 0 ? null : values[resultIndex]);
         }
-
-        return Optional.ofNullable(resultIndex < 0 ? null : values[resultIndex]);
     }
 }
