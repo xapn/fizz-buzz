@@ -16,6 +16,11 @@ public class FizzBuzzFindingTheMostFizzbuzzifiedNumberTest {
 
     @Test
     public void should_find_the_alone_fizzbuzzified_number_given_some_arbitrary_numbers() {
-        assertThat(fizzBuzz.findTheMostFizzbuzzifiedNumberIn(1, 3, 4)).isEqualTo(3);
+        assertThat(fizzBuzz.findTheMostFizzbuzzifiedNumberIn(1, 3, 4)).hasValue(3);
+    }
+
+    @Test
+    public void should_find_no_fizzbuzzified_number_given_some_arbitrary_numbers() {
+        assertThat(fizzBuzz.findTheMostFizzbuzzifiedNumberIn(1, 2, 4)).isEmpty();
     }
 }

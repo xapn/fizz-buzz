@@ -11,6 +11,7 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -171,14 +172,14 @@ public class FizzBuzz {
         return new FizzBuzzWordsToList(playerBuilder);
     }
 
-    public Integer findTheMostFizzbuzzifiedNumberIn(int... values) {
+    public Optional<Integer> findTheMostFizzbuzzifiedNumberIn(int... values) {
         List<String> madeWords = playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
 
         List<String> knownWords = playerBuilder.getKnownWords();
         String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
         Pattern pattern = Pattern.compile(knownWordsRegex);
 
-        int maximalOccurrenceNumber = -1, resultIndex = 0, index = 0;
+        int maximalOccurrenceNumber = 0, resultIndex = -1, index = 0;
 
         for (String madeWord : madeWords) {
             Matcher matcher = pattern.matcher(madeWord);
@@ -196,6 +197,6 @@ public class FizzBuzz {
             index++;
         }
 
-        return values[resultIndex];
+        return Optional.ofNullable(resultIndex < 0 ? null : values[resultIndex]);
     }
 }
