@@ -9,4 +9,6 @@ public interface Player {
     String playAtFizzBuzz(int... values);
 
     List<String> playAtFizzBuzzToList(int... values);
+
+    List<FizzbuzzifiedNumber> fizzbuzzify(int... values);
 }
