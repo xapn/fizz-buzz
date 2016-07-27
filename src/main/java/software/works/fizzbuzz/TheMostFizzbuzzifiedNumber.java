@@ -13,6 +13,8 @@ import software.works.fizzbuzz.rule.PlayerBuilder;
 
 class TheMostFizzbuzzifiedNumber {
 
+    private static final String DIGIT_REGEX = "\\d";
+
     private PlayerBuilder playerBuilder;
     private int start;
 
@@ -22,22 +24,25 @@ class TheMostFizzbuzzifiedNumber {
 
     public Optional<Integer> in(int... values) {
         List<String> madeWords = playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
-
-        List<String> knownWords = playerBuilder.getKnownWords();
-        String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
-        Pattern knownWordsPattern = Pattern.compile(knownWordsRegex);
-
+        Pattern knownWords = knownWords();
         Iterator<Integer> valueIterator = IntStream.of(values).iterator();
 
         Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = madeWords.stream() //
-                .map(word -> new FizzbuzzifiedNumber(valueIterator.next(), word, knownWordsPattern)) //
+                .map(word -> new FizzbuzzifiedNumber(valueIterator.next(), word, knownWords)) //
                 .max(Comparator.naturalOrder());
 
-        if (!theMostFizzbuzzified.isPresent() || theMostFizzbuzzified.get().getFizzbuzzified().matches("\\d")) {
-            return Optional.empty();
-        } else {
-            return Optional.of(theMostFizzbuzzified.get().getNumber());
-        }
+        return isFizzbuzzified(theMostFizzbuzzified) ? Optional.of(theMostFizzbuzzified.get().getNumber())
+                : Optional.empty();
+    }
+
+    private Pattern knownWords() {
+        List<String> knownWords = playerBuilder.getKnownWords();
+        String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
+        return Pattern.compile(knownWordsRegex);
+    }
+
+    private boolean isFizzbuzzified(Optional<FizzbuzzifiedNumber> theMostFizzbuzzified) {
+        return theMostFizzbuzzified.isPresent() && !theMostFizzbuzzified.get().getFizzbuzzified().matches(DIGIT_REGEX);
     }
 
     public TheMostFizzbuzzifiedNumber from(int start) {
