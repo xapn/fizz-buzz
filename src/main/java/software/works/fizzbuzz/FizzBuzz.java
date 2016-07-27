@@ -1,6 +1,5 @@
 package software.works.fizzbuzz;
 
-import static java.util.stream.Collectors.joining;
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
@@ -9,13 +8,6 @@ import static software.works.fizzbuzz.rule.DictionaryWord.POP;
 import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
-
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -175,40 +167,6 @@ public class FizzBuzz {
     }
 
     public TheMostFizzbuzzifiedNumber findTheMostFizzbuzzifiedNumber() {
-        return new TheMostFizzbuzzifiedNumber();
-    }
-
-    class TheMostFizzbuzzifiedNumber {
-
-        private int start;
-
-        public Optional<Integer> in(int... values) {
-            List<String> madeWords = playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
-
-            List<String> knownWords = playerBuilder.getKnownWords();
-            String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
-            Pattern knownWordsPattern = Pattern.compile(knownWordsRegex);
-
-            Iterator<Integer> valueIterator = IntStream.of(values).iterator();
-
-            Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = madeWords.stream() //
-                    .map(word -> new FizzbuzzifiedNumber(valueIterator.next(), word, knownWordsPattern)) //
-                    .max(Comparator.naturalOrder());
-
-            if (!theMostFizzbuzzified.isPresent() || theMostFizzbuzzified.get().getFizzbuzzified().matches("\\d")) {
-                return Optional.empty();
-            } else {
-                return Optional.of(theMostFizzbuzzified.get().getNumber());
-            }
-        }
-
-        public TheMostFizzbuzzifiedNumber from(int start) {
-            this.start = start;
-            return this;
-        }
-
-        public Optional<Integer> to(int end) {
-            return in(IntStream.rangeClosed(start, end).toArray());
-        }
+        return new TheMostFizzbuzzifiedNumber(playerBuilder);
     }
 }
