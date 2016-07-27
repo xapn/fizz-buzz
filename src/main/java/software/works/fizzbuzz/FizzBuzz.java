@@ -10,9 +10,10 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
@@ -186,27 +187,19 @@ public class FizzBuzz {
 
             List<String> knownWords = playerBuilder.getKnownWords();
             String knownWordsRegex = knownWords.stream().collect(joining("|", "(", ")"));
-            Pattern pattern = Pattern.compile(knownWordsRegex);
+            Pattern knownWordsPattern = Pattern.compile(knownWordsRegex);
 
-            int maximalOccurrenceNumber = 0, resultIndex = -1, index = 0;
+            Iterator<Integer> valueIterator = IntStream.of(values).iterator();
 
-            for (String madeWord : madeWords) {
-                Matcher matcher = pattern.matcher(madeWord);
-                int occurrenceNumber = 0;
+            Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = madeWords.stream() //
+                    .map(word -> new FizzbuzzifiedNumber(valueIterator.next(), word, knownWordsPattern)) //
+                    .max(Comparator.naturalOrder());
 
-                while (matcher.find()) {
-                    occurrenceNumber++;
-                }
-
-                if (occurrenceNumber > maximalOccurrenceNumber) {
-                    maximalOccurrenceNumber = occurrenceNumber;
-                    resultIndex = index;
-                }
-
-                index++;
+            if (!theMostFizzbuzzified.isPresent() || theMostFizzbuzzified.get().getFizzbuzzified().matches("\\d")) {
+                return Optional.empty();
+            } else {
+                return Optional.of(theMostFizzbuzzified.get().getNumber());
             }
-
-            return Optional.ofNullable(resultIndex < 0 ? null : values[resultIndex]);
         }
 
         public TheMostFizzbuzzifiedNumber from(int start) {
