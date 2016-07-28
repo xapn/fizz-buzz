@@ -10,6 +10,7 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -179,6 +180,7 @@ public class FizzBuzz {
     class TheMostFizzyBuzzyWord {
 
         private TheMostFizzbuzzifiedNumber theMostFizzbuzzifiedNumber;
+        private int start;
 
         TheMostFizzyBuzzyWord(PlayerBuilder playerBuilder) {
             theMostFizzbuzzifiedNumber = new TheMostFizzbuzzifiedNumber(playerBuilder);
@@ -188,6 +190,15 @@ public class FizzBuzz {
             Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = theMostFizzbuzzifiedNumber.find(values);
             return theMostFizzbuzzified.isPresent() ? Optional.of(theMostFizzbuzzified.get().getFizzbuzzified())
                     : Optional.empty();
+        }
+
+        public TheMostFizzyBuzzyWord from(int start) {
+            this.start = start;
+            return this;
+        }
+
+        public Optional<String> to(int end) {
+            return in(IntStream.rangeClosed(start, end).toArray());
         }
     }
 }
