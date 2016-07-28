@@ -2,12 +2,17 @@ package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
 import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
+import static software.works.fizzbuzz.rule.DictionaryWord.POP;
+import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
+import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
+import software.works.fizzbuzz.rule.Word;
 
 public class FizzBuzz {
 
@@ -65,6 +70,25 @@ public class FizzBuzz {
                 .append(new DivisionPlayer()) //
                 .append(new DigitPlayer()) //
                 .printWordsNTimes();
+        return this;
+    }
+
+    public FizzBuzz popWhack() {
+        playerBuilder //
+                .append(FIZZ).append(BUZZ).append(POP).append(WHACK) //
+                .append(new DivisionPlayer());
+        return this;
+    }
+
+    public FizzBuzz popWhackZingChop() {
+        playerBuilder //
+                .append(FIZZ).append(BUZZ).append(POP).append(WHACK).append(ZING).append(CHOP) //
+                .append(new DivisionPlayer());
+        return this;
+    }
+
+    public FizzBuzz word(String word, int associatedNumber) {
+        playerBuilder.append(new Word(word, associatedNumber));
         return this;
     }
 
@@ -135,5 +159,14 @@ public class FizzBuzz {
     public FizzBuzz wordsNTimes() {
         playerBuilder.printWordsNTimes();
         return this;
+    }
+
+    public FizzBuzzWordsToList asList() {
+        playerBuilder.collectWordsToList();
+        return new FizzBuzzWordsToList(playerBuilder);
+    }
+
+    public TheMostFizzyBuzzy findTheMostFizzyBuzzy() {
+        return new TheMostFizzyBuzzy(playerBuilder);
     }
 }

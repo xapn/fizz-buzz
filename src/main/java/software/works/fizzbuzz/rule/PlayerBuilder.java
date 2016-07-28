@@ -139,4 +139,13 @@ public class PlayerBuilder {
         configuration.setWordsMustBePrintedNTimes(true);
         return this;
     }
+
+    public PlayerBuilder collectWordsToList() {
+        configuration.setWordsMustBeCollectedToList(true);
+        return this;
+    }
+
+    public List<String> getKnownWords() {
+        return words.stream().map(word -> word.getWord()).collect(toList());
+    }
 }

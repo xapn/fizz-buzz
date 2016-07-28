@@ -1,11 +1,13 @@
 package software.works.fizzbuzz.rule;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import software.works.fizzbuzz.FizzbuzzifiedNumber;
 import software.works.fizzbuzz.Player;
 
 class OrdinaryPlayer implements Player {
@@ -34,11 +36,31 @@ class OrdinaryPlayer implements Player {
         return fizzBuzz;
     }
 
+    @Override
     public String playAtFizzBuzz(int... values) {
         return IntStream.of(values) //
                 .mapToObj(this::playAtFizzBuzz) //
                 .collect(joining(configuration.getWordSeparator())) //
                 + configuration.getFinalPunctuation();
+    }
+
+    @Override
+    public List<String> playAtFizzBuzzToList(int... values) {
+        return IntStream.of(values) //
+                .mapToObj(this::wordPunctuated) //
+                .collect(toList());
+    }
+
+    @Override
+    public List<FizzbuzzifiedNumber> fizzbuzzify(int... values) {
+        return IntStream.of(values) //
+                .mapToObj(value -> new FizzbuzzifiedNumber(value, wordPunctuated(value))) //
+                .collect(toList());
+    }
+
+    private String wordPunctuated(int value) {
+        return configuration.getFinalPunctuation().isEmpty() ? playAtFizzBuzz(value)
+                : playAtFizzBuzz(value) + configuration.getFinalPunctuation();
     }
 
     List<FizzBuzzFunction> getFizzBuzzFunctions() {
