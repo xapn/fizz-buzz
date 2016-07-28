@@ -6,20 +6,18 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
-class TheMostFizzbuzzifiedNumber {
+class FizzBuzzFinder {
 
     private PlayerBuilder playerBuilder;
-    private int start;
 
-    TheMostFizzbuzzifiedNumber(PlayerBuilder playerBuilder) {
+    FizzBuzzFinder(PlayerBuilder playerBuilder) {
         this.playerBuilder = playerBuilder;
     }
 
-    public Optional<Integer> in(int... values) {
+    Optional<FizzbuzzifiedNumber> find(int... values) {
         List<FizzbuzzifiedNumber> fizzbuzzified = playerBuilder.chosenPlayer().fizzbuzzify(values);
         Pattern knownWords = knownWords();
 
@@ -29,8 +27,7 @@ class TheMostFizzbuzzifiedNumber {
                     return number;
                 }).max(Comparator.naturalOrder());
 
-        return isFizzbuzzified(theMostFizzbuzzified) ? Optional.of(theMostFizzbuzzified.get().getNumber())
-                : Optional.empty();
+        return isFizzbuzzified(theMostFizzbuzzified) ? theMostFizzbuzzified : Optional.empty();
     }
 
     private Pattern knownWords() {
@@ -41,14 +38,5 @@ class TheMostFizzbuzzifiedNumber {
 
     private boolean isFizzbuzzified(Optional<FizzbuzzifiedNumber> theMostFizzbuzzified) {
         return theMostFizzbuzzified.isPresent() && theMostFizzbuzzified.get().isFizzbuzzified();
-    }
-
-    public TheMostFizzbuzzifiedNumber from(int start) {
-        this.start = start;
-        return this;
-    }
-
-    public Optional<Integer> to(int end) {
-        return in(IntStream.rangeClosed(start, end).toArray());
     }
 }
