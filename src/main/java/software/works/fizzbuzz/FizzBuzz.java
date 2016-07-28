@@ -166,11 +166,7 @@ public class FizzBuzz {
         return new FizzBuzzWordsToList(playerBuilder);
     }
 
-    public TheMostFizzbuzzifiedNumber findTheMostFizzbuzzifiedNumber() {
-        return new TheMostFizzbuzzifiedNumber(playerBuilder);
-    }
-
-    public TheMostFizzyBuzzyWord findTheMostFizzyBuzzyWord() {
-        return new TheMostFizzyBuzzyWord(playerBuilder);
+    public TheMostFizzyBuzzy findTheMostFizzyBuzzy() {
+        return new TheMostFizzyBuzzy(playerBuilder);
     }
 }
