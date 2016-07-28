@@ -144,4 +144,8 @@ public class PlayerBuilder {
         configuration.setWordsMustBeCollectedToList(true);
         return this;
     }
+
+    public List<String> getKnownWords() {
+        return words.stream().map(word -> word.getWord()).collect(toList());
+    }
 }

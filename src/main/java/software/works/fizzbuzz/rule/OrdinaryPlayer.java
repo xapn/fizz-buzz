@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import software.works.fizzbuzz.FizzbuzzifiedNumber;
 import software.works.fizzbuzz.Player;
 
 class OrdinaryPlayer implements Player {
@@ -47,6 +48,13 @@ class OrdinaryPlayer implements Player {
     public List<String> playAtFizzBuzzToList(int... values) {
         return IntStream.of(values) //
                 .mapToObj(this::wordPunctuated) //
+                .collect(toList());
+    }
+
+    @Override
+    public List<FizzbuzzifiedNumber> fizzbuzzify(int... values) {
+        return IntStream.of(values) //
+                .mapToObj(value -> new FizzbuzzifiedNumber(value, wordPunctuated(value))) //
                 .collect(toList());
     }
 

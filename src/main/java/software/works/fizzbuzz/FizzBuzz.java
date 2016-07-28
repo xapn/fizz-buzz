@@ -165,4 +165,8 @@ public class FizzBuzz {
         playerBuilder.collectWordsToList();
         return new FizzBuzzWordsToList(playerBuilder);
     }
+
+    public TheMostFizzbuzzifiedNumber findTheMostFizzbuzzifiedNumber() {
+        return new TheMostFizzbuzzifiedNumber(playerBuilder);
+    }
 }
