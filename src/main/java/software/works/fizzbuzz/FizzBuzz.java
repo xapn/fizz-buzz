@@ -9,6 +9,8 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
+import java.util.Optional;
+
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
@@ -168,5 +170,24 @@ public class FizzBuzz {
 
     public TheMostFizzbuzzifiedNumber findTheMostFizzbuzzifiedNumber() {
         return new TheMostFizzbuzzifiedNumber(playerBuilder);
+    }
+
+    public TheMostFizzyBuzzyWord findTheMostFizzyBuzzyWord() {
+        return new TheMostFizzyBuzzyWord(playerBuilder);
+    }
+
+    class TheMostFizzyBuzzyWord {
+
+        private TheMostFizzbuzzifiedNumber theMostFizzbuzzifiedNumber;
+
+        TheMostFizzyBuzzyWord(PlayerBuilder playerBuilder) {
+            theMostFizzbuzzifiedNumber = new TheMostFizzbuzzifiedNumber(playerBuilder);
+        }
+
+        public Optional<String> in(int... values) {
+            Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = theMostFizzbuzzifiedNumber.find(values);
+            return theMostFizzbuzzified.isPresent() ? Optional.of(theMostFizzbuzzified.get().getFizzbuzzified())
+                    : Optional.empty();
+        }
     }
 }

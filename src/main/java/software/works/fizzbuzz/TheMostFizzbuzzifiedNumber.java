@@ -20,6 +20,12 @@ class TheMostFizzbuzzifiedNumber {
     }
 
     public Optional<Integer> in(int... values) {
+        Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = find(values);
+        return theMostFizzbuzzified.isPresent() ? Optional.of(theMostFizzbuzzified.get().getNumber())
+                : Optional.empty();
+    }
+
+    Optional<FizzbuzzifiedNumber> find(int... values) {
         List<FizzbuzzifiedNumber> fizzbuzzified = playerBuilder.chosenPlayer().fizzbuzzify(values);
         Pattern knownWords = knownWords();
 
@@ -29,8 +35,7 @@ class TheMostFizzbuzzifiedNumber {
                     return number;
                 }).max(Comparator.naturalOrder());
 
-        return isFizzbuzzified(theMostFizzbuzzified) ? Optional.of(theMostFizzbuzzified.get().getNumber())
-                : Optional.empty();
+        return isFizzbuzzified(theMostFizzbuzzified) ? theMostFizzbuzzified : Optional.empty();
     }
 
     private Pattern knownWords() {
