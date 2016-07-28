@@ -7,15 +7,15 @@ import software.works.fizzbuzz.rule.PlayerBuilder;
 
 class TheMostFizzyBuzzyWord {
 
-    private TheMostFizzbuzzifiedNumber theMostFizzbuzzifiedNumber;
+    private FizzBuzzFinder finder;
     private int start;
 
     TheMostFizzyBuzzyWord(PlayerBuilder playerBuilder) {
-        theMostFizzbuzzifiedNumber = new TheMostFizzbuzzifiedNumber(playerBuilder);
+        finder = new FizzBuzzFinder(playerBuilder);
     }
 
     public Optional<String> in(int... values) {
-        Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = theMostFizzbuzzifiedNumber.find(values);
+        Optional<FizzbuzzifiedNumber> theMostFizzbuzzified = finder.find(values);
         return theMostFizzbuzzified.isPresent() ? Optional.of(theMostFizzbuzzified.get().getFizzbuzzified())
                 : Optional.empty();
     }
