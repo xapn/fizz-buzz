@@ -1,6 +1,6 @@
 package software.works.fizzbuzz.rule;
 
-abstract class NumberPredicatePlayer extends OrdinaryPlayer {
+public abstract class NumberPredicatePlayer extends OrdinaryPlayer {
 
     private NumberPredicate numberPredicate;
 

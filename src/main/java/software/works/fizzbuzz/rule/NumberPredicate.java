@@ -8,7 +8,7 @@ import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
 import software.works.fizzbuzz.rule.FunctionTypes.ValuePredicate;
 import software.works.fizzbuzz.rule.FunctionTypes.WordOccurrencesFunction;
 
-class NumberPredicate {
+public class NumberPredicate {
 
     static final NumberPredicate IS_MULTIPLE_OF = new NumberPredicate( //
             (value, factor) -> value % factor == 0,
@@ -40,7 +40,7 @@ class NumberPredicate {
     private PropertyPredicate propertyPredicate;
     private WordOccurrencesFunction wordOccurrencesFunction;
 
-    NumberPredicate(PropertyPredicate propertyPredicate, WordOccurrencesFunction wordOccurrencesFunction) {
+    public NumberPredicate(PropertyPredicate propertyPredicate, WordOccurrencesFunction wordOccurrencesFunction) {
         this.propertyPredicate = propertyPredicate;
         this.wordOccurrencesFunction = wordOccurrencesFunction;
     }

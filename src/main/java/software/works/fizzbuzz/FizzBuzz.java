@@ -11,6 +11,9 @@ import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
+import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.rule.NumberPredicate;
+import software.works.fizzbuzz.rule.NumberPredicatePlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
 import software.works.fizzbuzz.rule.Word;
 
@@ -52,6 +55,15 @@ public class FizzBuzz {
 
     public FizzBuzz whenNumberContainsDigits() {
         playerBuilder.append(new DigitPlayer());
+        return this;
+    }
+
+    public FizzBuzz whenNumberSatisfies(PropertyPredicate propertyPredicate) {
+        playerBuilder.append(new NumberPredicatePlayer() {
+            {
+                setNumberPredicate(new NumberPredicate(propertyPredicate, null));
+            }
+        });
         return this;
     }
 
