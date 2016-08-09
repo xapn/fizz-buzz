@@ -1,6 +1,6 @@
 package software.works.fizzbuzz.rule;
 
-interface WordPropertyPair {
+public interface WordPropertyPair {
 
     String getWord();
 

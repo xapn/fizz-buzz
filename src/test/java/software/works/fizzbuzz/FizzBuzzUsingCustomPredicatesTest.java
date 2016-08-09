@@ -59,4 +59,9 @@ public class FizzBuzzUsingCustomPredicatesTest {
         assertThat(fizzBuzz.word("Fizz", 3).word("Buzz", 5).whenNumberSatisfies(itContainsDigitSequence).of(12345789))
                 .isEqualTo("FizzBuzz");
     }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void should_fail_given_fizzbuzz_having_to_print_words_n_times() {
+        fizzBuzz.wordsNTimes().whenNumberSatisfies(itContainsDigitSequence).of(123123);
+    }
 }

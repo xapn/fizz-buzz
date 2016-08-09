@@ -61,7 +61,9 @@ public class FizzBuzz {
     public FizzBuzz whenNumberSatisfies(PropertyPredicate propertyPredicate) {
         playerBuilder.append(new NumberPredicatePlayer() {
             {
-                setNumberPredicate(new NumberPredicate(propertyPredicate, null));
+                setNumberPredicate(new NumberPredicate(propertyPredicate, (value, pair) -> {
+                    throw new UnsupportedOperationException();
+                }));
             }
         });
         return this;
