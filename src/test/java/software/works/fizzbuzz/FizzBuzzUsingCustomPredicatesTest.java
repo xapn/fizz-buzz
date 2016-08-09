@@ -15,7 +15,7 @@ public class FizzBuzzUsingCustomPredicatesTest {
 
     private FizzBuzz fizzBuzz;
 
-    private PropertyPredicate containsDigitSequence = (value, property) -> {
+    private PropertyPredicate itContainsDigitSequence = (value, property) -> {
         List<String> digits = Arrays.asList(String.valueOf(value).split(""));
         int sequenceLength = 0, maxSequenceLength = 0;
 
@@ -24,6 +24,7 @@ public class FizzBuzzUsingCustomPredicatesTest {
                 sequenceLength = sequenceLength == 0 ? 2 : sequenceLength + 1;
             } else {
                 sequenceLength = 0;
+                maxSequenceLength = maxSequenceLength == property ? maxSequenceLength : 0;
             }
             maxSequenceLength = max(sequenceLength, maxSequenceLength);
         }
@@ -38,18 +39,24 @@ public class FizzBuzzUsingCustomPredicatesTest {
 
     @Test
     public void should_get_fizz_given_123_as_a_number_being_a_digit_sequence() {
-        assertThat(fizzBuzz.word("Fizz", 3).whenNumberSatisfies(containsDigitSequence).of(123)).isEqualTo("Fizz");
+        assertThat(fizzBuzz.word("Fizz", 3).whenNumberSatisfies(itContainsDigitSequence).of(123)).isEqualTo("Fizz");
     }
 
     @Test
     public void should_get_buzz_given_12345_as_a_number_being_a_digit_sequence() {
-        assertThat(fizzBuzz.word("Fizz", 3).word("Buzz", 5).whenNumberSatisfies(containsDigitSequence).of(12345))
+        assertThat(fizzBuzz.word("Fizz", 3).word("Buzz", 5).whenNumberSatisfies(itContainsDigitSequence).of(12345))
                 .isEqualTo("Buzz");
     }
 
     @Test
     public void should_get_buzz_given_691123457_as_a_number_containing_a_digit_sequence() {
-        assertThat(fizzBuzz.word("Fizz", 3).word("Buzz", 5).whenNumberSatisfies(containsDigitSequence).of(691123457))
+        assertThat(fizzBuzz.word("Fizz", 3).word("Buzz", 5).whenNumberSatisfies(itContainsDigitSequence).of(691123457))
                 .isEqualTo("Buzz");
+    }
+
+    @Test
+    public void should_get_fizzbuzz_given_12345789_as_a_number_containing_2_digit_sequences() {
+        assertThat(fizzBuzz.word("Fizz", 3).word("Buzz", 5).whenNumberSatisfies(itContainsDigitSequence).of(12345789))
+                .isEqualTo("FizzBuzz");
     }
 }
