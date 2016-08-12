@@ -10,5 +10,5 @@ interface FizzBuzzFunction {
      *            the value to be tested
      * @return the word of the predicate if true, otherwise empty string
      */
-    String fizzBuzzOf(int value);
+    String fizzBuzzOf(long value);
 }

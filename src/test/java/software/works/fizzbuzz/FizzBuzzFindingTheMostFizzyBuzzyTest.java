@@ -20,7 +20,7 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
         TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4);
 
         // THEN
-        assertThat(result.asNumber()).hasValue(3);
+        assertThat(result.asNumber()).hasValue(3L);
         assertThat(result.asWord()).hasValue("Fizz");
     }
 
@@ -41,18 +41,18 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
         TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4, 5, 15, 20, 22);
 
         // THEN
-        assertThat(result.asNumber()).hasValue(15);
+        assertThat(result.asNumber()).hasValue(15L);
         assertThat(result.asWord()).hasValue("FizzBuzz");
     }
 
     @Test
     public void should_find_a_fizzbuzzified_number_given_a_range_of_numbers() {
         // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz.whenNumberHasFactors().whenNumberContainsDigits()
-                .findTheMostFizzyBuzzy().from(1).to(15);
+        TheMostFizzyBuzzy result = fizzBuzz.whenNumberHasFactors().whenNumberContainsDigits().findTheMostFizzyBuzzy()
+                .from(1).to(15);
 
         // THEN
-        assertThat(result.asNumber()).hasValue(15);
+        assertThat(result.asNumber()).hasValue(15L);
         assertThat(result.asWord()).hasValue("FizzBuzzBuzz");
     }
 }

@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 
 public interface FunctionTypes {
 
-    static interface PropertyPredicate extends BiPredicate<Integer, Integer> {}
+    static interface PropertyPredicate extends BiPredicate<Long, Integer> {}
 
-    static interface WordOccurrencesFunction extends BiFunction<Integer, WordPropertyPair, String> {}
+    static interface WordOccurrencesFunction extends BiFunction<Long, WordPropertyPair, String> {}
 
-    static interface ValuePredicate extends Predicate<Integer> {}
+    static interface ValuePredicate extends Predicate<Long> {}
 }

@@ -17,7 +17,7 @@ class FizzBuzzFinder {
         this.playerBuilder = playerBuilder;
     }
 
-    Optional<FizzbuzzifiedNumber> find(int... values) {
+    Optional<FizzbuzzifiedNumber> find(long... values) {
         List<FizzbuzzifiedNumber> fizzbuzzified = playerBuilder.chosenPlayer().fizzbuzzify(values);
         Pattern knownWords = knownWords();
 

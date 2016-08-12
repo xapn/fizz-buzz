@@ -1,7 +1,7 @@
 package software.works.fizzbuzz;
 
 import java.util.Optional;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
@@ -15,7 +15,7 @@ class TheMostFizzyBuzzy {
         finder = new FizzBuzzFinder(playerBuilder);
     }
 
-    public TheMostFizzyBuzzy in(int... values) {
+    public TheMostFizzyBuzzy in(long... values) {
         theMostFizzyBuzzy = finder.find(values);
         return this;
     }
@@ -25,17 +25,16 @@ class TheMostFizzyBuzzy {
         return this;
     }
 
-    public TheMostFizzyBuzzy to(int end) {
-        return in(IntStream.rangeClosed(start, end).toArray());
+    public TheMostFizzyBuzzy to(long end) {
+        return in(LongStream.rangeClosed(start, end).toArray());
     }
 
     public Optional<FizzbuzzifiedNumber> get() {
         return theMostFizzyBuzzy;
     }
 
-    public Optional<Integer> asNumber() {
-        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getNumber())
-                : Optional.empty();
+    public Optional<Long> asNumber() {
+        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getNumber()) : Optional.empty();
     }
 
     public Optional<String> asWord() {

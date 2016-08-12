@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface Player {
 
-    String playAtFizzBuzz(int value);
+    String playAtFizzBuzz(long value);
 
-    String playAtFizzBuzz(int... values);
+    String playAtFizzBuzz(long... values);
 
-    List<String> playAtFizzBuzzToList(int... values);
+    List<String> playAtFizzBuzzToList(long... values);
 
-    List<FizzbuzzifiedNumber> fizzbuzzify(int... values);
+    List<FizzbuzzifiedNumber> fizzbuzzify(long... values);
 }

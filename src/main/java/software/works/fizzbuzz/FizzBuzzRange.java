@@ -1,22 +1,22 @@
 package software.works.fizzbuzz;
 
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class FizzBuzzRange {
 
     private Player player;
-    private int start;
+    private long start;
 
     FizzBuzzRange(Player player) {
         this.player = player;
     }
 
-    FizzBuzzRange from(int start) {
+    FizzBuzzRange from(long start) {
         this.start = start;
         return this;
     }
 
-    public String to(int end) {
-        return player.playAtFizzBuzz(IntStream.rangeClosed(start, end).toArray());
+    public String to(long end) {
+        return player.playAtFizzBuzz(LongStream.rangeClosed(start, end).toArray());
     }
 }

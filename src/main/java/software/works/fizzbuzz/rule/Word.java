@@ -29,13 +29,13 @@ public class Word implements WordPropertyPair {
     }
 
     FizzBuzzFunction ifNumberSatisfies(List<NumberPredicate> numberPredicates) {
-        Optional<BiPredicate<Integer, Integer>> merged = numberPredicates.stream() //
+        Optional<BiPredicate<Long, Integer>> merged = numberPredicates.stream() //
                 .map(p -> p.getPropertyPredicate()) //
                 .reduce((result, current) -> result.or(current));
         return this.ifNumberSatisfies(merged.get());
     }
 
-    private FizzBuzzFunction ifNumberSatisfies(BiPredicate<Integer, Integer> predicate) {
+    private FizzBuzzFunction ifNumberSatisfies(BiPredicate<Long, Integer> predicate) {
         return value -> predicate.test(value, property) ? word : NO_WORD;
     }
 

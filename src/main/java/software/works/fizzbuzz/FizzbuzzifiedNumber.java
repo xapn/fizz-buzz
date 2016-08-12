@@ -7,17 +7,17 @@ public class FizzbuzzifiedNumber implements Comparable<FizzbuzzifiedNumber> {
 
     private static final String LETTERS_REGEX = "^[a-zA-Z]+$";
 
-    private int number;
+    private long number;
     private String fizzbuzzified;
     private Pattern knownWordsPattern;
 
-    public FizzbuzzifiedNumber(int number, String fizzbuzzified, Pattern knownWordsPattern) {
+    public FizzbuzzifiedNumber(long number, String fizzbuzzified, Pattern knownWordsPattern) {
         this.number = number;
         this.fizzbuzzified = fizzbuzzified;
         this.knownWordsPattern = knownWordsPattern;
     }
 
-    public FizzbuzzifiedNumber(int number, String fizzbuzzified) {
+    public FizzbuzzifiedNumber(long number, String fizzbuzzified) {
         this.number = number;
         this.fizzbuzzified = fizzbuzzified;
     }
@@ -42,7 +42,7 @@ public class FizzbuzzifiedNumber implements Comparable<FizzbuzzifiedNumber> {
         return fizzbuzzified.matches(LETTERS_REGEX);
     }
 
-    int getNumber() {
+    long getNumber() {
         return number;
     }
 

@@ -15,7 +15,7 @@ class NumberPredicate {
 
             (value, pair) -> {
                 StringBuilder words = new StringBuilder();
-                int remaining = value;
+                long remaining = value;
                 while (remaining % pair.getProperty() == 0) {
                     words.append(pair.getWord());
                     remaining /= pair.getProperty();
@@ -49,7 +49,7 @@ class NumberPredicate {
         return value -> propertyPredicate.test(value, property);
     }
 
-    BiPredicate<Integer, Integer> getPropertyPredicate() {
+    BiPredicate<Long, Integer> getPropertyPredicate() {
         return propertyPredicate;
     }
 

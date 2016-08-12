@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import software.works.fizzbuzz.FizzbuzzifiedNumber;
 import software.works.fizzbuzz.Player;
@@ -23,7 +23,7 @@ class OrdinaryPlayer implements Player {
     }
 
     @Override
-    public String playAtFizzBuzz(int value) {
+    public String playAtFizzBuzz(long value) {
         String fizzBuzz = fizzBuzzFunctions.stream() //
                 .map(function -> function.fizzBuzzOf(value)) //
                 .collect(joining());
@@ -37,28 +37,28 @@ class OrdinaryPlayer implements Player {
     }
 
     @Override
-    public String playAtFizzBuzz(int... values) {
-        return IntStream.of(values) //
+    public String playAtFizzBuzz(long... values) {
+        return LongStream.of(values) //
                 .mapToObj(this::playAtFizzBuzz) //
                 .collect(joining(configuration.getWordSeparator())) //
                 + configuration.getFinalPunctuation();
     }
 
     @Override
-    public List<String> playAtFizzBuzzToList(int... values) {
-        return IntStream.of(values) //
+    public List<String> playAtFizzBuzzToList(long... values) {
+        return LongStream.of(values) //
                 .mapToObj(this::wordPunctuated) //
                 .collect(toList());
     }
 
     @Override
-    public List<FizzbuzzifiedNumber> fizzbuzzify(int... values) {
-        return IntStream.of(values) //
+    public List<FizzbuzzifiedNumber> fizzbuzzify(long... values) {
+        return LongStream.of(values) //
                 .mapToObj(value -> new FizzbuzzifiedNumber(value, wordPunctuated(value))) //
                 .collect(toList());
     }
 
-    private String wordPunctuated(int value) {
+    private String wordPunctuated(long value) {
         return configuration.getFinalPunctuation().isEmpty() ? playAtFizzBuzz(value)
                 : playAtFizzBuzz(value) + configuration.getFinalPunctuation();
     }

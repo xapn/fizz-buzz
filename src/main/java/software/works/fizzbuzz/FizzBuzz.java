@@ -9,10 +9,10 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
-import software.works.fizzbuzz.rule.NumberCustomPredicatePlayer;
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.rule.NumberCustomPredicatePlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
 import software.works.fizzbuzz.rule.Word;
 
@@ -35,15 +35,15 @@ public class FizzBuzz {
         playerBuilder = new PlayerBuilder();
     }
 
-    public String of(int value) {
+    public String of(long value) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
     }
 
-    public String of(int... values) {
+    public String of(long... values) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(values);
     }
 
-    public FizzBuzzRange from(int start) {
+    public FizzBuzzRange from(long start) {
         return new FizzBuzzRange(playerBuilder.chosenPlayer()).from(start);
     }
 
