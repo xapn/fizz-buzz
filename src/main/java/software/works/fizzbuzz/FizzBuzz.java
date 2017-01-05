@@ -11,6 +11,7 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.stream.LongStream;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
@@ -43,9 +44,18 @@ public class FizzBuzz {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(BigInteger.valueOf(value));
     }
 
+    public String of(String value) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(new BigInteger(value));
+    }
+
     public String of(long... values) {
         return playerBuilder.chosenPlayer()
                 .playAtFizzBuzz(LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList()));
+    }
+
+    public String of(String... values) {
+        return playerBuilder.chosenPlayer()
+                .playAtFizzBuzz(Arrays.asList(values).stream().map(BigInteger::new).collect(toList()));
     }
 
     public FizzBuzzRange from(long start) {
