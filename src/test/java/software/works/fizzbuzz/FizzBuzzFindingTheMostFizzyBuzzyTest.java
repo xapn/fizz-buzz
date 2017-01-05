@@ -20,7 +20,7 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
         TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4);
 
         // THEN
-        assertThat(result.asNumber()).hasValue(3L);
+        assertThat(result.asNumber()).hasValue("3");
         assertThat(result.asWord()).hasValue("Fizz");
     }
 
@@ -41,7 +41,7 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
         TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4, 5, 15, 20, 22);
 
         // THEN
-        assertThat(result.asNumber()).hasValue(15L);
+        assertThat(result.asNumber()).hasValue("15");
         assertThat(result.asWord()).hasValue("FizzBuzz");
     }
 
@@ -52,7 +52,7 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
                 .from(1).to(15);
 
         // THEN
-        assertThat(result.asNumber()).hasValue(15L);
+        assertThat(result.asNumber()).hasValue("15");
         assertThat(result.asWord()).hasValue("FizzBuzzBuzz");
     }
 }

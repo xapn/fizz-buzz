@@ -1,5 +1,7 @@
 package software.works.fizzbuzz.rule;
 
+import java.math.BigInteger;
+
 public enum DictionaryWord {
 
     FIZZ("Fizz", 3), //
@@ -13,8 +15,8 @@ public enum DictionaryWord {
 
     private Word word;
 
-    private DictionaryWord(String word, int number) {
-        this.word = new Word(word, number);
+    private DictionaryWord(String word, long number) {
+        this.word = new Word(word, BigInteger.valueOf(number));
     }
 
     public Word getWord() {

@@ -1,5 +1,6 @@
 package software.works.fizzbuzz;
 
+import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,17 +8,17 @@ public class FizzbuzzifiedNumber implements Comparable<FizzbuzzifiedNumber> {
 
     private static final String LETTERS_REGEX = "^[a-zA-Z]+$";
 
-    private long number;
+    private BigInteger number;
     private String fizzbuzzified;
     private Pattern knownWordsPattern;
 
-    public FizzbuzzifiedNumber(long number, String fizzbuzzified, Pattern knownWordsPattern) {
+    public FizzbuzzifiedNumber(BigInteger number, String fizzbuzzified, Pattern knownWordsPattern) {
         this.number = number;
         this.fizzbuzzified = fizzbuzzified;
         this.knownWordsPattern = knownWordsPattern;
     }
 
-    public FizzbuzzifiedNumber(long number, String fizzbuzzified) {
+    public FizzbuzzifiedNumber(BigInteger number, String fizzbuzzified) {
         this.number = number;
         this.fizzbuzzified = fizzbuzzified;
     }
@@ -42,7 +43,7 @@ public class FizzbuzzifiedNumber implements Comparable<FizzbuzzifiedNumber> {
         return fizzbuzzified.matches(LETTERS_REGEX);
     }
 
-    long getNumber() {
+    BigInteger getNumber() {
         return number;
     }
 

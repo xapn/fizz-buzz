@@ -1,5 +1,8 @@
 package software.works.fizzbuzz;
 
+import static java.util.stream.Collectors.toList;
+
+import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.LongStream;
 
@@ -15,7 +18,8 @@ class FizzBuzzWordsToList {
     }
 
     public List<String> of(long... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
+        return playerBuilder.chosenPlayer()
+                .playAtFizzBuzzToList(LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList()));
     }
 
     public FizzBuzzWordsToList from(long start) {
@@ -23,7 +27,8 @@ class FizzBuzzWordsToList {
         return this;
     }
 
-    public List<String> to(int end) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzzToList(LongStream.rangeClosed(start, end).toArray());
+    public List<String> to(long end) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzzToList(
+                LongStream.rangeClosed(start, end).mapToObj(BigInteger::valueOf).collect(toList()));
     }
 }

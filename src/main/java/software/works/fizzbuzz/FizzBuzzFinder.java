@@ -2,6 +2,7 @@ package software.works.fizzbuzz;
 
 import static java.util.stream.Collectors.joining;
 
+import java.math.BigInteger;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,7 @@ class FizzBuzzFinder {
         this.playerBuilder = playerBuilder;
     }
 
-    Optional<FizzbuzzifiedNumber> find(long... values) {
+    Optional<FizzbuzzifiedNumber> find(List<BigInteger> values) {
         List<FizzbuzzifiedNumber> fizzbuzzified = playerBuilder.chosenPlayer().fizzbuzzify(values);
         Pattern knownWords = knownWords();
 

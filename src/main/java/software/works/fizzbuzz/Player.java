@@ -1,14 +1,15 @@
 package software.works.fizzbuzz;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface Player {
 
-    String playAtFizzBuzz(long value);
+    String playAtFizzBuzz(BigInteger value);
 
-    String playAtFizzBuzz(long... values);
+    String playAtFizzBuzz(List<BigInteger> values);
 
-    List<String> playAtFizzBuzzToList(long... values);
+    List<String> playAtFizzBuzzToList(List<BigInteger> values);
 
-    List<FizzbuzzifiedNumber> fizzbuzzify(long... values);
+    List<FizzbuzzifiedNumber> fizzbuzzify(List<BigInteger> values);
 }

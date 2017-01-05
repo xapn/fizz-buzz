@@ -1,5 +1,6 @@
 package software.works.fizzbuzz.rule;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
@@ -9,16 +10,16 @@ public class Word implements WordPropertyPair {
     private static final String NO_WORD = "";
 
     private String word;
-    private int property;
+    private BigInteger property;
 
-    public Word(String word, int property) {
+    public Word(String word, BigInteger property) {
         this.word = word;
         this.property = property;
         validate();
     }
 
     private void validate() {
-        if (word == null || word.isEmpty() || property < 0) {
+        if (word == null || word.isEmpty() || property.signum() == -1) {
             throw new IllegalStateException("Invalid word: '" + word
                     + "' must be a word associated to a positive integer '" + property + "' as property!");
         }
@@ -28,14 +29,18 @@ public class Word implements WordPropertyPair {
         return value -> predicate.appliedTo(property).test(value) ? word : NO_WORD;
     }
 
+    FizzBuzzFunction ifNumberSatisfies2(NumberPredicate predicate) {
+        return value -> predicate.appliedTo(property).test(value) ? word : NO_WORD;
+    }
+
     FizzBuzzFunction ifNumberSatisfies(List<NumberPredicate> numberPredicates) {
-        Optional<BiPredicate<Long, Integer>> merged = numberPredicates.stream() //
+        Optional<BiPredicate<BigInteger, BigInteger>> merged = numberPredicates.stream() //
                 .map(p -> p.getPropertyPredicate()) //
                 .reduce((result, current) -> result.or(current));
         return this.ifNumberSatisfies(merged.get());
     }
 
-    private FizzBuzzFunction ifNumberSatisfies(BiPredicate<Long, Integer> predicate) {
+    private FizzBuzzFunction ifNumberSatisfies(BiPredicate<BigInteger, BigInteger> predicate) {
         return value -> predicate.test(value, property) ? word : NO_WORD;
     }
 
@@ -54,7 +59,7 @@ public class Word implements WordPropertyPair {
     }
 
     @Override
-    public int getProperty() {
+    public BigInteger getProperty() {
         return property;
     }
 }

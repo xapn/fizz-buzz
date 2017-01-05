@@ -1,5 +1,6 @@
 package software.works.fizzbuzz;
 
+import static java.util.stream.Collectors.toList;
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
@@ -8,6 +9,9 @@ import static software.works.fizzbuzz.rule.DictionaryWord.POP;
 import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
+
+import java.math.BigInteger;
+import java.util.stream.LongStream;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -36,11 +40,12 @@ public class FizzBuzz {
     }
 
     public String of(long value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(BigInteger.valueOf(value));
     }
 
     public String of(long... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(values);
+        return playerBuilder.chosenPlayer()
+                .playAtFizzBuzz(LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList()));
     }
 
     public FizzBuzzRange from(long start) {
@@ -94,8 +99,8 @@ public class FizzBuzz {
         return this;
     }
 
-    public FizzBuzz word(String word, int associatedNumber) {
-        playerBuilder.append(new Word(word, associatedNumber));
+    public FizzBuzz word(String word, long associatedNumber) {
+        playerBuilder.append(new Word(word, new BigInteger(String.valueOf(associatedNumber))));
         return this;
     }
 

@@ -1,5 +1,7 @@
 package software.works.fizzbuzz.rule;
 
+import java.math.BigInteger;
+
 @FunctionalInterface
 interface FizzBuzzFunction {
 
@@ -10,5 +12,5 @@ interface FizzBuzzFunction {
      *            the value to be tested
      * @return the word of the predicate if true, otherwise empty string
      */
-    String fizzBuzzOf(long value);
+    String fizzBuzzOf(BigInteger value);
 }

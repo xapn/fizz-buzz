@@ -1,5 +1,8 @@
 package software.works.fizzbuzz;
 
+import static java.util.stream.Collectors.toList;
+
+import java.math.BigInteger;
 import java.util.Optional;
 import java.util.stream.LongStream;
 
@@ -16,7 +19,7 @@ class TheMostFizzyBuzzy {
     }
 
     public TheMostFizzyBuzzy in(long... values) {
-        theMostFizzyBuzzy = finder.find(values);
+        theMostFizzyBuzzy = finder.find(LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList()));
         return this;
     }
 
@@ -33,8 +36,9 @@ class TheMostFizzyBuzzy {
         return theMostFizzyBuzzy;
     }
 
-    public Optional<Long> asNumber() {
-        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getNumber()) : Optional.empty();
+    public Optional<String> asNumber() {
+        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getNumber().toString())
+                : Optional.empty();
     }
 
     public Optional<String> asWord() {
