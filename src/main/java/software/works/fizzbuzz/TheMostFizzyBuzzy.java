@@ -1,10 +1,9 @@
 package software.works.fizzbuzz;
 
-import static java.util.stream.Collectors.toList;
+import static software.works.fizzbuzz.Values.toBigInteger;
+import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 
-import java.math.BigInteger;
 import java.util.Optional;
-import java.util.stream.LongStream;
 
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
@@ -19,7 +18,7 @@ class TheMostFizzyBuzzy {
     }
 
     public TheMostFizzyBuzzy in(long... values) {
-        theMostFizzyBuzzy = finder.find(LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList()));
+        theMostFizzyBuzzy = finder.find(toBigInteger(values));
         return this;
     }
 
@@ -29,7 +28,8 @@ class TheMostFizzyBuzzy {
     }
 
     public TheMostFizzyBuzzy to(long end) {
-        return in(LongStream.rangeClosed(start, end).toArray());
+        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, end));
+        return this;
     }
 
     public Optional<FizzbuzzifiedNumber> get() {

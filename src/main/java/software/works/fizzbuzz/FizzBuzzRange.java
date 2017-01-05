@@ -1,9 +1,6 @@
 package software.works.fizzbuzz;
 
-import static java.util.stream.Collectors.toList;
-
-import java.math.BigInteger;
-import java.util.stream.LongStream;
+import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 
 public class FizzBuzzRange {
 
@@ -20,7 +17,6 @@ public class FizzBuzzRange {
     }
 
     public String to(long end) {
-        return player
-                .playAtFizzBuzz(LongStream.rangeClosed(start, end).mapToObj(BigInteger::valueOf).collect(toList()));
+        return player.playAtFizzBuzz(toBigIntegerRangeClosed(start, end));
     }
 }

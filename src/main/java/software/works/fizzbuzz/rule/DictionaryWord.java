@@ -1,6 +1,6 @@
 package software.works.fizzbuzz.rule;
 
-import java.math.BigInteger;
+import static software.works.fizzbuzz.Values.toBigInteger;
 
 public enum DictionaryWord {
 
@@ -16,7 +16,7 @@ public enum DictionaryWord {
     private Word word;
 
     private DictionaryWord(String word, long number) {
-        this.word = new Word(word, BigInteger.valueOf(number));
+        this.word = new Word(word, toBigInteger(number));
     }
 
     public Word getWord() {

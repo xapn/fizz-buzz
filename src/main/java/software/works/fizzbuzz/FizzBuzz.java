@@ -1,6 +1,6 @@
 package software.works.fizzbuzz;
 
-import static java.util.stream.Collectors.toList;
+import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
@@ -9,10 +9,6 @@ import static software.works.fizzbuzz.rule.DictionaryWord.POP;
 import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
-
-import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.stream.LongStream;
 
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
@@ -41,21 +37,19 @@ public class FizzBuzz {
     }
 
     public String of(long value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(BigInteger.valueOf(value));
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
     }
 
     public String of(String value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(new BigInteger(value));
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
     }
 
     public String of(long... values) {
-        return playerBuilder.chosenPlayer()
-                .playAtFizzBuzz(LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList()));
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
     }
 
     public String of(String... values) {
-        return playerBuilder.chosenPlayer()
-                .playAtFizzBuzz(Arrays.asList(values).stream().map(BigInteger::new).collect(toList()));
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
     }
 
     public FizzBuzzRange from(long start) {
@@ -110,7 +104,7 @@ public class FizzBuzz {
     }
 
     public FizzBuzz word(String word, long associatedNumber) {
-        playerBuilder.append(new Word(word, new BigInteger(String.valueOf(associatedNumber))));
+        playerBuilder.append(new Word(word, toBigInteger(associatedNumber)));
         return this;
     }
 

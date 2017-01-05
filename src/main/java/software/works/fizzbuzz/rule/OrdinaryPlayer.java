@@ -54,8 +54,12 @@ class OrdinaryPlayer implements Player {
     @Override
     public List<FizzbuzzifiedNumber> fizzbuzzify(List<BigInteger> values) {
         return values.stream() //
-                .map(value -> new FizzbuzzifiedNumber(value, wordPunctuated(value))) //
+                .map(this::toFizzbuzzifiedNumber) //
                 .collect(toList());
+    }
+
+    private FizzbuzzifiedNumber toFizzbuzzifiedNumber(BigInteger value) {
+        return new FizzbuzzifiedNumber(value, wordPunctuated(value));
     }
 
     private String wordPunctuated(BigInteger value) {
