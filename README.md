@@ -25,9 +25,9 @@ Notice that the start and end numbers are *inclusive*.
 
 ### FizzBuzz variations
 
-You can choose the variation rules to be applied.
+You can choose the game rules to be applied. The followings ones are popular variations.
 - **Classic FizzBuzz**: `fizzBuzz.whenNumberHasFactors()` is the rule by default. `fizzBuzz.whenNumberHasFactors().of(n)` has the same result than `fizzBuzz.of(n)`.
-- **Variation according to digits**: `fizzBuzz.whenNumberContainsDigits()` is a variation according to the digits contained by a given number. For example: `fizzBuzz.whenNumberContainsDigits().from(1).to(15)` returns "1 2 Fizz 4 Buzz 6 7 8 9 10 11 12 Fizz 14 Buzz" and `fizzBuzz.whenNumberContainsDigits().of(35)` returns "FizzBuzz".
+- **Variation according to digits**: `fizzBuzz.whenNumberContainsDigits()` is a variation according to the digits contained by a given number, that is to say any number containing the 3 or 5 digit is replaced respectively with "Fizz" and "Buzz". For example: `fizzBuzz.whenNumberContainsDigits().from(1).to(15)` returns "1 2 Fizz 4 Buzz 6 7 8 9 10 11 12 Fizz 14 Buzz" and `fizzBuzz.whenNumberContainsDigits().of(35)` returns "FizzBuzz".
 - **7Boom**: `fizzBuzz.boom()` is a variation to replace any number containing or divisible by 3, 5 or 7 with "Fizz", "Buzz" and "Boom". For example: `fizzBuzz.boom().from(1).to(15)` returns "1 2 Fizz 4 Buzz Fizz Boom 8 Fizz Buzz 11 Fizz Fizz Boom FizzBuzz" and `fizzBuzz.boom().of(7539)` returns "FizzBuzzBoom".
 - **FizzBuzzWoof**: `fizzBuzz.woof()` is a variation to replace any number containing or divisible by 3, 5 or 7 with "Fizz", "Buzz" and "Woof", repeated as many times as the condition is true. For example: `fizzBuzz.woof().from(1).to(15)` returns "1 2 FizzFizz 4 BuzzBuzz Fizz WoofWoof 8 FizzFizz Buzz 11 Fizz Fizz Woof FizzBuzzBuzz" and `fizzBuzz.woof().of(35)` returns "FizzBuzzBuzzWoof".
 - **FizzBuzzPopWhack**: `fizzBuzz.popWhack()` is a variation to replace any number divisible by 3, 5, 7 or 11 with "Fizz", "Buzz", "Pop" and "Whack" respectively. For example: `fizzBuzz.popWhack().from(1).to(15)` returns "1 2 Fizz 4 Buzz Fizz Pop 8 Fizz Buzz Whack Fizz 13 Pop FizzBuzz" and `fizzBuzz.popWhack().of(1155)` returns "FizzBuzzPopWhack".
@@ -40,10 +40,15 @@ For example: `fizzBuzz.whenNumberHasFactors().whenNumberContainsDigits().of(3, 5
 
 Notice that the variation rules are applied according to the FizzBuzz order: Fizz at first, Buzz after. Also notice that each time a condition is satisfied the matching word is repeated. If you will not, as playing at 7Boom, you can specify it: `fizzBuzz.wordsOnlyOnce().whenNumberHasFactors().whenNumberContainsDigits().of(55)` returns "Buzz" only, instead of "BuzzBuzz". On the contrary, if you wish a word was repeated as many times as a condition is true, you can also specify it: `fizzBuzz.wordsNTimes().whenNumberHasFactors().whenNumberContainsDigits().of(55)` returns "BuzzBuzzBuzz".
 
-### Custom words
+### Playing with custom words
 
-You can specify your own custom words, each associated to one number.  
+You can specify your own custom words, each associated to one property.  
 For example: `fizzBuzz.word("Foo", 3).word("Bar", 5).of(3, 5, 15)` returns "Foo Bar FooBar".
+
+### Playing with custom predicates
+
+You can specify your own custom predicates, to be applied to any numbers: a given number is replaced with a word if the provided predicate is satisfied. Such a predicate checks if a property is applicable to a value. You have to define your predicate by using a Java 8 lambda that returns a boolean: `(value, property) -> { /* TODO: return a boolean */ }`.  
+For example: `fizzBuzz.word("Even", 2).whenNumberSatisfies((value, property) -> value % property == 0).from(1).to(4)` returns "1 Even 3 Even". More sophisticated predicate implementations are allowed, like digital sequences, thresholds based on arithmetical calculations, etc.
 
 ## More customizations
 
@@ -78,7 +83,12 @@ For example: `fizzBuzz.findTheMostFizzyBuzzy().of(1, 3).asWord()` returns "Fizz"
 
 # Release Notes
 
-## Version 1.4
+## Version 1.5: expandable predicates
+
+- Custom property-based predicates can be specified to replace the default ones, that is to say the fact that a number has factors or that a number contains digits.
+- As inputs, long integers are also accepted, not only regular integers. In addition to long integers, more inputs are now accepted, like numeric strings or big integers. It lets us play with very big numbers and no limit! This enhancement is complementary to custom predicates.
+
+## Version 1.4: expandable words
 
 - The FizzBuzzPopWhack variation is implemented: every number divisible by 7 or 11 is replaced with "Pop" or "Whack" respectively, in addition to the FizzBuzz basics.
 - The FizzBuzzPopWhackZingChop is implemented: every number divisible by 8 or 13 is replaced with "Zing" or "Chop" respectively, in addition to the FizzBuzzPopWhack basics.
@@ -87,24 +97,24 @@ For example: `fizzBuzz.findTheMostFizzyBuzzy().of(1, 3).asWord()` returns "Fizz"
 - It is possible to find the most fizzbuzzified number in some arbitrary numbers or in a range of numbers.
 - It is possible to find the most fizzy-buzzy word in some arbitrary numbers or in a range of numbers.
 
-## Version 1.3
+## Version 1.3: word repetition by occurrence
 
 - Any specified word can be repeated as many times as a given number has a factor or contains a digit.
 - The FizzBuzzWoof variation is implemented: every number divisible by 7 or containing the digit 7 is replaced with "Woof", in addition to the FizzBuzz basics, and a word is repeated as many times as one condition is true.
 
-## Version 1.2
+## Version 1.2: word repetition by predicate
 
 - The 7Boom variation is implemented: every number divisible by 7 or containing the digit 7 is replaced with "Boom", in addition to the FizzBuzz basics.
 - Variation combinations can be played by repeating or not the words each time a number satisfies a condition.
 - The words can be printed being separated by predefined separators or custom separators. If the separator is a punctuation mark, the all sentence is completed with it.
 - The printed FizzBuzz words can be followed by the fizzbuzzified number between brackets.
 
-## Version 1.1
+## Version 1.1: first variation
 
 - Instead of replacing numbers that have 3 or 5 as a factor, the game can be played by replacing numbers containing the digit 3 or 5 with "Fizz" or "Buzz".
 - Any number that contains the number or is divisible by that number is replaced by the matching word.
 
-## Version 1.0
+## Version 1.0: basics
 
 - Write a program that prints the numbers from 1 to 100.
 - But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”.
