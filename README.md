@@ -2,24 +2,28 @@
 
 # Usage
 
-## FizzBuzz of one number
+## FizzBuzz basics
+
+### FizzBuzz of one number
 
 To get the result of FizzBuzz for a given number n: `fizzBuzz.of(n)` where `fizzBuzz` is an instance of the `FizzBuzz` class.  
 For example: `fizzBuzz.of(3)` returns "Fizz" and `fizzBuzz.of(5)` returns "Buzz".
 
-## FizzBuzz of several arbitrary numbers
+### FizzBuzz of several arbitrary numbers
 
 To get the result of FizzBuzz for several given numbers n1, n2, ..., nx: `fizzBuzz.of(n1, n2, ..., nx)`.  
 For example: `fizzBuzz.of(3, 5, 15)` returns "Fizz Buzz FizzBuzz".
 
-## FizzBuzz of a range of numbers
+### FizzBuzz of a range of numbers
 
 To get the result of FizzBuzz for a given range of numbers: `fizzBuzz.from(start).to(end)`.  
 For example: `fizzBuzz.from(1).to(15)` returns "1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz".
 
 Notice that the start and end numbers are *inclusive*.
 
-## FizzBuzz variations
+## More rules
+
+### FizzBuzz variations
 
 You can choose the variation rules to be applied.
 - **Classic FizzBuzz**: `fizzBuzz.whenNumberHasFactors()` is the rule by default. `fizzBuzz.whenNumberHasFactors().of(n)` has the same result than `fizzBuzz.of(n)`.
@@ -29,19 +33,26 @@ You can choose the variation rules to be applied.
 - **FizzBuzzPopWhack**: `fizzBuzz.popWhack()` is a variation to replace any number divisible by 3, 5, 7 or 11 with "Fizz", "Buzz", "Pop" and "Whack" respectively. For example: `fizzBuzz.popWhack().from(1).to(15)` returns "1 2 Fizz 4 Buzz Fizz Pop 8 Fizz Buzz Whack Fizz 13 Pop FizzBuzz" and `fizzBuzz.popWhack().of(1155)` returns "FizzBuzzPopWhack".
 - **FizzBuzzPopWhackZingChop**: `fizzBuzz.popWhackZingChop()` is a variation to replace any number divisible by 3, 5, 7, 8 , 11 or 13 with "Fizz", "Buzz", "Pop", "Zing", "Whack" and "Chop" respectively. For example: `fizzBuzz.popWhackZingChop().from(1).to(15)` returns "1 2 Fizz 4 Buzz Fizz Pop Zing Fizz Buzz Whack Fizz Chop Pop FizzBuzz" and `fizzBuzz.popWhackZingChop().of(120120)` returns "FizzBuzzPopWhackZingChop".
 
-## Combining some FizzBuzz variations
+### Combining some FizzBuzz variations
 
 You can combine some variation rules to be applied by chaining the corresponding methods.  
 For example: `fizzBuzz.whenNumberHasFactors().whenNumberContainsDigits().of(3, 5, 15, 30, 315)` returns "FizzFizz BuzzBuzz FizzBuzzBuzz FizzFizzBuzz FizzFizzBuzzBuzz".
 
 Notice that the variation rules are applied according to the FizzBuzz order: Fizz at first, Buzz after. Also notice that each time a condition is satisfied the matching word is repeated. If you will not, as playing at 7Boom, you can specify it: `fizzBuzz.wordsOnlyOnce().whenNumberHasFactors().whenNumberContainsDigits().of(55)` returns "Buzz" only, instead of "BuzzBuzz". On the contrary, if you wish a word was repeated as many times as a condition is true, you can also specify it: `fizzBuzz.wordsNTimes().whenNumberHasFactors().whenNumberContainsDigits().of(55)` returns "BuzzBuzzBuzz".
 
-## Custom words
+### Custom words
 
 You can specify your own custom words, each associated to one number.  
 For example: `fizzBuzz.word("Foo", 3).word("Bar", 5).of(3, 5, 15)` returns "Foo Bar FooBar".
 
-## Separating words while printing
+## More customizations
+
+### FizzBuzz result as a list
+
+You can get a list of words as a FizzBuzz result instead of a string of words based on the concatenation. Splitting the string result is no longer needed.  
+For example: `fizzBuzz.asList().of(3, 5)` returns `{ "Fizz", "Buzz" }`.
+
+### Separating words while printing
 
 You can print the words being separated by predefined or custom separators. The predefined separators are : comma, semi-colon, slash, backslash, dash.  
 For example: `fizzBuzz.separatedByComma().of(3, 5)` returns "Fizz, Buzz" and `fizzBuzz.separatedBy("-*-").of(3, 5)` returns "Fizz-\*-Buzz".
@@ -55,7 +66,9 @@ For example: `fizzBuzz.separatedByFrenchSemiColon().of(3, 5)` returns "Fizz ; Bu
 You can even print the fizzbuzzified numbers between brackets just after the FizzBuzz words.  
 For example: `fizzBuzz.separatedByComma().withNumbers().from(1).to(5)` returns "1, 2, Fizz (3), 4, Buzz (5)". 
 
-## Finding the most Fizzy-Buzzy
+## More features
+
+### Finding the most Fizzy-Buzzy
 
 You can find the most Fizzy-Buzzy number in some given arbitrary numbers or in a given range of numbers, that is to say the number whose the corresponding expression after being fizzbuzzified contains the greater number of FizzBuzz words, such as "Fizz" or "Buzz".  
 For example: `fizzBuzz.findTheMostFizzyBuzzy().of(1, 3).asNumber()` returns 3 and `fizzBuzz.findTheMostFizzyBuzzy().from(1).to(15).asNumber()` returns 15.
