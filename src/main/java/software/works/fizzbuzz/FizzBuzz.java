@@ -10,6 +10,9 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
+import java.math.BigInteger;
+import java.util.Arrays;
+
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
@@ -44,12 +47,20 @@ public class FizzBuzz {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
     }
 
+    public String of(BigInteger value) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
+    }
+
     public String of(long... values) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
     }
 
     public String of(String... values) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
+    }
+
+    public String of(BigInteger... values) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(Arrays.asList(values));
     }
 
     public FizzBuzzRange from(long start) {
