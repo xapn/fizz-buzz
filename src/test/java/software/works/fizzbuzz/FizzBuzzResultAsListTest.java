@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FizzBuzzToListTest {
+public class FizzBuzzResultAsListTest {
 
     private FizzBuzz fizzBuzz;
 

@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;;
 
-public class FizzBuzzUsingCustomPredicatesTest {
+public class FizzBuzzPlayingWithCustomPredicatesTest {
 
     private FizzBuzz fizzBuzz;
 
