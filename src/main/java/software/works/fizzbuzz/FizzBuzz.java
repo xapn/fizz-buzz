@@ -14,6 +14,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 import software.works.fizzbuzz.FizzBuzzRange.BigIntegerRange;
+import software.works.fizzbuzz.FizzBuzzRange.LongRange;
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
@@ -64,12 +65,12 @@ public class FizzBuzz {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(Arrays.asList(values));
     }
 
-    public FizzBuzzRange from(long start) {
-        return new FizzBuzzRange(playerBuilder.chosenPlayer()).from(start);
+    public LongRange from(long start) {
+        return new FizzBuzzRange(playerBuilder.chosenPlayer()).new LongRange().from(start);
     }
 
     public BigIntegerRange from(String start) {
-        return new BigIntegerRange(playerBuilder.chosenPlayer()).from(start);
+        return new FizzBuzzRange(playerBuilder.chosenPlayer()).new BigIntegerRange().from(start);
     }
 
     public FizzBuzz whenNumberHasFactors() {
