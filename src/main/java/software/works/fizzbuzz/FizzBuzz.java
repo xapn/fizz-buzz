@@ -13,6 +13,7 @@ import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+import software.works.fizzbuzz.FizzBuzzRange.BigIntegerRange;
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
@@ -65,6 +66,10 @@ public class FizzBuzz {
 
     public FizzBuzzRange from(long start) {
         return new FizzBuzzRange(playerBuilder.chosenPlayer()).from(start);
+    }
+
+    public BigIntegerRange from(String start) {
+        return new BigIntegerRange(playerBuilder.chosenPlayer()).from(start);
     }
 
     public FizzBuzz whenNumberHasFactors() {

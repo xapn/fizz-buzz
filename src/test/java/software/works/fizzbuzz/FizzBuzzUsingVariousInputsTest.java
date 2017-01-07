@@ -28,6 +28,11 @@ public class FizzBuzzUsingVariousInputsTest {
     }
 
     @Test
+    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_numeric_strings() {
+        assertThat(fizzBuzz.from("3").to("5")).isEqualTo(fizzBuzz.from(3).to(5));
+    }
+
+    @Test
     public void should_get_buzz_given_a_numeric_string_greater_than_long_max_value() {
         // GIVEN
         BigInteger greaterThanIntegerMaxValue = valueOf(10).pow(100);
