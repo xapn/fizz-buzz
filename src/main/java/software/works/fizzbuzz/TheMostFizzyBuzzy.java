@@ -3,6 +3,7 @@ package software.works.fizzbuzz;
 import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 import software.works.fizzbuzz.rule.PlayerBuilder;
@@ -10,7 +11,7 @@ import software.works.fizzbuzz.rule.PlayerBuilder;
 class TheMostFizzyBuzzy {
 
     private FizzBuzzFinder finder;
-    private long start;
+    private BigInteger start;
     private Optional<FizzbuzzifiedNumber> theMostFizzyBuzzy;
 
     TheMostFizzyBuzzy(PlayerBuilder playerBuilder) {
@@ -28,12 +29,22 @@ class TheMostFizzyBuzzy {
     }
 
     public TheMostFizzyBuzzy from(long start) {
-        this.start = start;
+        this.start = toBigInteger(start);
+        return this;
+    }
+
+    public TheMostFizzyBuzzy from(String start) {
+        this.start = toBigInteger(start);
         return this;
     }
 
     public TheMostFizzyBuzzy to(long end) {
-        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, end));
+        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
+        return this;
+    }
+
+    public TheMostFizzyBuzzy to(String end) {
+        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
         return this;
     }
 
