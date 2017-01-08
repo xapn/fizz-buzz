@@ -22,6 +22,11 @@ class TheMostFizzyBuzzy {
         return this;
     }
 
+    public TheMostFizzyBuzzy in(String... values) {
+        theMostFizzyBuzzy = finder.find(toBigInteger(values));
+        return this;
+    }
+
     public TheMostFizzyBuzzy from(long start) {
         this.start = start;
         return this;

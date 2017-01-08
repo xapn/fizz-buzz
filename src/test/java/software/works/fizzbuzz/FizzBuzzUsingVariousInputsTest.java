@@ -72,4 +72,15 @@ public class FizzBuzzUsingVariousInputsTest {
         // THEN
         assertThat(result).isEqualTo("Buzz");
     }
+
+    @Test
+    public void should_find_the_most_fizzybuzzy_given_some_arbitrary_numeric_strings() {
+        // WHEN
+        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in("1", "3", "4", "5", "15", "20", "22");
+
+        // THEN
+        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4, 5, 15, 20, 22);
+        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+        assertThat(result.asWord()).isEqualTo(expected.asWord());
+    }
 }
