@@ -10,7 +10,7 @@ import software.works.fizzbuzz.rule.PlayerBuilder;
 class TheMostFizzyBuzzy {
 
     private FizzBuzzFinder finder;
-    private int start;
+    private long start;
     private Optional<FizzbuzzifiedNumber> theMostFizzyBuzzy;
 
     TheMostFizzyBuzzy(PlayerBuilder playerBuilder) {
@@ -22,7 +22,7 @@ class TheMostFizzyBuzzy {
         return this;
     }
 
-    public TheMostFizzyBuzzy from(int start) {
+    public TheMostFizzyBuzzy from(long start) {
         this.start = start;
         return this;
     }

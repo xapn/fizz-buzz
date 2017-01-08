@@ -7,6 +7,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 public class Values {
@@ -27,7 +28,11 @@ public class Values {
         return Arrays.asList(values).stream().map(BigInteger::new).collect(toList());
     }
 
-    public static List<BigInteger> toBigIntegerRangeClosed(long start, long end) {
+    public static List<BigInteger> toBigIntegerRangeClosed(Integer start, Integer end) {
+        return IntStream.rangeClosed(start, end).mapToObj(BigInteger::valueOf).collect(toList());
+    }
+
+    public static List<BigInteger> toBigIntegerRangeClosed(Long start, Long end) {
         return LongStream.rangeClosed(start, end).mapToObj(BigInteger::valueOf).collect(toList());
     }
 
@@ -41,5 +46,24 @@ public class Values {
         }
 
         return range;
+    }
+
+    public static List<BigInteger> toBigIntegerRangeClosed(String start, String end) {
+        return toBigIntegerRangeClosed(toBigInteger(start), toBigInteger(end));
+    }
+
+    public static <T> List<BigInteger> toBigIntegerRangeClosed(T start, T end) {
+        if (start instanceof Integer && end instanceof Integer) {
+            return toBigIntegerRangeClosed((Integer) start, (Integer) end);
+        } else if (start instanceof Long && end instanceof Long) {
+            return toBigIntegerRangeClosed((Long) start, (Long) end);
+        } else if (start instanceof BigInteger && end instanceof BigInteger) {
+            return toBigIntegerRangeClosed((BigInteger) start, (BigInteger) end);
+        } else if (start instanceof String && end instanceof String) {
+            return toBigIntegerRangeClosed((String) start, (String) end);
+        } else {
+            throw new IllegalArgumentException("Unexpected type of arguments: start instance of " + start.getClass()
+                    + ", end instance of " + end.getClass());
+        }
     }
 }
