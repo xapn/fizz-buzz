@@ -75,6 +75,10 @@ public class FizzBuzz {
         return new FizzBuzzRange<String>(playerBuilder.chosenPlayer()).from(start);
     }
 
+    public FizzBuzzRange<BigInteger> from(BigInteger start) {
+        return new FizzBuzzRange<BigInteger>(playerBuilder.chosenPlayer()).from(start);
+    }
+
     public FizzBuzz whenNumberHasFactors() {
         playerBuilder.append(new DivisionPlayer());
         return this;

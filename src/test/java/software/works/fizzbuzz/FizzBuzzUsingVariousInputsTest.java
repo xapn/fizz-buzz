@@ -56,6 +56,11 @@ public class FizzBuzzUsingVariousInputsTest {
     }
 
     @Test
+    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_big_integers() {
+        assertThat(fizzBuzz.from(new BigInteger("3")).to(new BigInteger("5"))).isEqualTo(fizzBuzz.from(3).to(5));
+    }
+
+    @Test
     public void should_get_buzz_given_a_big_integer_greater_than_long_max_value() {
         // GIVEN
         BigInteger greaterThanIntegerMaxValue = valueOf(10).pow(100);
