@@ -43,6 +43,11 @@ class TheMostFizzyBuzzy {
         return this;
     }
 
+    public TheMostFizzyBuzzy from(BigInteger start) {
+        this.start = start;
+        return this;
+    }
+
     public TheMostFizzyBuzzy to(long end) {
         theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
         return this;
@@ -50,6 +55,11 @@ class TheMostFizzyBuzzy {
 
     public TheMostFizzyBuzzy to(String end) {
         theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
+        return this;
+    }
+
+    public TheMostFizzyBuzzy to(BigInteger end) {
+        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, end));
         return this;
     }
 
