@@ -28,6 +28,10 @@ public class Values {
         return Arrays.asList(values).stream().map(BigInteger::new).collect(toList());
     }
 
+    public static List<BigInteger> toBigInteger(BigInteger... values) {
+        return Arrays.asList(values);
+    }
+
     public static List<BigInteger> toBigIntegerRangeClosed(Integer start, Integer end) {
         return IntStream.rangeClosed(start, end).mapToObj(BigInteger::valueOf).collect(toList());
     }

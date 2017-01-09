@@ -94,4 +94,16 @@ public class FizzBuzzUsingVariousInputsTest {
         assertThat(result.asNumber()).isEqualTo(expected.asNumber());
         assertThat(result.asWord()).isEqualTo(expected.asWord());
     }
+
+    @Test
+    public void should_find_the_most_fizzybuzzy_given_some_arbitrary_big_integers() {
+        // WHEN
+        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in(valueOf(1), valueOf(3), valueOf(4), valueOf(5),
+                valueOf(15), valueOf(20), valueOf(22));
+
+        // THEN
+        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4, 5, 15, 20, 22);
+        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+        assertThat(result.asWord()).isEqualTo(expected.asWord());
+    }
 }
