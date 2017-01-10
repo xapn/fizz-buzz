@@ -18,6 +18,21 @@ public class FizzBuzzUsingVariousInputsTest {
     }
 
     @Test
+    public void should_get_fizz_given_3_as_a_long_integer() {
+        assertThat(fizzBuzz.of(3L)).isEqualTo(fizzBuzz.of(3));
+    }
+
+    @Test
+    public void should_get_fizz_or_buzz_given_several_long_integers() {
+        assertThat(fizzBuzz.of(3L, 5L, 15L)).isEqualTo(fizzBuzz.of(3, 5, 15));
+    }
+
+    @Test
+    public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_long_integers() {
+        assertThat(fizzBuzz.from(3L).to(5L)).isEqualTo(fizzBuzz.from(3).to(5));
+    }
+
+    @Test
     public void should_get_fizz_given_3_as_a_numeric_string() {
         assertThat(fizzBuzz.of("3")).isEqualTo(fizzBuzz.of(3));
     }

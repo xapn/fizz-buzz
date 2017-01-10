@@ -12,12 +12,20 @@ import java.util.stream.LongStream;
 
 public class Values {
 
+    public static BigInteger toBigInteger(int value) {
+        return BigInteger.valueOf(value);
+    }
+
     public static BigInteger toBigInteger(long value) {
         return BigInteger.valueOf(value);
     }
 
     public static BigInteger toBigInteger(String value) {
         return new BigInteger(value);
+    }
+
+    public static List<BigInteger> toBigInteger(int... values) {
+        return IntStream.of(values).mapToObj(BigInteger::valueOf).collect(toList());
     }
 
     public static List<BigInteger> toBigInteger(long... values) {

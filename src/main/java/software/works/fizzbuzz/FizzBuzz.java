@@ -39,6 +39,10 @@ public class FizzBuzz {
         playerBuilder = new PlayerBuilder();
     }
 
+    public String of(int value) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
+    }
+
     public String of(long value) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
     }
@@ -49,6 +53,10 @@ public class FizzBuzz {
 
     public String of(BigInteger value) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
+    }
+
+    public String of(int... values) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
     }
 
     public String of(long... values) {
