@@ -1,6 +1,7 @@
 package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.Values.toBigInteger;
+import static software.works.fizzbuzz.Values.toBigIntegers;
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
@@ -56,15 +57,15 @@ public class FizzBuzz {
     }
 
     public String of(int... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
     }
 
     public String of(long... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
     }
 
     public String of(String... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(values));
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
     }
 
     public String of(BigInteger... values) {

@@ -24,20 +24,56 @@ public class Values {
         return new BigInteger(value);
     }
 
-    public static List<BigInteger> toBigInteger(int... values) {
+    public static BigInteger toBigInteger(Object value) {
+        if (value instanceof Integer) {
+            return toBigInteger((int) value);
+        } else if (value instanceof Long) {
+            return toBigInteger((long) value);
+        } else if (value instanceof String) {
+            return toBigInteger((String) value);
+        } else if (value instanceof BigInteger) {
+            return (BigInteger) value;
+        } else {
+            throw new IllegalArgumentException("Unexpected type of argument: value instance of " + value.getClass());
+        }
+    }
+
+    public static List<BigInteger> toBigIntegers(int... values) {
         return IntStream.of(values).mapToObj(BigInteger::valueOf).collect(toList());
     }
 
-    public static List<BigInteger> toBigInteger(long... values) {
+    public static List<BigInteger> toBigIntegers(Integer... values) {
+        return Arrays.asList(values).stream().map(BigInteger::valueOf).collect(toList());
+    }
+
+    public static List<BigInteger> toBigIntegers(long... values) {
         return LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList());
     }
 
-    public static List<BigInteger> toBigInteger(String... values) {
+    public static List<BigInteger> toBigIntegers(Long... values) {
+        return Arrays.asList(values).stream().map(BigInteger::valueOf).collect(toList());
+    }
+
+    public static List<BigInteger> toBigIntegers(String... values) {
         return Arrays.asList(values).stream().map(BigInteger::new).collect(toList());
     }
 
-    public static List<BigInteger> toBigInteger(BigInteger... values) {
+    public static List<BigInteger> toBigIntegers(BigInteger... values) {
         return Arrays.asList(values);
+    }
+
+    public static List<BigInteger> toBigIntegers(Object... values) {
+        if (values instanceof Integer[]) {
+            return toBigIntegers((Integer[]) values);
+        } else if (values instanceof Long[]) {
+            return toBigIntegers((Long[]) values);
+        } else if (values instanceof String[]) {
+            return toBigIntegers((String[]) values);
+        } else if (values instanceof BigInteger[]) {
+            return toBigIntegers((BigInteger[]) values);
+        } else {
+            throw new IllegalArgumentException("Unexpected type of argument: values instance of " + values.getClass());
+        }
     }
 
     public static List<BigInteger> toBigIntegerRangeClosed(Integer start, Integer end) {

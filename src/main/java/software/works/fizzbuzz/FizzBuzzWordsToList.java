@@ -1,7 +1,7 @@
 package software.works.fizzbuzz;
 
-import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
+import static software.works.fizzbuzz.Values.toBigIntegers;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ class FizzBuzzWordsToList {
     }
 
     public List<String> of(long... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzzToList(toBigInteger(values));
+        return playerBuilder.chosenPlayer().playAtFizzBuzzToList(toBigIntegers(values));
     }
 
     public FizzBuzzWordsToList from(long start) {

@@ -2,6 +2,7 @@ package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
+import static software.works.fizzbuzz.Values.toBigIntegers;
 
 import java.math.BigInteger;
 import java.util.Optional;
@@ -18,63 +19,19 @@ class TheMostFizzyBuzzy {
         finder = new FizzBuzzFinder(playerBuilder);
     }
 
-    public TheMostFizzyBuzzy in(int... values) {
-        theMostFizzyBuzzy = finder.find(toBigInteger(values));
+    @SafeVarargs
+    public final <T> TheMostFizzyBuzzy in(T... values) {
+        theMostFizzyBuzzy = finder.find(toBigIntegers(values));
         return this;
     }
 
-    public TheMostFizzyBuzzy in(long... values) {
-        theMostFizzyBuzzy = finder.find(toBigInteger(values));
-        return this;
-    }
-
-    public TheMostFizzyBuzzy in(String... values) {
-        theMostFizzyBuzzy = finder.find(toBigInteger(values));
-        return this;
-    }
-
-    public TheMostFizzyBuzzy in(BigInteger... values) {
-        theMostFizzyBuzzy = finder.find(toBigInteger(values));
-        return this;
-    }
-
-    public TheMostFizzyBuzzy from(int start) {
+    public <T> TheMostFizzyBuzzy from(T start) {
         this.start = toBigInteger(start);
         return this;
     }
 
-    public TheMostFizzyBuzzy from(long start) {
-        this.start = toBigInteger(start);
-        return this;
-    }
-
-    public TheMostFizzyBuzzy from(String start) {
-        this.start = toBigInteger(start);
-        return this;
-    }
-
-    public TheMostFizzyBuzzy from(BigInteger start) {
-        this.start = start;
-        return this;
-    }
-
-    public TheMostFizzyBuzzy to(int end) {
+    public <T> TheMostFizzyBuzzy to(T end) {
         theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
-        return this;
-    }
-
-    public TheMostFizzyBuzzy to(long end) {
-        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
-        return this;
-    }
-
-    public TheMostFizzyBuzzy to(String end) {
-        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
-        return this;
-    }
-
-    public TheMostFizzyBuzzy to(BigInteger end) {
-        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, end));
         return this;
     }
 
