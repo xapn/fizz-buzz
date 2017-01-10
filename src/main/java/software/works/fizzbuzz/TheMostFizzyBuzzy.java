@@ -18,6 +18,11 @@ class TheMostFizzyBuzzy {
         finder = new FizzBuzzFinder(playerBuilder);
     }
 
+    public TheMostFizzyBuzzy in(int... values) {
+        theMostFizzyBuzzy = finder.find(toBigInteger(values));
+        return this;
+    }
+
     public TheMostFizzyBuzzy in(long... values) {
         theMostFizzyBuzzy = finder.find(toBigInteger(values));
         return this;
@@ -33,6 +38,11 @@ class TheMostFizzyBuzzy {
         return this;
     }
 
+    public TheMostFizzyBuzzy from(int start) {
+        this.start = toBigInteger(start);
+        return this;
+    }
+
     public TheMostFizzyBuzzy from(long start) {
         this.start = toBigInteger(start);
         return this;
@@ -45,6 +55,11 @@ class TheMostFizzyBuzzy {
 
     public TheMostFizzyBuzzy from(BigInteger start) {
         this.start = start;
+        return this;
+    }
+
+    public TheMostFizzyBuzzy to(int end) {
+        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
         return this;
     }
 
