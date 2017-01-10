@@ -11,9 +11,6 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
-import java.math.BigInteger;
-import java.util.Arrays;
-
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
@@ -40,52 +37,17 @@ public class FizzBuzz {
         playerBuilder = new PlayerBuilder();
     }
 
-    public String of(int value) {
+    public <T> String of(T value) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
     }
 
-    public String of(long value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
-    }
-
-    public String of(String value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
-    }
-
-    public String of(BigInteger value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
-    }
-
-    public String of(int... values) {
+    @SafeVarargs
+    public final <T> String of(T... values) {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
     }
 
-    public String of(long... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
-    }
-
-    public String of(String... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
-    }
-
-    public String of(BigInteger... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(Arrays.asList(values));
-    }
-
-    public FizzBuzzRange<Integer> from(int start) {
-        return new FizzBuzzRange<Integer>(playerBuilder.chosenPlayer()).from(start);
-    }
-
-    public FizzBuzzRange<Long> from(long start) {
-        return new FizzBuzzRange<Long>(playerBuilder.chosenPlayer()).from(start);
-    }
-
-    public FizzBuzzRange<String> from(String start) {
-        return new FizzBuzzRange<String>(playerBuilder.chosenPlayer()).from(start);
-    }
-
-    public FizzBuzzRange<BigInteger> from(BigInteger start) {
-        return new FizzBuzzRange<BigInteger>(playerBuilder.chosenPlayer()).from(start);
+    public <T> FizzBuzzRange<T> from(T start) {
+        return new FizzBuzzRange<T>(playerBuilder.chosenPlayer()).from(start);
     }
 
     public FizzBuzz whenNumberHasFactors() {
