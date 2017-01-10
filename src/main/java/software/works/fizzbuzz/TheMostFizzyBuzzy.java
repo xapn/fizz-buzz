@@ -1,18 +1,15 @@
 package software.works.fizzbuzz;
 
-import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 import static software.works.fizzbuzz.Values.toBigIntegers;
 
-import java.math.BigInteger;
 import java.util.Optional;
 
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
-class TheMostFizzyBuzzy {
+public class TheMostFizzyBuzzy {
 
     private FizzBuzzFinder finder;
-    private BigInteger start;
     private Optional<FizzbuzzifiedNumber> theMostFizzyBuzzy;
 
     TheMostFizzyBuzzy(PlayerBuilder playerBuilder) {
@@ -25,14 +22,28 @@ class TheMostFizzyBuzzy {
         return this;
     }
 
-    public <T> TheMostFizzyBuzzy from(T start) {
-        this.start = toBigInteger(start);
-        return this;
+    public <T> TheMostFizzyBuzzyOfRange<T> from(T start) {
+        return new TheMostFizzyBuzzyOfRange<T>(this).from(start);
     }
 
-    public <T> TheMostFizzyBuzzy to(T end) {
-        theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, toBigInteger(end)));
-        return this;
+    class TheMostFizzyBuzzyOfRange<T> {
+
+        private TheMostFizzyBuzzy enclosing;
+        private T start;
+
+        TheMostFizzyBuzzyOfRange(TheMostFizzyBuzzy theMostFizzyBuzzy) {
+            this.enclosing = theMostFizzyBuzzy;
+        }
+
+        TheMostFizzyBuzzyOfRange<T> from(T start) {
+            this.start = start;
+            return this;
+        }
+
+        public TheMostFizzyBuzzy to(T end) {
+            theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, end));
+            return enclosing;
+        }
     }
 
     public Optional<FizzbuzzifiedNumber> get() {
