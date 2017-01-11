@@ -25,6 +25,10 @@ public class I {
         return new FizzBuzz().woof().of(values);
     }
 
+    public static <T> Until<T> fizzbuzzwoofify(T start) {
+        return new Until<T>(new FizzBuzz().woof()).from(start);
+    }
+
     public static class Until<T> {
 
         private FizzBuzz fizzBuzz;
