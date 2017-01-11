@@ -11,4 +11,9 @@ public class FizzBuzzifyingTest {
     public void should_fizzbuzzify_some_arbitrary_values() {
         assertThat(fizzbuzzify(3, 5, 15)).isEqualTo(new FizzBuzz().of(3, 5, 15));
     }
+
+    @Test
+    public void should_fizzbuzzify_a_range_of_values() {
+        assertThat(fizzbuzzify(1).until(15)).isEqualTo(new FizzBuzz().from(1).to(15));
+    }
 }
