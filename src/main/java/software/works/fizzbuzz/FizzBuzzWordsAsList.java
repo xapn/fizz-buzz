@@ -1,16 +1,15 @@
 package software.works.fizzbuzz;
 
-import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 import static software.works.fizzbuzz.Values.toBigIntegers;
 
 import java.util.List;
 
+import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
 class FizzBuzzWordsAsList {
 
     private PlayerBuilder playerBuilder;
-    private long start;
 
     FizzBuzzWordsAsList(PlayerBuilder playerBuilder) {
         this.playerBuilder = playerBuilder;
@@ -20,12 +19,8 @@ class FizzBuzzWordsAsList {
         return playerBuilder.chosenPlayer().playAtFizzBuzzToList(toBigIntegers(values));
     }
 
-    public FizzBuzzWordsAsList from(long start) {
-        this.start = start;
-        return this;
-    }
-
-    public List<String> to(long end) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzzToList(toBigIntegerRangeClosed(start, end));
+    public <T> FizzBuzzRange<T, List<String>> from(T start) {
+        RangeHandler<List<String>> rangeHandler = (values) -> playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
+        return new FizzBuzzRange<T, List<String>>(rangeHandler).from(start);
     }
 }
