@@ -38,6 +38,11 @@ public class I {
         return new Until<T>(new FizzBuzz().popWhack()).from(start);
     }
 
+    @SafeVarargs
+    public static <T> String fizzbuzzpopwhackzingchopify(T... values) {
+        return new FizzBuzz().popWhackZingChop().of(values);
+    }
+
     public static class Until<T> {
 
         private FizzBuzz fizzBuzz;
