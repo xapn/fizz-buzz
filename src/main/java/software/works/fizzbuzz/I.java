@@ -11,6 +11,10 @@ public class I {
         return new Until<T>(from);
     }
 
+    public static <T> String sevenboomify(T... values) {
+        return new FizzBuzz().boom().of(values);
+    }
+
     public static class Until<T> {
 
         private T start;
