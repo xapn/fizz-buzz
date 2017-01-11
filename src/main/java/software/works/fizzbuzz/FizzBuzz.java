@@ -11,6 +11,10 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.function.Function;
+
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
@@ -46,8 +50,10 @@ public class FizzBuzz {
         return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
     }
 
-    public <T> FizzBuzzRange<T> from(T start) {
-        return new FizzBuzzRange<T>(playerBuilder.chosenPlayer()).from(start);
+    public <T> FizzBuzzRange<T, String> from(T start) {
+        Function<List<BigInteger>, String> rangeHandler = (values) -> playerBuilder.chosenPlayer()
+                .playAtFizzBuzz(values);
+        return new FizzBuzzRange<T, String>(rangeHandler).from(start);
     }
 
     public FizzBuzz whenNumberHasFactors() {

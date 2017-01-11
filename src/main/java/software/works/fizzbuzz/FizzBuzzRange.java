@@ -2,21 +2,25 @@ package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 
-public class FizzBuzzRange<T> {
+import java.math.BigInteger;
+import java.util.List;
+import java.util.function.Function;
 
-    private Player player;
+public class FizzBuzzRange<T, R> {
+
+    private Function<List<BigInteger>, R> handler;
     private T start;
 
-    FizzBuzzRange(Player player) {
-        this.player = player;
+    FizzBuzzRange(Function<List<BigInteger>, R> handler) {
+        this.handler = handler;
     }
 
-    FizzBuzzRange<T> from(T start) {
+    FizzBuzzRange<T, R> from(T start) {
         this.start = start;
         return this;
     }
 
-    public String to(T end) {
-        return player.playAtFizzBuzz(toBigIntegerRangeClosed(start, end));
+    public R to(T end) {
+        return handler.apply(toBigIntegerRangeClosed(start, end));
     }
 }

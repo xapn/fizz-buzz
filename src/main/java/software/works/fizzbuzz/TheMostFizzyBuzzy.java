@@ -1,9 +1,11 @@
 package software.works.fizzbuzz;
 
-import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 import static software.works.fizzbuzz.Values.toBigIntegers;
 
+import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
@@ -22,28 +24,12 @@ public class TheMostFizzyBuzzy {
         return this;
     }
 
-    public <T> TheMostFizzyBuzzyOfRange<T> from(T start) {
-        return new TheMostFizzyBuzzyOfRange<T>(this).from(start);
-    }
-
-    class TheMostFizzyBuzzyOfRange<T> {
-
-        private TheMostFizzyBuzzy enclosing;
-        private T start;
-
-        TheMostFizzyBuzzyOfRange(TheMostFizzyBuzzy theMostFizzyBuzzy) {
-            this.enclosing = theMostFizzyBuzzy;
-        }
-
-        TheMostFizzyBuzzyOfRange<T> from(T start) {
-            this.start = start;
+    public <T> FizzBuzzRange<T, TheMostFizzyBuzzy> from(T start) {
+        Function<List<BigInteger>, TheMostFizzyBuzzy> rangeHandler = (values) -> {
+            theMostFizzyBuzzy = finder.find(values);
             return this;
-        }
-
-        public TheMostFizzyBuzzy to(T end) {
-            theMostFizzyBuzzy = finder.find(toBigIntegerRangeClosed(start, end));
-            return enclosing;
-        }
+        };
+        return new FizzBuzzRange<T, TheMostFizzyBuzzy>(rangeHandler).from(start);
     }
 
     public Optional<FizzbuzzifiedNumber> get() {
