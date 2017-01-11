@@ -57,4 +57,9 @@ public class FizzBuzzifyingTest {
     public void should_fizzbuzzpopwhackify_some_arbitrary_values() {
         assertThat(fizzbuzzpopwhackify(3, 5, 7, 11)).isEqualTo(new FizzBuzz().popWhack().of(3, 5, 7, 11));
     }
+
+    @Test
+    public void should_fizzbuzzpopwhackify_a_range_of_values() {
+        assertThat(fizzbuzzpopwhackify(1).until(21)).isEqualTo(new FizzBuzz().popWhack().from(1).to(21));
+    }
 }
