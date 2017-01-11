@@ -2,11 +2,9 @@ package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.Values.toBigIntegers;
 
-import java.math.BigInteger;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
+import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
 public class TheMostFizzyBuzzy {
@@ -25,7 +23,7 @@ public class TheMostFizzyBuzzy {
     }
 
     public <T> FizzBuzzRange<T, TheMostFizzyBuzzy> from(T start) {
-        Function<List<BigInteger>, TheMostFizzyBuzzy> rangeHandler = (values) -> {
+        RangeHandler<TheMostFizzyBuzzy> rangeHandler = (values) -> {
             theMostFizzyBuzzy = finder.find(values);
             return this;
         };

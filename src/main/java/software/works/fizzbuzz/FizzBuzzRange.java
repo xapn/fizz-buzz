@@ -8,11 +8,13 @@ import java.util.function.Function;
 
 public class FizzBuzzRange<T, R> {
 
-    private Function<List<BigInteger>, R> handler;
+    static interface RangeHandler<R> extends Function<List<BigInteger>, R> {}
+
+    private RangeHandler<R> handler;
     private T start;
 
-    FizzBuzzRange(Function<List<BigInteger>, R> handler) {
-        this.handler = handler;
+    FizzBuzzRange(RangeHandler<R> rangeHandler) {
+        this.handler = rangeHandler;
     }
 
     FizzBuzzRange<T, R> from(T start) {
