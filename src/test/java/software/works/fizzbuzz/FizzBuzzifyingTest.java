@@ -2,6 +2,7 @@ package software.works.fizzbuzz;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static software.works.fizzbuzz.I.fizzbuzzify;
+import static software.works.fizzbuzz.I.fizzbuzzwoofify;
 import static software.works.fizzbuzz.I.learnDivision;
 import static software.works.fizzbuzz.I.sevenboomify;
 
@@ -39,5 +40,10 @@ public class FizzBuzzifyingTest {
     @Test
     public void should_sevenboomify_a_range_of_values() {
         assertThat(sevenboomify(1).until(15)).isEqualTo(new FizzBuzz().boom().from(1).to(15));
+    }
+
+    @Test
+    public void should_fizzbuzzwoofify_some_arbitrary_values() {
+        assertThat(fizzbuzzwoofify(3, 5, 7, 15, 21)).isEqualTo(new FizzBuzz().woof().of(3, 5, 7, 15, 21));
     }
 }
