@@ -2,10 +2,10 @@ package software.works.fizzbuzz;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static software.works.fizzbuzz.PlayAt.fizzBuzz;
-import static software.works.fizzbuzz.PlayAt.sevenBoom;
 import static software.works.fizzbuzz.PlayAt.fizzBuzzPopWhack;
 import static software.works.fizzbuzz.PlayAt.fizzBuzzPopWhackZingChop;
 import static software.works.fizzbuzz.PlayAt.fizzBuzzWoof;
+import static software.works.fizzbuzz.PlayAt.sevenBoom;
 
 import org.junit.Test;
 
