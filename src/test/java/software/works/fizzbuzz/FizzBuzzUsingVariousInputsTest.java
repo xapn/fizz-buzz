@@ -33,6 +33,16 @@ public class FizzBuzzUsingVariousInputsTest {
     }
 
     @Test
+    public void should_get_fizz_buzz_words_as_list_given_several_long_integers() {
+        assertThat(fizzBuzz.asList().of(3L, 5L, 15L)).isEqualTo(fizzBuzz.asList().of(3, 5, 15));
+    }
+
+    @Test
+    public void should_get_fizz_buzz_words_as_list_given_a_range_of_long_integers() {
+        assertThat(fizzBuzz.asList().from(3L).to(5L)).isEqualTo(fizzBuzz.asList().from(3).to(5));
+    }
+
+    @Test
     public void should_get_fizz_given_3_as_a_numeric_string() {
         assertThat(fizzBuzz.of("3")).isEqualTo(fizzBuzz.of(3));
     }
@@ -45,6 +55,16 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_numeric_strings() {
         assertThat(fizzBuzz.from("3").to("5")).isEqualTo(fizzBuzz.from(3).to(5));
+    }
+
+    @Test
+    public void should_get_fizz_buzz_words_as_list_given_several_numeric_strings() {
+        assertThat(fizzBuzz.asList().of("3", "5", "15")).isEqualTo(fizzBuzz.asList().of(3, 5, 15));
+    }
+
+    @Test
+    public void should_get_fizz_buzz_words_as_list_given_a_range_of_numeric_strings() {
+        assertThat(fizzBuzz.asList().from("3").to("5")).isEqualTo(fizzBuzz.asList().from(3).to(5));
     }
 
     @Test
@@ -73,6 +93,16 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_big_integers() {
         assertThat(fizzBuzz.from(new BigInteger("3")).to(new BigInteger("5"))).isEqualTo(fizzBuzz.from(3).to(5));
+    }
+
+    @Test
+    public void should_get_fizz_buzz_words_as_list_given_several_big_integers() {
+        assertThat(fizzBuzz.asList().of(valueOf(3), valueOf(5), valueOf(15))).isEqualTo(fizzBuzz.asList().of(3, 5, 15));
+    }
+
+    @Test
+    public void should_get_fizz_buzz_words_as_list_given_a_range_of_big_integers() {
+        assertThat(fizzBuzz.asList().from(valueOf(3)).to(valueOf(5))).isEqualTo(fizzBuzz.asList().from(3).to(5));
     }
 
     @Test

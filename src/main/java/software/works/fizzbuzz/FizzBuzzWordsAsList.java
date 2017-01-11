@@ -7,7 +7,7 @@ import java.util.List;
 import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
-class FizzBuzzWordsAsList {
+public class FizzBuzzWordsAsList {
 
     private PlayerBuilder playerBuilder;
 
@@ -15,7 +15,8 @@ class FizzBuzzWordsAsList {
         this.playerBuilder = playerBuilder;
     }
 
-    public List<String> of(long... values) {
+    @SafeVarargs
+    public final <T> List<String> of(T... values) {
         return playerBuilder.chosenPlayer().playAtFizzBuzzToList(toBigIntegers(values));
     }
 
