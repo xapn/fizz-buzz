@@ -1,40 +1,41 @@
 package software.works.fizzbuzz;
 
-import java.util.Optional;
-import java.util.stream.IntStream;
+import static software.works.fizzbuzz.Values.toBigIntegers;
 
+import java.util.Optional;
+
+import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
-class TheMostFizzyBuzzy {
+public class TheMostFizzyBuzzy {
 
     private FizzBuzzFinder finder;
-    private int start;
     private Optional<FizzbuzzifiedNumber> theMostFizzyBuzzy;
 
     TheMostFizzyBuzzy(PlayerBuilder playerBuilder) {
         finder = new FizzBuzzFinder(playerBuilder);
     }
 
-    public TheMostFizzyBuzzy in(int... values) {
-        theMostFizzyBuzzy = finder.find(values);
+    @SafeVarargs
+    public final <T> TheMostFizzyBuzzy in(T... values) {
+        theMostFizzyBuzzy = finder.find(toBigIntegers(values));
         return this;
     }
 
-    public TheMostFizzyBuzzy from(int start) {
-        this.start = start;
-        return this;
-    }
-
-    public TheMostFizzyBuzzy to(int end) {
-        return in(IntStream.rangeClosed(start, end).toArray());
+    public <T> FizzBuzzRange<T, TheMostFizzyBuzzy> from(T start) {
+        RangeHandler<TheMostFizzyBuzzy> rangeHandler = (values) -> {
+            theMostFizzyBuzzy = finder.find(values);
+            return this;
+        };
+        return new FizzBuzzRange<T, TheMostFizzyBuzzy>(rangeHandler).from(start);
     }
 
     public Optional<FizzbuzzifiedNumber> get() {
         return theMostFizzyBuzzy;
     }
 
-    public Optional<Integer> asNumber() {
-        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getNumber())
+    public Optional<String> asNumber() {
+        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getNumber().toString())
                 : Optional.empty();
     }
 

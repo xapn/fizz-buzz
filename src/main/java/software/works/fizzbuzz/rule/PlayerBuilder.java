@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import software.works.fizzbuzz.Player;
+import software.works.fizzbuzz.FizzBuzzPlayer;
 
 public class PlayerBuilder {
 
@@ -48,10 +48,10 @@ public class PlayerBuilder {
         return this;
     }
 
-    public Player chosenPlayer() {
+    public FizzBuzzPlayer chosenPlayer() {
         chooseDefaultWordsIfNotSpecified(words);
         chooseClassicPlayerByDefaultIfUnknown(players);
-        Player definitivePlayer = null;
+        FizzBuzzPlayer definitivePlayer = null;
 
         if (configuration.wordsMustBePrintedOnlyOnce()) {
             definitivePlayer = buildWordCentricPlayer(players);
@@ -75,17 +75,17 @@ public class PlayerBuilder {
         return players;
     }
 
-    private Player buildWordCentricPlayer(List<NumberPredicatePlayer> players) {
+    private FizzBuzzPlayer buildWordCentricPlayer(List<NumberPredicatePlayer> players) {
         List<NumberPredicate> allNumberPredicates = players.stream() //
                 .map(player -> player.getNumberPredicate()) //
                 .collect(toList());
         List<FizzBuzzFunction> wordCentricFunctions = buildWordCentricFunctions(allNumberPredicates);
-        Player wordCentricPlayer = new OrdinaryPlayer(wordCentricFunctions, configuration) {};
+        FizzBuzzPlayer wordCentricPlayer = new OrdinaryPlayer(wordCentricFunctions, configuration) {};
 
         return wordCentricPlayer;
     }
 
-    private Player buildPredicateCentricPlayer(List<NumberPredicatePlayer> players) {
+    private FizzBuzzPlayer buildPredicateCentricPlayer(List<NumberPredicatePlayer> players) {
         players.stream().forEach(player -> {
             player.setFizzBuzzFunctions(buildPredicateCentricFunctions(player.getNumberPredicate()));
             player.setConfiguration(configuration);
@@ -106,8 +106,8 @@ public class PlayerBuilder {
                 .collect(toList());
     }
 
-    private Player combineVariations(List<NumberPredicatePlayer> players) {
-        Player player = null;
+    private FizzBuzzPlayer combineVariations(List<NumberPredicatePlayer> players) {
+        FizzBuzzPlayer player = null;
 
         if (!players.isEmpty()) {
             if (players.size() == 1) {

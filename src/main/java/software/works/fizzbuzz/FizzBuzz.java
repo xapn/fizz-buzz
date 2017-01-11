@@ -1,5 +1,7 @@
 package software.works.fizzbuzz;
 
+import static software.works.fizzbuzz.Values.toBigInteger;
+import static software.works.fizzbuzz.Values.toBigIntegers;
 import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
@@ -9,8 +11,11 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
+import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
+import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.rule.NumberCustomPredicatePlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
 import software.works.fizzbuzz.rule.Word;
 
@@ -33,16 +38,18 @@ public class FizzBuzz {
         playerBuilder = new PlayerBuilder();
     }
 
-    public String of(int value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(value);
+    public <T> String of(T value) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
     }
 
-    public String of(int... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(values);
+    @SafeVarargs
+    public final <T> String of(T... values) {
+        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
     }
 
-    public FizzBuzzRange from(int start) {
-        return new FizzBuzzRange(playerBuilder.chosenPlayer()).from(start);
+    public <T> FizzBuzzRange<T, String> from(T start) {
+        RangeHandler<String> rangeHandler = (values) -> playerBuilder.chosenPlayer().playAtFizzBuzz(values);
+        return new FizzBuzzRange<T, String>(rangeHandler).from(start);
     }
 
     public FizzBuzz whenNumberHasFactors() {
@@ -52,6 +59,11 @@ public class FizzBuzz {
 
     public FizzBuzz whenNumberContainsDigits() {
         playerBuilder.append(new DigitPlayer());
+        return this;
+    }
+
+    public FizzBuzz whenNumberSatisfies(PropertyPredicate propertyPredicate) {
+        playerBuilder.append(new NumberCustomPredicatePlayer(propertyPredicate));
         return this;
     }
 
@@ -87,8 +99,8 @@ public class FizzBuzz {
         return this;
     }
 
-    public FizzBuzz word(String word, int associatedNumber) {
-        playerBuilder.append(new Word(word, associatedNumber));
+    public FizzBuzz word(String word, long associatedNumber) {
+        playerBuilder.append(new Word(word, toBigInteger(associatedNumber)));
         return this;
     }
 
@@ -161,9 +173,9 @@ public class FizzBuzz {
         return this;
     }
 
-    public FizzBuzzWordsToList asList() {
+    public FizzBuzzWordsAsList asList() {
         playerBuilder.collectWordsToList();
-        return new FizzBuzzWordsToList(playerBuilder);
+        return new FizzBuzzWordsAsList(playerBuilder);
     }
 
     public TheMostFizzyBuzzy findTheMostFizzyBuzzy() {
