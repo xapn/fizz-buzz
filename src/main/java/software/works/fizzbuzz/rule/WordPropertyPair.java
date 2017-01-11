@@ -1,8 +1,10 @@
 package software.works.fizzbuzz.rule;
 
+import java.math.BigInteger;
+
 interface WordPropertyPair {
 
     String getWord();
 
-    int getProperty();
+    BigInteger getProperty();
 }

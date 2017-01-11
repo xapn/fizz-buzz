@@ -3,14 +3,14 @@ package software.works.fizzbuzz.rule;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import software.works.fizzbuzz.FizzbuzzifiedNumber;
-import software.works.fizzbuzz.Player;
+import software.works.fizzbuzz.FizzBuzzPlayer;
 
-class OrdinaryPlayer implements Player {
+class OrdinaryPlayer implements FizzBuzzPlayer {
 
     protected List<FizzBuzzFunction> fizzBuzzFunctions;
     private PlayerConfiguration configuration;
@@ -23,13 +23,13 @@ class OrdinaryPlayer implements Player {
     }
 
     @Override
-    public String playAtFizzBuzz(int value) {
+    public String playAtFizzBuzz(BigInteger value) {
         String fizzBuzz = fizzBuzzFunctions.stream() //
                 .map(function -> function.fizzBuzzOf(value)) //
                 .collect(joining());
 
         if (fizzBuzz.isEmpty()) {
-            fizzBuzz = String.valueOf(value);
+            fizzBuzz = value.toString();
         } else if (configuration.numbersMustBePrinted()) {
             fizzBuzz += " (" + value + ")";
         }
@@ -37,28 +37,32 @@ class OrdinaryPlayer implements Player {
     }
 
     @Override
-    public String playAtFizzBuzz(int... values) {
-        return IntStream.of(values) //
-                .mapToObj(this::playAtFizzBuzz) //
+    public String playAtFizzBuzz(List<BigInteger> values) {
+        return values.stream() //
+                .map(this::playAtFizzBuzz) //
                 .collect(joining(configuration.getWordSeparator())) //
                 + configuration.getFinalPunctuation();
     }
 
     @Override
-    public List<String> playAtFizzBuzzToList(int... values) {
-        return IntStream.of(values) //
-                .mapToObj(this::wordPunctuated) //
+    public List<String> playAtFizzBuzzToList(List<BigInteger> values) {
+        return values.stream() //
+                .map(this::wordPunctuated) //
                 .collect(toList());
     }
 
     @Override
-    public List<FizzbuzzifiedNumber> fizzbuzzify(int... values) {
-        return IntStream.of(values) //
-                .mapToObj(value -> new FizzbuzzifiedNumber(value, wordPunctuated(value))) //
+    public List<FizzbuzzifiedNumber> fizzbuzzify(List<BigInteger> values) {
+        return values.stream() //
+                .map(this::toFizzbuzzifiedNumber) //
                 .collect(toList());
     }
 
-    private String wordPunctuated(int value) {
+    private FizzbuzzifiedNumber toFizzbuzzifiedNumber(BigInteger value) {
+        return new FizzbuzzifiedNumber(value, wordPunctuated(value));
+    }
+
+    private String wordPunctuated(BigInteger value) {
         return configuration.getFinalPunctuation().isEmpty() ? playAtFizzBuzz(value)
                 : playAtFizzBuzz(value) + configuration.getFinalPunctuation();
     }

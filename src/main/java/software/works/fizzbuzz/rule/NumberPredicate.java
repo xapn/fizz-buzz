@@ -1,5 +1,8 @@
 package software.works.fizzbuzz.rule;
 
+import static java.math.BigInteger.ZERO;
+
+import java.math.BigInteger;
 import java.util.function.BiPredicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,14 +14,14 @@ import software.works.fizzbuzz.rule.FunctionTypes.WordOccurrencesFunction;
 class NumberPredicate {
 
     static final NumberPredicate IS_MULTIPLE_OF = new NumberPredicate( //
-            (value, factor) -> value % factor == 0,
+            (value, factor) -> value.mod(factor).equals(ZERO),
 
             (value, pair) -> {
                 StringBuilder words = new StringBuilder();
-                int remaining = value;
-                while (remaining % pair.getProperty() == 0) {
+                BigInteger remaining = value;
+                while (remaining.mod(pair.getProperty()).equals(ZERO)) {
                     words.append(pair.getWord());
-                    remaining /= pair.getProperty();
+                    remaining = remaining.divide(pair.getProperty());
                 }
                 return words.toString();
             });
@@ -29,8 +32,8 @@ class NumberPredicate {
             (value, pair) -> {
                 StringBuilder words = new StringBuilder();
                 Matcher digitMatcher = Pattern //
-                        .compile(String.valueOf(pair.getProperty())) //
-                        .matcher(String.valueOf(value));
+                        .compile(pair.getProperty().toString()) //
+                        .matcher(value.toString());
                 while (digitMatcher.find()) {
                     words.append(pair.getWord());
                 }
@@ -45,11 +48,11 @@ class NumberPredicate {
         this.wordOccurrencesFunction = wordOccurrencesFunction;
     }
 
-    ValuePredicate appliedTo(int property) {
+    ValuePredicate appliedTo(BigInteger property) {
         return value -> propertyPredicate.test(value, property);
     }
 
-    BiPredicate<Integer, Integer> getPropertyPredicate() {
+    BiPredicate<BigInteger, BigInteger> getPropertyPredicate() {
         return propertyPredicate;
     }
 

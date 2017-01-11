@@ -3,6 +3,7 @@ package software.works.fizzbuzz;
 import static java.lang.Math.max;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import org.junit.Test;
 
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;;
 
-public class FizzBuzzUsingCustomPredicatesTest {
+public class FizzBuzzPlayingWithCustomPredicatesTest {
 
     private FizzBuzz fizzBuzz;
 
@@ -24,12 +25,12 @@ public class FizzBuzzUsingCustomPredicatesTest {
                 sequenceLength = sequenceLength == 0 ? 2 : sequenceLength + 1;
             } else {
                 sequenceLength = 0;
-                maxSequenceLength = maxSequenceLength == property ? maxSequenceLength : 0;
+                maxSequenceLength = property.equals(BigInteger.valueOf(maxSequenceLength)) ? maxSequenceLength : 0;
             }
             maxSequenceLength = max(sequenceLength, maxSequenceLength);
         }
 
-        return maxSequenceLength == property;
+        return property.equals(BigInteger.valueOf(maxSequenceLength));
     };
 
     @Before
