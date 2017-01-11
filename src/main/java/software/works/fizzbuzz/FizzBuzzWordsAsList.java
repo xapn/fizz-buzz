@@ -7,12 +7,12 @@ import java.util.List;
 
 import software.works.fizzbuzz.rule.PlayerBuilder;
 
-class FizzBuzzWordsToList {
+class FizzBuzzWordsAsList {
 
     private PlayerBuilder playerBuilder;
     private long start;
 
-    FizzBuzzWordsToList(PlayerBuilder playerBuilder) {
+    FizzBuzzWordsAsList(PlayerBuilder playerBuilder) {
         this.playerBuilder = playerBuilder;
     }
 
@@ -20,7 +20,7 @@ class FizzBuzzWordsToList {
         return playerBuilder.chosenPlayer().playAtFizzBuzzToList(toBigIntegers(values));
     }
 
-    public FizzBuzzWordsToList from(long start) {
+    public FizzBuzzWordsAsList from(long start) {
         this.start = start;
         return this;
     }

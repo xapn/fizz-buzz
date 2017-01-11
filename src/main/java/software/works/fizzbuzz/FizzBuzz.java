@@ -173,9 +173,9 @@ public class FizzBuzz {
         return this;
     }
 
-    public FizzBuzzWordsToList asList() {
+    public FizzBuzzWordsAsList asList() {
         playerBuilder.collectWordsToList();
-        return new FizzBuzzWordsToList(playerBuilder);
+        return new FizzBuzzWordsAsList(playerBuilder);
     }
 
     public TheMostFizzyBuzzy findTheMostFizzyBuzzy() {

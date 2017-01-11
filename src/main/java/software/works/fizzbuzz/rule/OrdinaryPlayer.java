@@ -8,9 +8,9 @@ import java.util.Collections;
 import java.util.List;
 
 import software.works.fizzbuzz.FizzbuzzifiedNumber;
-import software.works.fizzbuzz.Player;
+import software.works.fizzbuzz.FizzBuzzPlayer;
 
-class OrdinaryPlayer implements Player {
+class OrdinaryPlayer implements FizzBuzzPlayer {
 
     protected List<FizzBuzzFunction> fizzBuzzFunctions;
     private PlayerConfiguration configuration;

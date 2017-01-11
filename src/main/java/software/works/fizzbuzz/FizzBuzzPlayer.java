@@ -3,7 +3,7 @@ package software.works.fizzbuzz;
 import java.math.BigInteger;
 import java.util.List;
 
-public interface Player {
+public interface FizzBuzzPlayer {
 
     String playAtFizzBuzz(BigInteger value);
 
