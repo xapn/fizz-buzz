@@ -23,4 +23,10 @@ public class FizzBuzzifyingTest {
         assertThat(learnDivision().byFizzbuzzifying(3, 5, 15))
                 .isEqualTo(new FizzBuzz().whenNumberHasFactors().of(3, 5, 15));
     }
+
+    @Test
+    public void should_let_learn_division_by_fizzbuzzifying_a_range_of_values() {
+        assertThat(learnDivision().byFizzbuzzifying(1).until(15))
+                .isEqualTo(new FizzBuzz().whenNumberHasFactors().from(1).to(15));
+    }
 }

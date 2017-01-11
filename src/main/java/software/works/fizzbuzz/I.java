@@ -4,7 +4,7 @@ public class I {
 
     @SafeVarargs
     public static <T> String fizzbuzzify(T... values) {
-        return new FizzBuzz().of(values);
+        return new FizzBuzz().whenNumberHasFactors().of(values);
     }
 
     public static <T> Until<T> fizzbuzzify(T from) {
@@ -20,7 +20,7 @@ public class I {
         }
 
         public String until(T end) {
-            return new FizzBuzz().from(start).to(end);
+            return new FizzBuzz().whenNumberHasFactors().from(start).to(end);
         }
     }
 
@@ -33,6 +33,10 @@ public class I {
         @SafeVarargs
         public final <T> String byFizzbuzzifying(T... values) {
             return new FizzBuzz().whenNumberHasFactors().of(values);
+        }
+
+        public <T> Until<T> byFizzbuzzifying(T start) {
+            return new Until<T>(start);
         }
     }
 }
