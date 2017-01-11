@@ -43,6 +43,10 @@ public class I {
         return new FizzBuzz().popWhackZingChop().of(values);
     }
 
+    public static <T> Until<T> fizzbuzzpopwhackzingchopify(T start) {
+        return new Until<T>(new FizzBuzz().popWhackZingChop()).from(start);
+    }
+
     public static class Until<T> {
 
         private FizzBuzz fizzBuzz;
