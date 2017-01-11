@@ -7,24 +7,35 @@ public class I {
         return new FizzBuzz().whenNumberHasFactors().of(values);
     }
 
-    public static <T> Until<T> fizzbuzzify(T from) {
-        return new Until<T>(from);
+    public static <T> Until<T> fizzbuzzify(T start) {
+        return new Until<T>(new FizzBuzz().whenNumberHasFactors()).from(start);
     }
 
+    @SafeVarargs
     public static <T> String sevenboomify(T... values) {
         return new FizzBuzz().boom().of(values);
     }
 
+    public static <T> Until<T> sevenboomify(T start) {
+        return new Until<T>(new FizzBuzz().boom()).from(start);
+    }
+
     public static class Until<T> {
 
+        private FizzBuzz fizzBuzz;
         private T start;
 
-        private Until(T start) {
+        private Until(FizzBuzz fizzBuzz) {
+            this.fizzBuzz = fizzBuzz;
+        }
+
+        private Until<T> from(T start) {
             this.start = start;
+            return this;
         }
 
         public String until(T end) {
-            return new FizzBuzz().whenNumberHasFactors().from(start).to(end);
+            return fizzBuzz.from(start).to(end);
         }
     }
 
@@ -40,7 +51,7 @@ public class I {
         }
 
         public <T> Until<T> byFizzbuzzifying(T start) {
-            return new Until<T>(start);
+            return new Until<T>(new FizzBuzz().whenNumberHasFactors()).from(start);
         }
     }
 }

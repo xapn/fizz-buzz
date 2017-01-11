@@ -35,4 +35,9 @@ public class FizzBuzzifyingTest {
     public void should_sevenboomify_some_arbitrary_values() {
         assertThat(sevenboomify(3, 5, 15)).isEqualTo(new FizzBuzz().boom().of(3, 5, 15));
     }
+
+    @Test
+    public void should_sevenboomify_a_range_of_values() {
+        assertThat(sevenboomify(1).until(15)).isEqualTo(new FizzBuzz().boom().from(1).to(15));
+    }
 }
