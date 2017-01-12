@@ -15,11 +15,13 @@ public class PlayerBuilder {
     private static final List<Word> DEFAULT_WORDS = Arrays.asList(FIZZ.getWord(), BUZZ.getWord());
 
     private final List<Word> words;
+    private final List<AlternateWords> alternateWords;
     private final List<NumberPredicatePlayer> players;
     private final PlayerConfiguration configuration;
 
     public PlayerBuilder() {
         words = new ArrayList<>();
+        alternateWords = new ArrayList<>();
         players = new ArrayList<>();
         configuration = new PlayerConfiguration();
     }
@@ -34,7 +36,8 @@ public class PlayerBuilder {
     }
 
     public PlayerBuilder append(AlternateWords alternateWords) {
-        throw new RuntimeException("Not yet implemented!");
+        this.alternateWords.add(alternateWords);
+        return this;
     }
 
     public PlayerBuilder separateWordsBy(String wordSeparator) {

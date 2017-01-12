@@ -8,18 +8,23 @@ import org.junit.Test;
 
 public class WordTest {
 
-    @Test(expected = IllegalStateException.class)
-    public void should_invalid_word_given_null_word() {
+    @Test(expected = IllegalArgumentException.class)
+    public void should_invalidate_the_word_given_a_null_word() {
         new Word(null, ZERO);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void should_invalid_word_given_empty_word() {
+    @Test(expected = IllegalArgumentException.class)
+    public void should_invalidate_the_word_given_an_empty_word() {
         new Word("", ZERO);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void should_invalid_word_given_negative_number() {
-        new Word(null, new BigInteger("-1"));
+    @Test(expected = IllegalArgumentException.class)
+    public void should_invalidate_the_property_given_a_null_property() {
+        new Word("Fizz", null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_invalidate_the_property_given_a_negative_property() {
+        new Word("Fizz", new BigInteger("-1"));
     }
 }

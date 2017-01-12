@@ -19,8 +19,8 @@ public class Word implements WordPropertyPair {
     }
 
     private void validate() {
-        if (word == null || word.isEmpty() || property.signum() == -1) {
-            throw new IllegalStateException("Invalid word: '" + word
+        if (word == null || word.isEmpty() || property == null || property.signum() == -1) {
+            throw new IllegalArgumentException("Invalid word: '" + word
                     + "' must be a word associated to a positive integer '" + property + "' as property!");
         }
     }
