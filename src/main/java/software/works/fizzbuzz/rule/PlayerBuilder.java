@@ -33,6 +33,10 @@ public class PlayerBuilder {
         return append(dictionaryWord.getWord());
     }
 
+    public PlayerBuilder append(AlternateWords alternateWords) {
+        throw new RuntimeException("Not yet implemented!");
+    }
+
     public PlayerBuilder separateWordsBy(String wordSeparator) {
         configuration.setWordSeparator(wordSeparator);
         return this;

@@ -11,7 +11,10 @@ import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
 
+import java.util.List;
+
 import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
+import software.works.fizzbuzz.rule.AlternateWords;
 import software.works.fizzbuzz.rule.DigitPlayer;
 import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
@@ -99,8 +102,13 @@ public class FizzBuzz {
         return this;
     }
 
-    public FizzBuzz word(String word, long associatedNumber) {
-        playerBuilder.append(new Word(word, toBigInteger(associatedNumber)));
+    public FizzBuzz word(String word, long property) {
+        playerBuilder.append(new Word(word, toBigInteger(property)));
+        return this;
+    }
+
+    public FizzBuzz alternateWords(List<String> words, long property) {
+        playerBuilder.append(new AlternateWords(words, toBigInteger(property)));
         return this;
     }
 

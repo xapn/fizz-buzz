@@ -29,10 +29,6 @@ public class Word implements WordPropertyPair {
         return value -> predicate.appliedTo(property).test(value) ? word : NO_WORD;
     }
 
-    FizzBuzzFunction ifNumberSatisfies2(NumberPredicate predicate) {
-        return value -> predicate.appliedTo(property).test(value) ? word : NO_WORD;
-    }
-
     FizzBuzzFunction ifNumberSatisfies(List<NumberPredicate> numberPredicates) {
         Optional<BiPredicate<BigInteger, BigInteger>> merged = numberPredicates.stream() //
                 .map(p -> p.getPropertyPredicate()) //
