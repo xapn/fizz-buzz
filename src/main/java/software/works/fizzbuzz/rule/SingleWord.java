@@ -21,11 +21,6 @@ public class SingleWord implements WordPropertyPair {
     }
 
     @Override
-    public String toString() {
-        return String.format("{word: %s, property: %d}", word, property);
-    }
-
-    @Override
     public String getWord() {
         return word;
     }
@@ -33,5 +28,10 @@ public class SingleWord implements WordPropertyPair {
     @Override
     public BigInteger getProperty() {
         return property;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{word: %s, property: %d}", word, property);
     }
 }

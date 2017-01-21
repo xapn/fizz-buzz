@@ -96,14 +96,15 @@ public class PlayerBuilder {
 
     private List<FizzBuzzFunction> buildWordCentricFunctions(List<NumberPredicate> numberPredicates) {
         return wordPropertyPairs.stream() //
-                .map(word -> word.ifNumberSatisfies(numberPredicates)) //
+                .map(pair -> new RightWord(pair).ifNumberSatisfies(numberPredicates)) //
                 .collect(toList());
     }
 
     private List<FizzBuzzFunction> buildPredicateCentricFunctions(NumberPredicate numberPredicate) {
         return wordPropertyPairs.stream() //
-                .map(word -> configuration.wordsMustBePrintedNTimes() ? word.nTimesIfNumberSatisfies(numberPredicate)
-                        : word.ifNumberSatisfies(numberPredicate)) //
+                .map(pair -> configuration.wordsMustBePrintedNTimes()
+                        ? new RightWord(pair).nTimesIfNumberSatisfies(numberPredicate)
+                        : new RightWord(pair).ifNumberSatisfies(numberPredicate)) //
                 .collect(toList());
     }
 
