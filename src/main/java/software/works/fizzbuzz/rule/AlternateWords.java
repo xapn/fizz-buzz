@@ -6,11 +6,13 @@ import java.util.List;
 public class AlternateWords implements WordPropertyPair {
 
     private List<String> words;
+    private int index;
     private BigInteger property;
 
     public AlternateWords(List<String> words, BigInteger property) {
         this.words = words;
         this.property = property;
+        index = 0;
         validate();
     }
 
@@ -25,11 +27,16 @@ public class AlternateWords implements WordPropertyPair {
 
     @Override
     public String getWord() {
-        throw new RuntimeException("Not yet implemented!");
+        return words.get(index++ % words.size());
     }
 
     @Override
     public BigInteger getProperty() {
-        throw new RuntimeException("Not yet implemented!");
+        return property;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{word: %s, property: %d}", words, property);
     }
 }
