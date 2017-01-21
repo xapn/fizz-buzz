@@ -27,7 +27,11 @@ public class AlternateWords implements WordPropertyPair {
 
     @Override
     public String getWord() {
-        return words.get(index++ % words.size());
+        return words.get(turningIndex());
+    }
+
+    private int turningIndex() {
+        return index++ % words.size();
     }
 
     @Override

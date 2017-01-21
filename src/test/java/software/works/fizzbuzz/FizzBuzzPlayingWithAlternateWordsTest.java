@@ -28,4 +28,10 @@ public class FizzBuzzPlayingWithAlternateWordsTest {
                 .alternateWords(Arrays.asList("Foo", "Bar"), 5).from(1).to(15))
                         .isEqualTo("1 2 Fizz 4 Foo Buzz 7 8 Woof Bar 11 Fizz 13 14 BuzzFoo");
     }
+
+    @Test
+    public void should_get_foo_or_bar_and_buzz_given_a_set_of_alternate_words_and_a_single_word() {
+        assertThat(fizzBuzz.alternateWords(Arrays.asList("Foo", "Bar"), 3).word("Buzz", 5).from(1).to(15))
+                .isEqualTo("1 2 Foo 4 Buzz Bar 7 8 Foo Buzz 11 Bar 13 14 FooBuzz");
+    }
 }
