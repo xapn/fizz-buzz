@@ -3,7 +3,7 @@ package software.works.fizzbuzz.rule;
 import java.math.BigInteger;
 import java.util.List;
 
-public class AlternateWords {
+public class AlternateWords implements WordPropertyPair {
 
     private List<String> words;
     private BigInteger property;
@@ -21,5 +21,15 @@ public class AlternateWords {
                     + words + "' must be a full list of words associated to a positive integer '" + property
                     + "' as property!");
         }
+    }
+
+    @Override
+    public String getWord() {
+        throw new RuntimeException("Not yet implemented!");
+    }
+
+    @Override
+    public BigInteger getProperty() {
+        throw new RuntimeException("Not yet implemented!");
     }
 }

@@ -20,7 +20,7 @@ import software.works.fizzbuzz.rule.DivisionPlayer;
 import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
 import software.works.fizzbuzz.rule.NumberCustomPredicatePlayer;
 import software.works.fizzbuzz.rule.PlayerBuilder;
-import software.works.fizzbuzz.rule.Word;
+import software.works.fizzbuzz.rule.SingleWord;
 
 public class FizzBuzz {
 
@@ -103,7 +103,7 @@ public class FizzBuzz {
     }
 
     public FizzBuzz word(String word, long property) {
-        playerBuilder.append(new Word(word, toBigInteger(property)));
+        playerBuilder.append(new SingleWord(word, toBigInteger(property)));
         return this;
     }
 

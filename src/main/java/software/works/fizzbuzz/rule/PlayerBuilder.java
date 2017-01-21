@@ -12,32 +12,26 @@ import software.works.fizzbuzz.FizzBuzzPlayer;
 
 public class PlayerBuilder {
 
-    private static final List<Word> DEFAULT_WORDS = Arrays.asList(FIZZ.getWord(), BUZZ.getWord());
+    private static final List<WordPropertyPair> DEFAULT_WORD_PROPERTY_PAIRS = Arrays.asList(FIZZ.getWordPropertyPair(),
+            BUZZ.getWordPropertyPair());
 
-    private final List<Word> words;
-    private final List<AlternateWords> alternateWords;
+    private final List<WordPropertyPair> wordPropertyPairs;
     private final List<NumberPredicatePlayer> players;
     private final PlayerConfiguration configuration;
 
     public PlayerBuilder() {
-        words = new ArrayList<>();
-        alternateWords = new ArrayList<>();
+        wordPropertyPairs = new ArrayList<>();
         players = new ArrayList<>();
         configuration = new PlayerConfiguration();
     }
 
-    public PlayerBuilder append(Word word) {
-        words.add(word);
+    public PlayerBuilder append(WordPropertyPair wordPropertyPair) {
+        wordPropertyPairs.add(wordPropertyPair);
         return this;
     }
 
     public PlayerBuilder append(DictionaryWord dictionaryWord) {
-        return append(dictionaryWord.getWord());
-    }
-
-    public PlayerBuilder append(AlternateWords alternateWords) {
-        this.alternateWords.add(alternateWords);
-        return this;
+        return append(dictionaryWord.getWordPropertyPair());
     }
 
     public PlayerBuilder separateWordsBy(String wordSeparator) {
@@ -56,7 +50,7 @@ public class PlayerBuilder {
     }
 
     public FizzBuzzPlayer chosenPlayer() {
-        chooseDefaultWordsIfNotSpecified(words);
+        chooseDefaultWordsIfNotSpecified(wordPropertyPairs);
         chooseClassicPlayerByDefaultIfUnknown(players);
         FizzBuzzPlayer definitivePlayer = null;
 
@@ -69,9 +63,9 @@ public class PlayerBuilder {
         return definitivePlayer;
     }
 
-    private void chooseDefaultWordsIfNotSpecified(List<Word> words) {
-        if (words.isEmpty()) {
-            words.addAll(DEFAULT_WORDS);
+    private void chooseDefaultWordsIfNotSpecified(List<WordPropertyPair> wordPropertyPairs) {
+        if (wordPropertyPairs.isEmpty()) {
+            wordPropertyPairs.addAll(DEFAULT_WORD_PROPERTY_PAIRS);
         }
     }
 
@@ -101,13 +95,13 @@ public class PlayerBuilder {
     }
 
     private List<FizzBuzzFunction> buildWordCentricFunctions(List<NumberPredicate> numberPredicates) {
-        return words.stream() //
+        return wordPropertyPairs.stream() //
                 .map(word -> word.ifNumberSatisfies(numberPredicates)) //
                 .collect(toList());
     }
 
     private List<FizzBuzzFunction> buildPredicateCentricFunctions(NumberPredicate numberPredicate) {
-        return words.stream() //
+        return wordPropertyPairs.stream() //
                 .map(word -> configuration.wordsMustBePrintedNTimes() ? word.nTimesIfNumberSatisfies(numberPredicate)
                         : word.ifNumberSatisfies(numberPredicate)) //
                 .collect(toList());
@@ -153,6 +147,6 @@ public class PlayerBuilder {
     }
 
     public List<String> getKnownWords() {
-        return words.stream().map(word -> word.getWord()).collect(toList());
+        return wordPropertyPairs.stream().map(word -> word.getWord()).collect(toList());
     }
 }

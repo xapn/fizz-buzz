@@ -13,13 +13,13 @@ public enum DictionaryWord {
     ZING("Zing", 8), //
     CHOP("Chop", 13);
 
-    private Word word;
+    private WordPropertyPair wordPropertyPair;
 
     private DictionaryWord(String word, long number) {
-        this.word = new Word(word, toBigInteger(number));
+        this.wordPropertyPair = new SingleWord(word, toBigInteger(number));
     }
 
-    public Word getWord() {
-        return word;
+    public WordPropertyPair getWordPropertyPair() {
+        return wordPropertyPair;
     }
 }
