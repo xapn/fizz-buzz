@@ -1,5 +1,6 @@
 package software.works.fizzbuzz.rule;
 
+import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
 import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
 import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
@@ -12,8 +13,8 @@ import software.works.fizzbuzz.FizzBuzzPlayer;
 
 public class PlayerBuilder {
 
-    private static final List<WordPropertyPair> DEFAULT_WORD_PROPERTY_PAIRS = Arrays.asList(FIZZ.getWordPropertyPair(),
-            BUZZ.getWordPropertyPair());
+    private static final List<WordPropertyPair> DEFAULT_WORD_PROPERTY_PAIRS = unmodifiableList(
+            Arrays.asList(FIZZ.getWordPropertyPair(), BUZZ.getWordPropertyPair()));
 
     private final List<WordPropertyPair> wordPropertyPairs;
     private final List<NumberPredicatePlayer> players;
@@ -55,10 +56,11 @@ public class PlayerBuilder {
         FizzBuzzPlayer definitivePlayer = null;
 
         if (configuration.wordsMustBePrintedOnlyOnce()) {
-            definitivePlayer = new WordCentricPlayerBuilder(wordPropertyPairs, configuration).build(players);
+            definitivePlayer = new WordCentricPlayerBuilder().coupleWordsAndProperties(wordPropertyPairs)
+                    .playThisWay(configuration).assemblyPlayers(players).getPlayer();
         } else {
-            definitivePlayer = new PredicateCentricPlayerBuilder(wordPropertyPairs, configuration)
-                    .build(players);
+            definitivePlayer = new PredicateCentricPlayerBuilder().coupleWordsAndProperties(wordPropertyPairs)
+                    .playThisWay(configuration).assemblyPlayers(players).getPlayer();
         }
 
         return definitivePlayer;

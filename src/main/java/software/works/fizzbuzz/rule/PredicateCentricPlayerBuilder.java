@@ -6,17 +6,10 @@ import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzPlayer;
 
-class PredicateCentricPlayerBuilder {
+class PredicateCentricPlayerBuilder extends AbstractCentricPlayerBuilder {
 
-    private final List<WordPropertyPair> wordPropertyPairs;
-    private final PlayerConfiguration configuration;
-
-    PredicateCentricPlayerBuilder(List<WordPropertyPair> wordPropertyPairs, PlayerConfiguration configuration) {
-        this.wordPropertyPairs = wordPropertyPairs;
-        this.configuration = configuration;
-    }
-
-    FizzBuzzPlayer build(List<NumberPredicatePlayer> players) {
+    @Override
+    protected FizzBuzzPlayer buildPlayer(List<NumberPredicatePlayer> players) {
         players.stream().forEach(player -> {
             player.setFizzBuzzFunctions(buildPredicateCentricFunctions(player.getNumberPredicate()));
             player.setConfiguration(configuration);
