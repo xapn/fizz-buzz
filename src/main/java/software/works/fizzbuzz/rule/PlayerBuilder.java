@@ -55,7 +55,8 @@ public class PlayerBuilder {
         FizzBuzzPlayer definitivePlayer = null;
 
         if (configuration.wordsMustBePrintedOnlyOnce()) {
-            definitivePlayer = buildWordCentricPlayer(players);
+            definitivePlayer = new WordCentricPlayerBuilder(wordPropertyPairs, configuration)
+                    .build(players);
         } else {
             definitivePlayer = buildPredicateCentricPlayer(players);
         }
@@ -76,28 +77,12 @@ public class PlayerBuilder {
         return players;
     }
 
-    private FizzBuzzPlayer buildWordCentricPlayer(List<NumberPredicatePlayer> players) {
-        List<NumberPredicate> allNumberPredicates = players.stream() //
-                .map(player -> player.getNumberPredicate()) //
-                .collect(toList());
-        List<FizzBuzzFunction> wordCentricFunctions = buildWordCentricFunctions(allNumberPredicates);
-        FizzBuzzPlayer wordCentricPlayer = new OrdinaryPlayer(wordCentricFunctions, configuration) {};
-
-        return wordCentricPlayer;
-    }
-
     private FizzBuzzPlayer buildPredicateCentricPlayer(List<NumberPredicatePlayer> players) {
         players.stream().forEach(player -> {
             player.setFizzBuzzFunctions(buildPredicateCentricFunctions(player.getNumberPredicate()));
             player.setConfiguration(configuration);
         });
         return combineVariations(players);
-    }
-
-    private List<FizzBuzzFunction> buildWordCentricFunctions(List<NumberPredicate> numberPredicates) {
-        return wordPropertyPairs.stream() //
-                .map(pair -> new RightWord(pair).ifNumberSatisfies(numberPredicates)) //
-                .collect(toList());
     }
 
     private List<FizzBuzzFunction> buildPredicateCentricFunctions(NumberPredicate numberPredicate) {
