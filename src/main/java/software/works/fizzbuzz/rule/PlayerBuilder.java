@@ -55,10 +55,10 @@ public class PlayerBuilder {
         FizzBuzzPlayer definitivePlayer = null;
 
         if (configuration.wordsMustBePrintedOnlyOnce()) {
-            definitivePlayer = new WordCentricPlayerBuilder(wordPropertyPairs, configuration)
-                    .build(players);
+            definitivePlayer = new WordCentricPlayerBuilder(wordPropertyPairs, configuration).build(players);
         } else {
-            definitivePlayer = buildPredicateCentricPlayer(players);
+            definitivePlayer = new PredicateCentricPlayerBuilder(wordPropertyPairs, configuration)
+                    .build(players);
         }
 
         return definitivePlayer;
@@ -75,42 +75,6 @@ public class PlayerBuilder {
             players.add(new DivisionPlayer());
         }
         return players;
-    }
-
-    private FizzBuzzPlayer buildPredicateCentricPlayer(List<NumberPredicatePlayer> players) {
-        players.stream().forEach(player -> {
-            player.setFizzBuzzFunctions(buildPredicateCentricFunctions(player.getNumberPredicate()));
-            player.setConfiguration(configuration);
-        });
-        return combineVariations(players);
-    }
-
-    private List<FizzBuzzFunction> buildPredicateCentricFunctions(NumberPredicate numberPredicate) {
-        return wordPropertyPairs.stream() //
-                .map(pair -> configuration.wordsMustBePrintedNTimes()
-                        ? new RightWord(pair).nTimesIfNumberSatisfies(numberPredicate)
-                        : new RightWord(pair).ifNumberSatisfies(numberPredicate)) //
-                .collect(toList());
-    }
-
-    private FizzBuzzPlayer combineVariations(List<NumberPredicatePlayer> players) {
-        FizzBuzzPlayer player = null;
-
-        if (!players.isEmpty()) {
-            if (players.size() == 1) {
-                player = players.get(0);
-            } else {
-                VariationAssembler variationAssembler = new VariationAssembler(ordinaryPlayers());
-                List<FizzBuzzFunction> assembledFizzBuzzFunctions = variationAssembler.assembleFizzBuzzFunctions();
-                player = new OrdinaryPlayer(assembledFizzBuzzFunctions, configuration);
-            }
-        }
-
-        return player;
-    }
-
-    private List<OrdinaryPlayer> ordinaryPlayers() {
-        return players.stream().map(p -> (OrdinaryPlayer) p).collect(toList());
     }
 
     public void printNumbersBetweenBrackets() {
