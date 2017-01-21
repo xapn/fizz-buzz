@@ -1,6 +1,6 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine;
 
-import static software.works.fizzbuzz.rule.NumberPredicate.IS_MULTIPLE_OF;
+import static software.works.fizzbuzz.engine.NumberPredicate.IS_MULTIPLE_OF;
 
 public class DivisionPlayer extends NumberPredicatePlayer {
 

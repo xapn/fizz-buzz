@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine;
 
 class PlayerConfiguration {
 

@@ -1,9 +1,9 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
-import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
-import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
+import static software.works.fizzbuzz.engine.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.engine.DictionaryWord.FIZZ;
 
 import java.util.ArrayList;
 import java.util.Arrays;

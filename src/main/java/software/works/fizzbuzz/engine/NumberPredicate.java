@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine;
 
 import static java.math.BigInteger.ZERO;
 
@@ -7,9 +7,9 @@ import java.util.function.BiPredicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
-import software.works.fizzbuzz.rule.FunctionTypes.ValuePredicate;
-import software.works.fizzbuzz.rule.FunctionTypes.WordOccurrencesFunction;
+import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.engine.FunctionTypes.ValuePredicate;
+import software.works.fizzbuzz.engine.FunctionTypes.WordOccurrencesFunction;
 
 class NumberPredicate {
 

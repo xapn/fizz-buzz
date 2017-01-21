@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine;
 
 import static java.math.BigInteger.ZERO;
 
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import software.works.fizzbuzz.engine.AlternateWords;
 
 public class AlternateWordsTest {
 

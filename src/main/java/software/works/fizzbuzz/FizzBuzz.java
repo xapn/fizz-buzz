@@ -2,25 +2,25 @@ package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.Values.toBigIntegers;
-import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
-import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
-import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
-import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
-import static software.works.fizzbuzz.rule.DictionaryWord.POP;
-import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
-import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
-import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
+import static software.works.fizzbuzz.engine.DictionaryWord.BOOM;
+import static software.works.fizzbuzz.engine.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.engine.DictionaryWord.CHOP;
+import static software.works.fizzbuzz.engine.DictionaryWord.FIZZ;
+import static software.works.fizzbuzz.engine.DictionaryWord.POP;
+import static software.works.fizzbuzz.engine.DictionaryWord.WHACK;
+import static software.works.fizzbuzz.engine.DictionaryWord.WOOF;
+import static software.works.fizzbuzz.engine.DictionaryWord.ZING;
 
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.rule.AlternateWords;
-import software.works.fizzbuzz.rule.DigitPlayer;
-import software.works.fizzbuzz.rule.DivisionPlayer;
-import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
-import software.works.fizzbuzz.rule.NumberCustomPredicatePlayer;
-import software.works.fizzbuzz.rule.PlayerBuilder;
-import software.works.fizzbuzz.rule.SingleWord;
+import software.works.fizzbuzz.engine.AlternateWords;
+import software.works.fizzbuzz.engine.DigitPlayer;
+import software.works.fizzbuzz.engine.DivisionPlayer;
+import software.works.fizzbuzz.engine.NumberCustomPredicatePlayer;
+import software.works.fizzbuzz.engine.PlayerBuilder;
+import software.works.fizzbuzz.engine.SingleWord;
+import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
 
 public class FizzBuzz {
 
