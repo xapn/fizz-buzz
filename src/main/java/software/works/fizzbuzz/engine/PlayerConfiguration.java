@@ -1,6 +1,6 @@
 package software.works.fizzbuzz.engine;
 
-class PlayerConfiguration {
+public class PlayerConfiguration {
 
     private static final String DEFAULT_WORD_SEPARATOR = " ";
     private static final String DEFAULT_FINAL_PUNCTUATION = "";
@@ -21,7 +21,7 @@ class PlayerConfiguration {
         finalPunctuation = DEFAULT_FINAL_PUNCTUATION;
     }
 
-    String getWordSeparator() {
+    public String getWordSeparator() {
         return wordSeparator;
     }
 
@@ -29,7 +29,7 @@ class PlayerConfiguration {
         this.wordSeparator = wordSeparator;
     }
 
-    String getFinalPunctuation() {
+    public String getFinalPunctuation() {
         return finalPunctuation;
     }
 
@@ -37,7 +37,7 @@ class PlayerConfiguration {
         this.finalPunctuation = finalPunctuation;
     }
 
-    boolean numbersMustBePrinted() {
+    public boolean numbersMustBePrinted() {
         return numbersMustBePrinted;
     }
 

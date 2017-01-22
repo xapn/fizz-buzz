@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.play;
 
 import static software.works.fizzbuzz.engine.NumberPredicate.CONTAINS_DIGIT;
 

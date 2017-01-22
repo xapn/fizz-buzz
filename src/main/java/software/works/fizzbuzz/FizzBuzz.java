@@ -14,13 +14,13 @@ import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.ZING;
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.engine.DigitPlayer;
-import software.works.fizzbuzz.engine.DivisionPlayer;
-import software.works.fizzbuzz.engine.NumberCustomPredicatePlayer;
 import software.works.fizzbuzz.engine.PlayerBuilder;
 import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
 import software.works.fizzbuzz.engine.lexicon.AlternateWords;
 import software.works.fizzbuzz.engine.lexicon.SingleWord;
+import software.works.fizzbuzz.engine.play.DigitPlayer;
+import software.works.fizzbuzz.engine.play.DivisionPlayer;
+import software.works.fizzbuzz.engine.play.NumberCustomPredicatePlayer;
 
 public class FizzBuzz {
 

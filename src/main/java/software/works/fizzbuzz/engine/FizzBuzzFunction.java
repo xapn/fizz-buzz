@@ -3,7 +3,7 @@ package software.works.fizzbuzz.engine;
 import java.math.BigInteger;
 
 @FunctionalInterface
-interface FizzBuzzFunction {
+public interface FizzBuzzFunction {
 
     /**
      * Return a word according to one predicate.

@@ -12,6 +12,8 @@ import java.util.List;
 import software.works.fizzbuzz.FizzBuzzPlayer;
 import software.works.fizzbuzz.engine.lexicon.DictionaryWord;
 import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
+import software.works.fizzbuzz.engine.play.DivisionPlayer;
+import software.works.fizzbuzz.engine.play.NumberPredicatePlayer;
 
 public class PlayerBuilder {
 

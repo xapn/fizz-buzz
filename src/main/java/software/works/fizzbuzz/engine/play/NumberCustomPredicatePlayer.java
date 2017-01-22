@@ -1,6 +1,7 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.play;
 
 import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.engine.NumberPredicate;
 
 public class NumberCustomPredicatePlayer extends NumberPredicatePlayer {
 

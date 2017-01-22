@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import software.works.fizzbuzz.engine.play.OrdinaryPlayer;
+
 class VariationAssembler {
 
     private List<OrdinaryPlayer> players;

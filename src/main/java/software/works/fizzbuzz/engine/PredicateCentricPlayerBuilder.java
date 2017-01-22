@@ -5,6 +5,8 @@ import static java.util.stream.Collectors.toList;
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzPlayer;
+import software.works.fizzbuzz.engine.play.NumberPredicatePlayer;
+import software.works.fizzbuzz.engine.play.OrdinaryPlayer;
 
 class PredicateCentricPlayerBuilder extends AbstractCentricPlayerBuilder {
 

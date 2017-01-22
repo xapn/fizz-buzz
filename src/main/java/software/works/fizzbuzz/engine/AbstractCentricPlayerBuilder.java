@@ -4,6 +4,7 @@ import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzPlayer;
 import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
+import software.works.fizzbuzz.engine.play.NumberPredicatePlayer;
 
 abstract class AbstractCentricPlayerBuilder {
 

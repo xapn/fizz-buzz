@@ -11,9 +11,9 @@ import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
 import software.works.fizzbuzz.engine.FunctionTypes.ValuePredicate;
 import software.works.fizzbuzz.engine.FunctionTypes.WordOccurrencesFunction;
 
-class NumberPredicate {
+public class NumberPredicate {
 
-    static final NumberPredicate IS_MULTIPLE_OF = new NumberPredicate( //
+    public static final NumberPredicate IS_MULTIPLE_OF = new NumberPredicate( //
             (value, factor) -> value.mod(factor).equals(ZERO),
 
             (value, pair) -> {
@@ -26,7 +26,7 @@ class NumberPredicate {
                 return words.toString();
             });
 
-    static final NumberPredicate CONTAINS_DIGIT = new NumberPredicate( //
+    public static final NumberPredicate CONTAINS_DIGIT = new NumberPredicate( //
             (value, digit) -> String.valueOf(value).contains(String.valueOf(digit)),
 
             (value, pair) -> {
@@ -43,7 +43,7 @@ class NumberPredicate {
     private PropertyPredicate propertyPredicate;
     private WordOccurrencesFunction wordOccurrencesFunction;
 
-    NumberPredicate(PropertyPredicate propertyPredicate, WordOccurrencesFunction wordOccurrencesFunction) {
+    public NumberPredicate(PropertyPredicate propertyPredicate, WordOccurrencesFunction wordOccurrencesFunction) {
         this.propertyPredicate = propertyPredicate;
         this.wordOccurrencesFunction = wordOccurrencesFunction;
     }
