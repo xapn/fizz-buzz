@@ -1,10 +1,11 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.build;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import software.works.fizzbuzz.engine.FizzBuzzFunction;
 import software.works.fizzbuzz.engine.play.OrdinaryPlayer;
 
 class VariationAssembler {

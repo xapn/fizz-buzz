@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.build;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzPlayer;
+import software.works.fizzbuzz.engine.PlayConfiguration;
 import software.works.fizzbuzz.engine.lexicon.DictionaryWord;
 import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 import software.works.fizzbuzz.engine.play.DivisionPlayer;
@@ -22,12 +23,12 @@ public class PlayerBuilder {
 
     private final List<WordPropertyPair> wordPropertyPairs;
     private final List<NumberPredicatePlayer> players;
-    private final PlayerConfiguration configuration;
+    private final PlayConfiguration configuration;
 
     public PlayerBuilder() {
         wordPropertyPairs = new ArrayList<>();
         players = new ArrayList<>();
-        configuration = new PlayerConfiguration();
+        configuration = new PlayConfiguration();
     }
 
     public PlayerBuilder append(WordPropertyPair wordPropertyPair) {

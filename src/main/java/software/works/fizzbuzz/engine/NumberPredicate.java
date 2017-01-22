@@ -48,15 +48,15 @@ public class NumberPredicate {
         this.wordOccurrencesFunction = wordOccurrencesFunction;
     }
 
-    ValuePredicate appliedTo(BigInteger property) {
+    public ValuePredicate appliedTo(BigInteger property) {
         return value -> propertyPredicate.test(value, property);
     }
 
-    BiPredicate<BigInteger, BigInteger> getPropertyPredicate() {
+    public BiPredicate<BigInteger, BigInteger> getPropertyPredicate() {
         return propertyPredicate;
     }
 
-    WordOccurrencesFunction toWordOccurrences() {
+    public WordOccurrencesFunction toWordOccurrences() {
         return wordOccurrencesFunction;
     }
 }

@@ -10,16 +10,16 @@ import java.util.List;
 import software.works.fizzbuzz.FizzBuzzPlayer;
 import software.works.fizzbuzz.FizzbuzzifiedNumber;
 import software.works.fizzbuzz.engine.FizzBuzzFunction;
-import software.works.fizzbuzz.engine.PlayerConfiguration;
+import software.works.fizzbuzz.engine.PlayConfiguration;
 
 public class OrdinaryPlayer implements FizzBuzzPlayer {
 
     protected List<FizzBuzzFunction> fizzBuzzFunctions;
-    private PlayerConfiguration configuration;
+    private PlayConfiguration configuration;
 
     protected OrdinaryPlayer() {}
 
-    public OrdinaryPlayer(List<FizzBuzzFunction> fizzBuzzFunctions, PlayerConfiguration configuration) {
+    public OrdinaryPlayer(List<FizzBuzzFunction> fizzBuzzFunctions, PlayConfiguration configuration) {
         this.fizzBuzzFunctions = fizzBuzzFunctions;
         this.configuration = configuration;
     }
@@ -77,7 +77,7 @@ public class OrdinaryPlayer implements FizzBuzzPlayer {
         this.fizzBuzzFunctions = fizzBuzzFunctions;
     }
 
-    public void setConfiguration(PlayerConfiguration configuration) {
+    public void setConfiguration(PlayConfiguration configuration) {
         this.configuration = configuration;
     }
 }

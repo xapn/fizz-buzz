@@ -1,15 +1,16 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.build;
 
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzPlayer;
+import software.works.fizzbuzz.engine.PlayConfiguration;
 import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 import software.works.fizzbuzz.engine.play.NumberPredicatePlayer;
 
 abstract class AbstractCentricPlayerBuilder {
 
     protected List<WordPropertyPair> wordPropertyPairs;
-    protected PlayerConfiguration configuration;
+    protected PlayConfiguration configuration;
     protected List<NumberPredicatePlayer> players;
     private FizzBuzzPlayer player;
 
@@ -18,7 +19,7 @@ abstract class AbstractCentricPlayerBuilder {
         return this;
     }
 
-    AbstractCentricPlayerBuilder playThisWay(PlayerConfiguration configuration) {
+    AbstractCentricPlayerBuilder playThisWay(PlayConfiguration configuration) {
         this.configuration = configuration;
         return this;
     }

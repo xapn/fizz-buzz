@@ -14,8 +14,8 @@ import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.ZING;
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.engine.PlayerBuilder;
 import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.engine.build.PlayerBuilder;
 import software.works.fizzbuzz.engine.lexicon.AlternateWords;
 import software.works.fizzbuzz.engine.lexicon.SingleWord;
 import software.works.fizzbuzz.engine.play.DigitPlayer;

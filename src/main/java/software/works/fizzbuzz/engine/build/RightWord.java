@@ -1,10 +1,12 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.build;
 
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
+import software.works.fizzbuzz.engine.FizzBuzzFunction;
+import software.works.fizzbuzz.engine.NumberPredicate;
 import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 
 class RightWord {
