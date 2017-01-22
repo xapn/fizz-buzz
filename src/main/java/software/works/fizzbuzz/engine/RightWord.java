@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 
+import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
+
 class RightWord {
 
     private static final String NO_WORD = "";

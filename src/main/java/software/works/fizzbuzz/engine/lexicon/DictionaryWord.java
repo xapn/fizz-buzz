@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.lexicon;
 
 import static software.works.fizzbuzz.Values.toBigInteger;
 

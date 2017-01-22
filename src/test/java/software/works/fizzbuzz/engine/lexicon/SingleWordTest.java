@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.lexicon;
 
 import static java.math.BigInteger.ZERO;
 
@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-import software.works.fizzbuzz.engine.SingleWord;
+import software.works.fizzbuzz.engine.lexicon.SingleWord;
 
 public class SingleWordTest {
 

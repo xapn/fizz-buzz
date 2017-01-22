@@ -3,6 +3,7 @@ package software.works.fizzbuzz.engine;
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzPlayer;
+import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 
 abstract class AbstractCentricPlayerBuilder {
 

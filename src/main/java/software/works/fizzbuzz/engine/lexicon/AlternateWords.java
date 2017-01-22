@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.engine;
+package software.works.fizzbuzz.engine.lexicon;
 
 import java.math.BigInteger;
 import java.util.List;

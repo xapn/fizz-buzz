@@ -2,14 +2,16 @@ package software.works.fizzbuzz.engine;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
-import static software.works.fizzbuzz.engine.DictionaryWord.BUZZ;
-import static software.works.fizzbuzz.engine.DictionaryWord.FIZZ;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.FIZZ;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzPlayer;
+import software.works.fizzbuzz.engine.lexicon.DictionaryWord;
+import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 
 public class PlayerBuilder {
 
