@@ -148,3 +148,8 @@ Of course, you can accumulate single words and alternate words into the same way
 
 <!-- Schema palette: http://colorschemedesigner.com/csd-3.5/#0h31BJaGrlvF9 -->
 <a href="assets/images/fizz-buzz_architecture.png"><img alt="Fizz-Buzz architecture schema" src="assets/images/fizz-buzz_architecture.png" width="70%"></a>
+
+## Fizz-Buzz Story
+
+<a href="https://www.youtube.com/watch?v=E5xPMW5fg48"><img alt="Gource - Software Version Control Visualization Tool" src="https://i.ytimg.com/vi/E5xPMW5fg48/hqdefault.jpg" width="50%"/></a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/E5xPMW5fg48" frameborder="0" allowfullscreen></iframe>
