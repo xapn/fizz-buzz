@@ -141,3 +141,10 @@ Of course, you can accumulate single words and alternate words into the same way
 - Write a program that prints the numbers from 1 to 100.
 - But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”.
 - For numbers which are multiples of both three and five print “FizzBuzz”.
+
+# Software Manufacturing
+
+## Fizz-Buzz Architecture
+
+<!-- Schema palette: http://colorschemedesigner.com/csd-3.5/#0h31BJaGrlvF9 -->
+<a href="assets/images/fizz-buzz_architecture.png"><img alt="Fizz-Buzz architecture schema" src="assets/images/fizz-buzz_architecture.png" width="70%"></a>
