@@ -1,11 +1,11 @@
 package software.works.fizzbuzz.engine.build;
 
-import java.util.List;
-
 import software.works.fizzbuzz.FizzBuzzPlayer;
 import software.works.fizzbuzz.engine.PlayConfiguration;
 import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 import software.works.fizzbuzz.engine.play.NumberPredicatePlayer;
+
+import java.util.List;
 
 abstract class AbstractCentricPlayerBuilder {
 
@@ -32,8 +32,8 @@ abstract class AbstractCentricPlayerBuilder {
     }
 
     private void validate() {
-        if (wordPropertyPairs == null || wordPropertyPairs.isEmpty() || configuration == null || players == null
-                || players.isEmpty()) {
+        if (wordPropertyPairs == null || wordPropertyPairs.isEmpty() || configuration == null || players == null ||
+                players.isEmpty()) {
             throw new IllegalStateException("The builder is not ready to build a player!");
         }
     }

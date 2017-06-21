@@ -4,7 +4,9 @@ public class I {
 
     @SafeVarargs
     public static <T> String fizzbuzzify(T... values) {
-        return new FizzBuzz().whenNumberHasFactors().of(values);
+        return new FizzBuzz()
+                .whenNumberHasFactors()
+                .of(values);
     }
 
     public static <T> Until<T> fizzbuzzify(T start) {
@@ -13,7 +15,9 @@ public class I {
 
     @SafeVarargs
     public static <T> String sevenboomify(T... values) {
-        return new FizzBuzz().boom().of(values);
+        return new FizzBuzz()
+                .boom()
+                .of(values);
     }
 
     public static <T> Until<T> sevenboomify(T start) {
@@ -22,7 +26,9 @@ public class I {
 
     @SafeVarargs
     public static <T> String fizzbuzzwoofify(T... values) {
-        return new FizzBuzz().woof().of(values);
+        return new FizzBuzz()
+                .woof()
+                .of(values);
     }
 
     public static <T> Until<T> fizzbuzzwoofify(T start) {
@@ -31,7 +37,9 @@ public class I {
 
     @SafeVarargs
     public static <T> String fizzbuzzpopwhackify(T... values) {
-        return new FizzBuzz().popWhack().of(values);
+        return new FizzBuzz()
+                .popWhack()
+                .of(values);
     }
 
     public static <T> Until<T> fizzbuzzpopwhackify(T start) {
@@ -40,11 +48,17 @@ public class I {
 
     @SafeVarargs
     public static <T> String fizzbuzzpopwhackzingchopify(T... values) {
-        return new FizzBuzz().popWhackZingChop().of(values);
+        return new FizzBuzz()
+                .popWhackZingChop()
+                .of(values);
     }
 
     public static <T> Until<T> fizzbuzzpopwhackzingchopify(T start) {
         return new Until<T>(new FizzBuzz().popWhackZingChop()).from(start);
+    }
+
+    public static LearnDivision learnDivision() {
+        return new LearnDivision();
     }
 
     public static class Until<T> {
@@ -62,19 +76,19 @@ public class I {
         }
 
         public String until(T end) {
-            return fizzBuzz.from(start).to(end);
+            return fizzBuzz
+                    .from(start)
+                    .to(end);
         }
-    }
-
-    public static LearnDivision learnDivision() {
-        return new LearnDivision();
     }
 
     public static class LearnDivision {
 
         @SafeVarargs
         public final <T> String byFizzbuzzifying(T... values) {
-            return new FizzBuzz().whenNumberHasFactors().of(values);
+            return new FizzBuzz()
+                    .whenNumberHasFactors()
+                    .of(values);
         }
 
         public <T> Until<T> byFizzbuzzifying(T start) {

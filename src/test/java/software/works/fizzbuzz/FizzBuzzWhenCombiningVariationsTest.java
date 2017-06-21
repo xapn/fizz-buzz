@@ -1,9 +1,9 @@
 package software.works.fizzbuzz;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzWhenCombiningVariationsTest {
 
@@ -11,7 +11,9 @@ public class FizzBuzzWhenCombiningVariationsTest {
 
     @Before
     public void prepareFixtures() {
-        fizzBuzz = new FizzBuzz().whenNumberHasFactors().whenNumberContainsDigits();
+        fizzBuzz = new FizzBuzz()
+                .whenNumberHasFactors()
+                .whenNumberContainsDigits();
     }
 
     @Test

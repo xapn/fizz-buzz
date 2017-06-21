@@ -1,31 +1,34 @@
 package software.works.fizzbuzz.engine.build;
 
-import static java.util.stream.Collectors.toList;
-
-import java.util.List;
-
 import software.works.fizzbuzz.FizzBuzzPlayer;
 import software.works.fizzbuzz.engine.FizzBuzzFunction;
 import software.works.fizzbuzz.engine.NumberPredicate;
 import software.works.fizzbuzz.engine.play.NumberPredicatePlayer;
 import software.works.fizzbuzz.engine.play.OrdinaryPlayer;
 
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
+
 class PredicateCentricPlayerBuilder extends AbstractCentricPlayerBuilder {
 
     @Override
     protected FizzBuzzPlayer buildPlayer(List<NumberPredicatePlayer> players) {
-        players.stream().forEach(player -> {
-            player.setFizzBuzzFunctions(buildPredicateCentricFunctions(player.getNumberPredicate()));
-            player.setConfiguration(configuration);
-        });
+        players
+                .stream()
+                .forEach(player -> {
+                    player.setFizzBuzzFunctions(buildPredicateCentricFunctions(player.getNumberPredicate()));
+                    player.setConfiguration(configuration);
+                });
         return combineVariations(players);
     }
 
     private List<FizzBuzzFunction> buildPredicateCentricFunctions(NumberPredicate numberPredicate) {
-        return wordPropertyPairs.stream() //
-                .map(pair -> configuration.wordsMustBePrintedNTimes()
-                        ? new RightWord(pair).nTimesIfNumberSatisfies(numberPredicate)
-                        : new RightWord(pair).ifNumberSatisfies(numberPredicate)) //
+        return wordPropertyPairs
+                .stream()
+                .map(pair -> configuration.wordsMustBePrintedNTimes() ? //
+                        new RightWord(pair).nTimesIfNumberSatisfies(numberPredicate) //
+                        : new RightWord(pair).ifNumberSatisfies(numberPredicate))
                 .collect(toList());
     }
 
@@ -46,6 +49,9 @@ class PredicateCentricPlayerBuilder extends AbstractCentricPlayerBuilder {
     }
 
     private List<OrdinaryPlayer> ordinaryPlayers(List<NumberPredicatePlayer> players) {
-        return players.stream().map(p -> (OrdinaryPlayer) p).collect(toList());
+        return players
+                .stream()
+                .map(p -> (OrdinaryPlayer) p)
+                .collect(toList());
     }
 }

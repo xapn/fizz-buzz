@@ -1,12 +1,12 @@
 package software.works.fizzbuzz.engine.build;
 
+import software.works.fizzbuzz.engine.FizzBuzzFunction;
+import software.works.fizzbuzz.engine.play.OrdinaryPlayer;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
-import software.works.fizzbuzz.engine.FizzBuzzFunction;
-import software.works.fizzbuzz.engine.play.OrdinaryPlayer;
 
 class VariationAssembler {
 
@@ -43,19 +43,25 @@ class VariationAssembler {
     }
 
     private Optional<Integer> maximalNumberOfFunctionsByPlayer(List<OrdinaryPlayer> players) {
-        return players.stream() //
-                .map(player -> player.getFizzBuzzFunctions().size()) //
+        return players
+                .stream()
+                .map(player -> player
+                        .getFizzBuzzFunctions()
+                        .size())
                 .max(Comparator.naturalOrder());
     }
 
     private List<FizzBuzzFunction> oneFizzBuzzFunctionByPlayer(int index, List<OrdinaryPlayer> players) {
         List<FizzBuzzFunction> functionsOneByPlayer = new ArrayList<>(players.size());
 
-        players.stream().map(player -> player.getFizzBuzzFunctions()).forEachOrdered(playerFunctions -> {
-            if (index < playerFunctions.size()) {
-                functionsOneByPlayer.add(playerFunctions.get(index));
-            }
-        });
+        players
+                .stream()
+                .map(player -> player.getFizzBuzzFunctions())
+                .forEachOrdered(playerFunctions -> {
+                    if (index < playerFunctions.size()) {
+                        functionsOneByPlayer.add(playerFunctions.get(index));
+                    }
+                });
 
         return functionsOneByPlayer;
     }

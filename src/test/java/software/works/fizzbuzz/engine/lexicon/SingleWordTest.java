@@ -1,12 +1,10 @@
 package software.works.fizzbuzz.engine.lexicon;
 
-import static java.math.BigInteger.ZERO;
+import org.junit.Test;
 
 import java.math.BigInteger;
 
-import org.junit.Test;
-
-import software.works.fizzbuzz.engine.lexicon.SingleWord;
+import static java.math.BigInteger.ZERO;
 
 public class SingleWordTest {
 

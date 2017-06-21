@@ -1,9 +1,9 @@
 package software.works.fizzbuzz;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzWhenNumberHasFactorsTest {
 
@@ -60,16 +60,22 @@ public class FizzBuzzWhenNumberHasFactorsTest {
 
     @Test
     public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_numbers() {
-        assertThat(fizzBuzz.from(1).to(15)).isEqualTo("1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz");
+        assertThat(fizzBuzz
+                .from(1)
+                .to(15)).isEqualTo("1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz");
     }
 
     @Test
     public void should_get_the_same_result() {
         // GIVEN
         int start = 1, end = 100;
-        String fizzBuzzResultByDefault = new FizzBuzz().from(start).to(end);
+        String fizzBuzzResultByDefault = new FizzBuzz()
+                .from(start)
+                .to(end);
 
         // WHEN-THEN
-        assertThat(fizzBuzz.from(start).to(end)).isEqualTo(fizzBuzzResultByDefault);
+        assertThat(fizzBuzz
+                .from(start)
+                .to(end)).isEqualTo(fizzBuzzResultByDefault);
     }
 }

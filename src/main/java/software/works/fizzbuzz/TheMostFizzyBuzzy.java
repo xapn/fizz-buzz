@@ -1,11 +1,11 @@
 package software.works.fizzbuzz;
 
-import static software.works.fizzbuzz.Values.toBigIntegers;
+import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
+import software.works.fizzbuzz.engine.build.PlayerBuilder;
 
 import java.util.Optional;
 
-import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.engine.build.PlayerBuilder;
+import static software.works.fizzbuzz.Values.toBigIntegers;
 
 public class TheMostFizzyBuzzy {
 
@@ -35,12 +35,15 @@ public class TheMostFizzyBuzzy {
     }
 
     public Optional<String> asNumber() {
-        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getNumber().toString())
-                : Optional.empty();
+        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy
+                .get()
+                .getNumber()
+                .toString()) : Optional.empty();
     }
 
     public Optional<String> asWord() {
-        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy.get().getFizzbuzzified())
-                : Optional.empty();
+        return theMostFizzyBuzzy.isPresent() ? Optional.of(theMostFizzyBuzzy
+                .get()
+                .getFizzbuzzified()) : Optional.empty();
     }
 }

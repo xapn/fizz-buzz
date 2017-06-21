@@ -1,11 +1,12 @@
 package software.works.fizzbuzz;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class FizzBuzzWoofVariationTest {
+
     private FizzBuzz fizzBuzzWoof;
 
     @Before
@@ -45,7 +46,9 @@ public class FizzBuzzWoofVariationTest {
 
     @Test
     public void should_get_fizz_or_buzz_or_woof_given_a_range_of_numbers() {
-        assertThat(fizzBuzzWoof.from(1).to(15))
-                .isEqualTo("1 2 FizzFizz 4 BuzzBuzz Fizz WoofWoof 8 FizzFizz Buzz 11 Fizz Fizz Woof FizzBuzzBuzz");
+        assertThat(fizzBuzzWoof
+                .from(1)
+                .to(15)).isEqualTo(
+                "1 2 FizzFizz 4 BuzzBuzz Fizz WoofWoof 8 FizzFizz Buzz 11 Fizz Fizz Woof FizzBuzzBuzz");
     }
 }

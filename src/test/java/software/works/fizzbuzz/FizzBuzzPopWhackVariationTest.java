@@ -1,9 +1,9 @@
 package software.works.fizzbuzz;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzPopWhackVariationTest {
 
@@ -46,7 +46,8 @@ public class FizzBuzzPopWhackVariationTest {
 
     @Test
     public void should_get_fizz_or_buzz_or_pop_or_whack_given_a_range_of_numbers() {
-        assertThat(fizzBuzzPopWhack.from(1).to(15))
-                .isEqualTo("1 2 Fizz 4 Buzz Fizz Pop 8 Fizz Buzz Whack Fizz 13 Pop FizzBuzz");
+        assertThat(fizzBuzzPopWhack
+                .from(1)
+                .to(15)).isEqualTo("1 2 Fizz 4 Buzz Fizz Pop 8 Fizz Buzz Whack Fizz 13 Pop FizzBuzz");
     }
 }

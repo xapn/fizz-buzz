@@ -1,12 +1,12 @@
 package software.works.fizzbuzz;
 
-import static java.math.BigInteger.valueOf;
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.math.BigInteger;
 
-import org.junit.Before;
-import org.junit.Test;
+import static java.math.BigInteger.valueOf;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzUsingVariousInputsTest {
 
@@ -29,17 +29,31 @@ public class FizzBuzzUsingVariousInputsTest {
 
     @Test
     public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_long_integers() {
-        assertThat(fizzBuzz.from(3L).to(5L)).isEqualTo(fizzBuzz.from(3).to(5));
+        assertThat(fizzBuzz
+                .from(3L)
+                .to(5L)).isEqualTo(fizzBuzz
+                .from(3)
+                .to(5));
     }
 
     @Test
     public void should_get_fizz_buzz_words_as_list_given_several_long_integers() {
-        assertThat(fizzBuzz.asList().of(3L, 5L, 15L)).isEqualTo(fizzBuzz.asList().of(3, 5, 15));
+        assertThat(fizzBuzz
+                .asList()
+                .of(3L, 5L, 15L)).isEqualTo(fizzBuzz
+                .asList()
+                .of(3, 5, 15));
     }
 
     @Test
     public void should_get_fizz_buzz_words_as_list_given_a_range_of_long_integers() {
-        assertThat(fizzBuzz.asList().from(3L).to(5L)).isEqualTo(fizzBuzz.asList().from(3).to(5));
+        assertThat(fizzBuzz
+                .asList()
+                .from(3L)
+                .to(5L)).isEqualTo(fizzBuzz
+                .asList()
+                .from(3)
+                .to(5));
     }
 
     @Test
@@ -54,17 +68,31 @@ public class FizzBuzzUsingVariousInputsTest {
 
     @Test
     public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_numeric_strings() {
-        assertThat(fizzBuzz.from("3").to("5")).isEqualTo(fizzBuzz.from(3).to(5));
+        assertThat(fizzBuzz
+                .from("3")
+                .to("5")).isEqualTo(fizzBuzz
+                .from(3)
+                .to(5));
     }
 
     @Test
     public void should_get_fizz_buzz_words_as_list_given_several_numeric_strings() {
-        assertThat(fizzBuzz.asList().of("3", "5", "15")).isEqualTo(fizzBuzz.asList().of(3, 5, 15));
+        assertThat(fizzBuzz
+                .asList()
+                .of("3", "5", "15")).isEqualTo(fizzBuzz
+                .asList()
+                .of(3, 5, 15));
     }
 
     @Test
     public void should_get_fizz_buzz_words_as_list_given_a_range_of_numeric_strings() {
-        assertThat(fizzBuzz.asList().from("3").to("5")).isEqualTo(fizzBuzz.asList().from(3).to(5));
+        assertThat(fizzBuzz
+                .asList()
+                .from("3")
+                .to("5")).isEqualTo(fizzBuzz
+                .asList()
+                .from(3)
+                .to(5));
     }
 
     @Test
@@ -92,17 +120,31 @@ public class FizzBuzzUsingVariousInputsTest {
 
     @Test
     public void should_get_fizz_and_buzz_and_fizzbuzz_and_numbers_given_a_range_of_big_integers() {
-        assertThat(fizzBuzz.from(new BigInteger("3")).to(new BigInteger("5"))).isEqualTo(fizzBuzz.from(3).to(5));
+        assertThat(fizzBuzz
+                .from(new BigInteger("3"))
+                .to(new BigInteger("5"))).isEqualTo(fizzBuzz
+                .from(3)
+                .to(5));
     }
 
     @Test
     public void should_get_fizz_buzz_words_as_list_given_several_big_integers() {
-        assertThat(fizzBuzz.asList().of(valueOf(3), valueOf(5), valueOf(15))).isEqualTo(fizzBuzz.asList().of(3, 5, 15));
+        assertThat(fizzBuzz
+                .asList()
+                .of(valueOf(3), valueOf(5), valueOf(15))).isEqualTo(fizzBuzz
+                .asList()
+                .of(3, 5, 15));
     }
 
     @Test
     public void should_get_fizz_buzz_words_as_list_given_a_range_of_big_integers() {
-        assertThat(fizzBuzz.asList().from(valueOf(3)).to(valueOf(5))).isEqualTo(fizzBuzz.asList().from(3).to(5));
+        assertThat(fizzBuzz
+                .asList()
+                .from(valueOf(3))
+                .to(valueOf(5))).isEqualTo(fizzBuzz
+                .asList()
+                .from(3)
+                .to(5));
     }
 
     @Test
@@ -121,10 +163,14 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_long_integers() {
         // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in(1L, 3L, 4L, 5L, 15L, 20L, 22L);
+        TheMostFizzyBuzzy result = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .in(1L, 3L, 4L, 5L, 15L, 20L, 22L);
 
         // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4, 5, 15, 20, 22);
+        TheMostFizzyBuzzy expected = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .in(1, 3, 4, 5, 15, 20, 22);
         assertThat(result.asNumber()).isEqualTo(expected.asNumber());
         assertThat(result.asWord()).isEqualTo(expected.asWord());
     }
@@ -132,10 +178,14 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_numeric_strings() {
         // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in("1", "3", "4", "5", "15", "20", "22");
+        TheMostFizzyBuzzy result = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .in("1", "3", "4", "5", "15", "20", "22");
 
         // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4, 5, 15, 20, 22);
+        TheMostFizzyBuzzy expected = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .in(1, 3, 4, 5, 15, 20, 22);
         assertThat(result.asNumber()).isEqualTo(expected.asNumber());
         assertThat(result.asWord()).isEqualTo(expected.asWord());
     }
@@ -143,10 +193,16 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_long_integers() {
         // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().from(1L).to(15L);
+        TheMostFizzyBuzzy result = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .from(1L)
+                .to(15L);
 
         // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().from(1).to(15);
+        TheMostFizzyBuzzy expected = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .from(1)
+                .to(15);
         assertThat(result.asNumber()).isEqualTo(expected.asNumber());
         assertThat(result.asWord()).isEqualTo(expected.asWord());
     }
@@ -154,10 +210,16 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_numeric_strings() {
         // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().from("1").to("15");
+        TheMostFizzyBuzzy result = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .from("1")
+                .to("15");
 
         // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().from(1).to(15);
+        TheMostFizzyBuzzy expected = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .from(1)
+                .to(15);
         assertThat(result.asNumber()).isEqualTo(expected.asNumber());
         assertThat(result.asWord()).isEqualTo(expected.asWord());
     }
@@ -165,11 +227,14 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_big_integers() {
         // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().in(valueOf(1), valueOf(3), valueOf(4), valueOf(5),
-                valueOf(15), valueOf(20), valueOf(22));
+        TheMostFizzyBuzzy result = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .in(valueOf(1), valueOf(3), valueOf(4), valueOf(5), valueOf(15), valueOf(20), valueOf(22));
 
         // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().in(1, 3, 4, 5, 15, 20, 22);
+        TheMostFizzyBuzzy expected = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .in(1, 3, 4, 5, 15, 20, 22);
         assertThat(result.asNumber()).isEqualTo(expected.asNumber());
         assertThat(result.asWord()).isEqualTo(expected.asWord());
     }
@@ -177,10 +242,16 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_big_integers() {
         // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz.findTheMostFizzyBuzzy().from(valueOf(1)).to(valueOf(15));
+        TheMostFizzyBuzzy result = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .from(valueOf(1))
+                .to(valueOf(15));
 
         // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz.findTheMostFizzyBuzzy().from(1).to(15);
+        TheMostFizzyBuzzy expected = fizzBuzz
+                .findTheMostFizzyBuzzy()
+                .from(1)
+                .to(15);
         assertThat(result.asNumber()).isEqualTo(expected.asNumber());
         assertThat(result.asWord()).isEqualTo(expected.asWord());
     }
