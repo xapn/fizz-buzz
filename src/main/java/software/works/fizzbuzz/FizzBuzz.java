@@ -2,22 +2,25 @@ package software.works.fizzbuzz;
 
 import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.Values.toBigIntegers;
-import static software.works.fizzbuzz.rule.DictionaryWord.BOOM;
-import static software.works.fizzbuzz.rule.DictionaryWord.BUZZ;
-import static software.works.fizzbuzz.rule.DictionaryWord.CHOP;
-import static software.works.fizzbuzz.rule.DictionaryWord.FIZZ;
-import static software.works.fizzbuzz.rule.DictionaryWord.POP;
-import static software.works.fizzbuzz.rule.DictionaryWord.WHACK;
-import static software.works.fizzbuzz.rule.DictionaryWord.WOOF;
-import static software.works.fizzbuzz.rule.DictionaryWord.ZING;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.BOOM;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.CHOP;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.FIZZ;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.POP;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.WHACK;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.WOOF;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.ZING;
+
+import java.util.List;
 
 import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.rule.DigitPlayer;
-import software.works.fizzbuzz.rule.DivisionPlayer;
-import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;
-import software.works.fizzbuzz.rule.NumberCustomPredicatePlayer;
-import software.works.fizzbuzz.rule.PlayerBuilder;
-import software.works.fizzbuzz.rule.Word;
+import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.engine.build.PlayerBuilder;
+import software.works.fizzbuzz.engine.lexicon.AlternateWords;
+import software.works.fizzbuzz.engine.lexicon.SingleWord;
+import software.works.fizzbuzz.engine.play.DigitPlayer;
+import software.works.fizzbuzz.engine.play.DivisionPlayer;
+import software.works.fizzbuzz.engine.play.NumberCustomPredicatePlayer;
 
 public class FizzBuzz {
 
@@ -99,8 +102,13 @@ public class FizzBuzz {
         return this;
     }
 
-    public FizzBuzz word(String word, long associatedNumber) {
-        playerBuilder.append(new Word(word, toBigInteger(associatedNumber)));
+    public FizzBuzz word(String word, long property) {
+        playerBuilder.append(new SingleWord(word, toBigInteger(property)));
+        return this;
+    }
+
+    public FizzBuzz alternateWords(List<String> words, long property) {
+        playerBuilder.append(new AlternateWords(words, toBigInteger(property)));
         return this;
     }
 

@@ -1,6 +1,6 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine;
 
-class PlayerConfiguration {
+public class PlayConfiguration {
 
     private static final String DEFAULT_WORD_SEPARATOR = " ";
     private static final String DEFAULT_FINAL_PUNCTUATION = "";
@@ -12,7 +12,7 @@ class PlayerConfiguration {
     private boolean wordsMustBePrintedNTimes;
     private boolean wordsMustBeCollectedToList;
 
-    public PlayerConfiguration() {
+    public PlayConfiguration() {
         setUpDefaultParameterValues();
     }
 
@@ -21,43 +21,43 @@ class PlayerConfiguration {
         finalPunctuation = DEFAULT_FINAL_PUNCTUATION;
     }
 
-    String getWordSeparator() {
+    public String getWordSeparator() {
         return wordSeparator;
     }
 
-    void setWordSeparator(String wordSeparator) {
+    public void setWordSeparator(String wordSeparator) {
         this.wordSeparator = wordSeparator;
     }
 
-    String getFinalPunctuation() {
+    public String getFinalPunctuation() {
         return finalPunctuation;
     }
 
-    void setFinalPunctuation(String finalPunctuation) {
+    public void setFinalPunctuation(String finalPunctuation) {
         this.finalPunctuation = finalPunctuation;
     }
 
-    boolean numbersMustBePrinted() {
+    public boolean numbersMustBePrinted() {
         return numbersMustBePrinted;
     }
 
-    void setNumbersMustBePrinted(boolean numbersMustBePrinted) {
+    public void setNumbersMustBePrinted(boolean numbersMustBePrinted) {
         this.numbersMustBePrinted = numbersMustBePrinted;
     }
 
-    boolean wordsMustBePrintedOnlyOnce() {
+    public boolean wordsMustBePrintedOnlyOnce() {
         return wordsMustBePrintedOnlyOnce;
     }
 
-    void setWordsMustBePrintedOnlyOnce(boolean wordsMustBePrintedOnlyOnce) {
+    public void setWordsMustBePrintedOnlyOnce(boolean wordsMustBePrintedOnlyOnce) {
         this.wordsMustBePrintedOnlyOnce = wordsMustBePrintedOnlyOnce;
     }
 
-    boolean wordsMustBePrintedNTimes() {
+    public boolean wordsMustBePrintedNTimes() {
         return wordsMustBePrintedNTimes;
     }
 
-    void setWordsMustBePrintedNTimes(boolean wordsMustBePrintedNTimes) {
+    public void setWordsMustBePrintedNTimes(boolean wordsMustBePrintedNTimes) {
         this.wordsMustBePrintedNTimes = wordsMustBePrintedNTimes;
     }
 

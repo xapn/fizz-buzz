@@ -1,6 +1,6 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine.play;
 
-import static software.works.fizzbuzz.rule.NumberPredicate.CONTAINS_DIGIT;
+import static software.works.fizzbuzz.engine.NumberPredicate.CONTAINS_DIGIT;
 
 public class DigitPlayer extends NumberPredicatePlayer {
 
