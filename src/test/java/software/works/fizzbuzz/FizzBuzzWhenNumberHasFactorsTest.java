@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static testasyouthink.TestAsYouThink.givenSut;
 
 public class FizzBuzzWhenNumberHasFactorsTest {
 
@@ -67,15 +68,19 @@ public class FizzBuzzWhenNumberHasFactorsTest {
 
     @Test
     public void should_get_the_same_result() {
-        // GIVEN
-        int start = 1, end = 100;
-        String fizzBuzzResultByDefault = new FizzBuzz()
-                .from(start)
-                .to(end);
-
-        // WHEN-THEN
-        assertThat(fizzBuzz
-                .from(start)
-                .to(end)).isEqualTo(fizzBuzzResultByDefault);
+        givenSut(fizzBuzz)
+                .givenArgument("the most little start", 1)
+                .andArgument("a big enough end", 100)
+                .when((sut, start, end) -> {
+                    return sut
+                            .from(start)
+                            .to(end);
+                })
+                .then(result -> {
+                    String fizzBuzzResultByDefault = new FizzBuzz()
+                            .from(1)
+                            .to(100);
+                    assertThat(result).isEqualTo(fizzBuzzResultByDefault);
+                });
     }
 }
