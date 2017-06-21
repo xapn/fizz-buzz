@@ -1,8 +1,8 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine.lexicon;
 
 import java.math.BigInteger;
 
-interface WordPropertyPair {
+public interface WordPropertyPair {
 
     String getWord();
 

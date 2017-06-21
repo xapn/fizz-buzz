@@ -1,10 +1,12 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine.play;
+
+import software.works.fizzbuzz.engine.NumberPredicate;
 
 public abstract class NumberPredicatePlayer extends OrdinaryPlayer {
 
     private NumberPredicate numberPredicate;
 
-    NumberPredicate getNumberPredicate() {
+    public NumberPredicate getNumberPredicate() {
         return numberPredicate;
     }
 

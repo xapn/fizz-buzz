@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import software.works.fizzbuzz.rule.FunctionTypes.PropertyPredicate;;
+import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;;
 
 public class FizzBuzzPlayingWithCustomPredicatesTest {
 

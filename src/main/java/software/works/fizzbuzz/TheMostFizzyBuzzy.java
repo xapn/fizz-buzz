@@ -5,7 +5,7 @@ import static software.works.fizzbuzz.Values.toBigIntegers;
 import java.util.Optional;
 
 import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.rule.PlayerBuilder;
+import software.works.fizzbuzz.engine.build.PlayerBuilder;
 
 public class TheMostFizzyBuzzy {
 

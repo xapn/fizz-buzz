@@ -1,4 +1,4 @@
-package software.works.fizzbuzz.rule;
+package software.works.fizzbuzz.engine.play;
 
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
@@ -7,17 +7,19 @@ import java.math.BigInteger;
 import java.util.Collections;
 import java.util.List;
 
-import software.works.fizzbuzz.FizzbuzzifiedNumber;
 import software.works.fizzbuzz.FizzBuzzPlayer;
+import software.works.fizzbuzz.FizzbuzzifiedNumber;
+import software.works.fizzbuzz.engine.FizzBuzzFunction;
+import software.works.fizzbuzz.engine.PlayConfiguration;
 
-class OrdinaryPlayer implements FizzBuzzPlayer {
+public class OrdinaryPlayer implements FizzBuzzPlayer {
 
     protected List<FizzBuzzFunction> fizzBuzzFunctions;
-    private PlayerConfiguration configuration;
+    private PlayConfiguration configuration;
 
     protected OrdinaryPlayer() {}
 
-    OrdinaryPlayer(List<FizzBuzzFunction> fizzBuzzFunctions, PlayerConfiguration configuration) {
+    public OrdinaryPlayer(List<FizzBuzzFunction> fizzBuzzFunctions, PlayConfiguration configuration) {
         this.fizzBuzzFunctions = fizzBuzzFunctions;
         this.configuration = configuration;
     }
@@ -67,15 +69,15 @@ class OrdinaryPlayer implements FizzBuzzPlayer {
                 : playAtFizzBuzz(value) + configuration.getFinalPunctuation();
     }
 
-    List<FizzBuzzFunction> getFizzBuzzFunctions() {
+    public List<FizzBuzzFunction> getFizzBuzzFunctions() {
         return Collections.unmodifiableList(fizzBuzzFunctions);
     }
 
-    void setFizzBuzzFunctions(List<FizzBuzzFunction> fizzBuzzFunctions) {
+    public void setFizzBuzzFunctions(List<FizzBuzzFunction> fizzBuzzFunctions) {
         this.fizzBuzzFunctions = fizzBuzzFunctions;
     }
 
-    void setConfiguration(PlayerConfiguration configuration) {
+    public void setConfiguration(PlayConfiguration configuration) {
         this.configuration = configuration;
     }
 }

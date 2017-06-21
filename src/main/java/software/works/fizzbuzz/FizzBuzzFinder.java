@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import software.works.fizzbuzz.rule.PlayerBuilder;
+import software.works.fizzbuzz.engine.build.PlayerBuilder;
 
 class FizzBuzzFinder {
 
