@@ -40,8 +40,22 @@
         <dependency>
             <groupId>com.github.xapn</groupId>
             <artifactId>test-as-you-think-core</artifactId>
-            <version>0.3</version>
+            <version>0.4-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>ossrh</id>
+            <name>OSSRH</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
