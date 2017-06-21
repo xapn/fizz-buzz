@@ -7,6 +7,7 @@ import java.math.BigInteger;
 
 import static java.math.BigInteger.valueOf;
 import static org.assertj.core.api.Assertions.assertThat;
+import static testasyouthink.TestAsYouThink.givenSut;
 
 public class FizzBuzzUsingVariousInputsTest {
 
@@ -97,15 +98,18 @@ public class FizzBuzzUsingVariousInputsTest {
 
     @Test
     public void should_get_buzz_given_a_numeric_string_greater_than_long_max_value() {
-        // GIVEN
-        BigInteger greaterThanIntegerMaxValue = valueOf(10).pow(100);
-        assertThat(greaterThanIntegerMaxValue).isGreaterThan(valueOf(Long.MAX_VALUE));
-
-        // WHEN
-        String result = fizzBuzz.of(greaterThanIntegerMaxValue.toString());
-
-        // THEN
-        assertThat(result).isEqualTo("Buzz");
+        givenSut(fizzBuzz)
+                .givenArgument(() -> {
+                    BigInteger greaterThanIntegerMaxValue = valueOf(10).pow(100);
+                    assertThat(greaterThanIntegerMaxValue).isGreaterThan(valueOf(Long.MAX_VALUE));
+                    return greaterThanIntegerMaxValue.toString();
+                })
+                .when((sut, greaterThanIntegerMaxValue) -> {
+                    return sut.of(greaterThanIntegerMaxValue);
+                })
+                .then(result -> {
+                    assertThat(result).isEqualTo("Buzz");
+                });
     }
 
     @Test
@@ -149,110 +153,125 @@ public class FizzBuzzUsingVariousInputsTest {
 
     @Test
     public void should_get_buzz_given_a_big_integer_greater_than_long_max_value() {
-        // GIVEN
-        BigInteger greaterThanIntegerMaxValue = valueOf(10).pow(100);
-        assertThat(greaterThanIntegerMaxValue).isGreaterThan(BigInteger.valueOf(Long.MAX_VALUE));
-
-        // WHEN
-        String result = fizzBuzz.of(greaterThanIntegerMaxValue);
-
-        // THEN
-        assertThat(result).isEqualTo("Buzz");
+        givenSut(fizzBuzz)
+                .givenArgument(() -> {
+                    BigInteger greaterThanIntegerMaxValue = valueOf(10).pow(100);
+                    assertThat(greaterThanIntegerMaxValue).isGreaterThan(BigInteger.valueOf(Long.MAX_VALUE));
+                    return greaterThanIntegerMaxValue;
+                })
+                .when((sut, greaterThanIntegerMaxValue) -> {
+                    return sut.of(greaterThanIntegerMaxValue);
+                })
+                .then(result -> {
+                    assertThat(result).isEqualTo("Buzz");
+                });
     }
 
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_long_integers() {
-        // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .in(1L, 3L, 4L, 5L, 15L, 20L, 22L);
-
-        // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .in(1, 3, 4, 5, 15, 20, 22);
-        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
-        assertThat(result.asWord()).isEqualTo(expected.asWord());
+        givenSut(fizzBuzz)
+                .when(sut -> {
+                    return sut
+                            .findTheMostFizzyBuzzy()
+                            .in(1L, 3L, 4L, 5L, 15L, 20L, 22L);
+                })
+                .then(result -> {
+                    TheMostFizzyBuzzy expected = fizzBuzz
+                            .findTheMostFizzyBuzzy()
+                            .in(1, 3, 4, 5, 15, 20, 22);
+                    assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+                    assertThat(result.asWord()).isEqualTo(expected.asWord());
+                });
     }
 
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_numeric_strings() {
-        // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .in("1", "3", "4", "5", "15", "20", "22");
-
-        // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .in(1, 3, 4, 5, 15, 20, 22);
-        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
-        assertThat(result.asWord()).isEqualTo(expected.asWord());
+        givenSut(fizzBuzz)
+                .when(sut -> {
+                    return sut
+                            .findTheMostFizzyBuzzy()
+                            .in("1", "3", "4", "5", "15", "20", "22");
+                })
+                .then(result -> {
+                    TheMostFizzyBuzzy expected = fizzBuzz
+                            .findTheMostFizzyBuzzy()
+                            .in(1, 3, 4, 5, 15, 20, 22);
+                    assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+                    assertThat(result.asWord()).isEqualTo(expected.asWord());
+                });
     }
 
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_long_integers() {
-        // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .from(1L)
-                .to(15L);
-
-        // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .from(1)
-                .to(15);
-        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
-        assertThat(result.asWord()).isEqualTo(expected.asWord());
+        givenSut(fizzBuzz)
+                .when(sut -> {
+                    return sut
+                            .findTheMostFizzyBuzzy()
+                            .from(1L)
+                            .to(15L);
+                })
+                .then(result -> {
+                    TheMostFizzyBuzzy expected = fizzBuzz
+                            .findTheMostFizzyBuzzy()
+                            .from(1)
+                            .to(15);
+                    assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+                    assertThat(result.asWord()).isEqualTo(expected.asWord());
+                });
     }
 
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_numeric_strings() {
-        // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .from("1")
-                .to("15");
-
-        // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .from(1)
-                .to(15);
-        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
-        assertThat(result.asWord()).isEqualTo(expected.asWord());
+        givenSut(fizzBuzz)
+                .when(sut -> {
+                    return sut
+                            .findTheMostFizzyBuzzy()
+                            .from("1")
+                            .to("15");
+                })
+                .then(result -> {
+                    TheMostFizzyBuzzy expected = fizzBuzz
+                            .findTheMostFizzyBuzzy()
+                            .from(1)
+                            .to(15);
+                    assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+                    assertThat(result.asWord()).isEqualTo(expected.asWord());
+                });
     }
 
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_big_integers() {
-        // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .in(valueOf(1), valueOf(3), valueOf(4), valueOf(5), valueOf(15), valueOf(20), valueOf(22));
-
-        // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .in(1, 3, 4, 5, 15, 20, 22);
-        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
-        assertThat(result.asWord()).isEqualTo(expected.asWord());
+        givenSut(fizzBuzz)
+                .when(sut -> {
+                    return sut
+                            .findTheMostFizzyBuzzy()
+                            .in(valueOf(1), valueOf(3), valueOf(4), valueOf(5), valueOf(15), valueOf(20), valueOf(22));
+                })
+                .then(result -> {
+                    TheMostFizzyBuzzy expected = fizzBuzz
+                            .findTheMostFizzyBuzzy()
+                            .in(1, 3, 4, 5, 15, 20, 22);
+                    assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+                    assertThat(result.asWord()).isEqualTo(expected.asWord());
+                });
     }
 
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_big_integers() {
-        // WHEN
-        TheMostFizzyBuzzy result = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .from(valueOf(1))
-                .to(valueOf(15));
-
-        // THEN
-        TheMostFizzyBuzzy expected = fizzBuzz
-                .findTheMostFizzyBuzzy()
-                .from(1)
-                .to(15);
-        assertThat(result.asNumber()).isEqualTo(expected.asNumber());
-        assertThat(result.asWord()).isEqualTo(expected.asWord());
+        givenSut(fizzBuzz)
+                .when(sut -> {
+                    return sut
+                            .findTheMostFizzyBuzzy()
+                            .from(valueOf(1))
+                            .to(valueOf(15));
+                })
+                .then(result -> {
+                    TheMostFizzyBuzzy expected = fizzBuzz
+                            .findTheMostFizzyBuzzy()
+                            .from(1)
+                            .to(15);
+                    assertThat(result.asNumber()).isEqualTo(expected.asNumber());
+                    assertThat(result.asWord()).isEqualTo(expected.asWord());
+                });
     }
 }
