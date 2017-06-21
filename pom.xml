@@ -36,5 +36,12 @@
             <version>3.4</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.xapn</groupId>
+            <artifactId>test-as-you-think-core</artifactId>
+            <version>0.3</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
