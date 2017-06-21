@@ -1,5 +1,16 @@
 package software.works.fizzbuzz;
 
+import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
+import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.engine.build.PlayerBuilder;
+import software.works.fizzbuzz.engine.lexicon.AlternateWords;
+import software.works.fizzbuzz.engine.lexicon.SingleWord;
+import software.works.fizzbuzz.engine.play.DigitPlayer;
+import software.works.fizzbuzz.engine.play.DivisionPlayer;
+import software.works.fizzbuzz.engine.play.NumberCustomPredicatePlayer;
+
+import java.util.List;
+
 import static software.works.fizzbuzz.Values.toBigInteger;
 import static software.works.fizzbuzz.Values.toBigIntegers;
 import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.BOOM;
@@ -10,17 +21,6 @@ import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.POP;
 import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.WHACK;
 import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.WOOF;
 import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.ZING;
-
-import java.util.List;
-
-import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
-import software.works.fizzbuzz.engine.build.PlayerBuilder;
-import software.works.fizzbuzz.engine.lexicon.AlternateWords;
-import software.works.fizzbuzz.engine.lexicon.SingleWord;
-import software.works.fizzbuzz.engine.play.DigitPlayer;
-import software.works.fizzbuzz.engine.play.DivisionPlayer;
-import software.works.fizzbuzz.engine.play.NumberCustomPredicatePlayer;
 
 public class FizzBuzz {
 
@@ -42,16 +42,22 @@ public class FizzBuzz {
     }
 
     public <T> String of(T value) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigInteger(value));
+        return playerBuilder
+                .chosenPlayer()
+                .playAtFizzBuzz(toBigInteger(value));
     }
 
     @SafeVarargs
     public final <T> String of(T... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzz(toBigIntegers(values));
+        return playerBuilder
+                .chosenPlayer()
+                .playAtFizzBuzz(toBigIntegers(values));
     }
 
     public <T> FizzBuzzRange<T, String> from(T start) {
-        RangeHandler<String> rangeHandler = (values) -> playerBuilder.chosenPlayer().playAtFizzBuzz(values);
+        RangeHandler<String> rangeHandler = (values) -> playerBuilder
+                .chosenPlayer()
+                .playAtFizzBuzz(values);
         return new FizzBuzzRange<T, String>(rangeHandler).from(start);
     }
 
@@ -71,33 +77,45 @@ public class FizzBuzz {
     }
 
     public FizzBuzz boom() {
-        playerBuilder //
-                .append(FIZZ).append(BUZZ).append(BOOM) //
-                .append(new DivisionPlayer()) //
-                .append(new DigitPlayer()) //
+        playerBuilder
+                .append(FIZZ)
+                .append(BUZZ)
+                .append(BOOM)
+                .append(new DivisionPlayer())
+                .append(new DigitPlayer())
                 .printWordsOnlyOnce();
         return this;
     }
 
     public FizzBuzz woof() {
-        playerBuilder //
-                .append(FIZZ).append(BUZZ).append(WOOF) //
-                .append(new DivisionPlayer()) //
-                .append(new DigitPlayer()) //
+        playerBuilder
+                .append(FIZZ)
+                .append(BUZZ)
+                .append(WOOF)
+                .append(new DivisionPlayer())
+                .append(new DigitPlayer())
                 .printWordsNTimes();
         return this;
     }
 
     public FizzBuzz popWhack() {
-        playerBuilder //
-                .append(FIZZ).append(BUZZ).append(POP).append(WHACK) //
+        playerBuilder
+                .append(FIZZ)
+                .append(BUZZ)
+                .append(POP)
+                .append(WHACK)
                 .append(new DivisionPlayer());
         return this;
     }
 
     public FizzBuzz popWhackZingChop() {
-        playerBuilder //
-                .append(FIZZ).append(BUZZ).append(POP).append(WHACK).append(ZING).append(CHOP) //
+        playerBuilder
+                .append(FIZZ)
+                .append(BUZZ)
+                .append(POP)
+                .append(WHACK)
+                .append(ZING)
+                .append(CHOP)
                 .append(new DivisionPlayer());
         return this;
     }
@@ -146,7 +164,9 @@ public class FizzBuzz {
     }
 
     public FizzBuzz punctuatedBy(String punctuation) {
-        playerBuilder.separateWordsBy(punctuation + " ").completeSentenceWith(punctuation);
+        playerBuilder
+                .separateWordsBy(punctuation + " ")
+                .completeSentenceWith(punctuation);
         return this;
     }
 

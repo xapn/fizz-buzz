@@ -1,14 +1,12 @@
 package software.works.fizzbuzz;
 
-import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
-
 import java.math.BigInteger;
 import java.util.List;
 import java.util.function.Function;
 
-public class FizzBuzzRange<T, R> {
+import static software.works.fizzbuzz.Values.toBigIntegerRangeClosed;
 
-    static interface RangeHandler<R> extends Function<List<BigInteger>, R> {}
+public class FizzBuzzRange<T, R> {
 
     private RangeHandler<R> handler;
     private T start;
@@ -25,4 +23,6 @@ public class FizzBuzzRange<T, R> {
     public R to(T end) {
         return handler.apply(toBigIntegerRangeClosed(start, end));
     }
+
+    static interface RangeHandler<R> extends Function<List<BigInteger>, R> {}
 }

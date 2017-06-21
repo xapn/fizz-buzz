@@ -1,11 +1,11 @@
 package software.works.fizzbuzz.engine;
 
+import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
+
 import java.math.BigInteger;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
-
-import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 
 public interface FunctionTypes {
 

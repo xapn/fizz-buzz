@@ -1,14 +1,14 @@
 package software.works.fizzbuzz;
 
-import static java.math.BigInteger.ONE;
-import static java.util.stream.Collectors.toList;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+
+import static java.math.BigInteger.ONE;
+import static java.util.stream.Collectors.toList;
 
 public class Values {
 
@@ -39,23 +39,41 @@ public class Values {
     }
 
     public static List<BigInteger> toBigIntegers(int... values) {
-        return IntStream.of(values).mapToObj(BigInteger::valueOf).collect(toList());
+        return IntStream
+                .of(values)
+                .mapToObj(BigInteger::valueOf)
+                .collect(toList());
     }
 
     public static List<BigInteger> toBigIntegers(Integer... values) {
-        return Arrays.asList(values).stream().map(BigInteger::valueOf).collect(toList());
+        return Arrays
+                .asList(values)
+                .stream()
+                .map(BigInteger::valueOf)
+                .collect(toList());
     }
 
     public static List<BigInteger> toBigIntegers(long... values) {
-        return LongStream.of(values).mapToObj(BigInteger::valueOf).collect(toList());
+        return LongStream
+                .of(values)
+                .mapToObj(BigInteger::valueOf)
+                .collect(toList());
     }
 
     public static List<BigInteger> toBigIntegers(Long... values) {
-        return Arrays.asList(values).stream().map(BigInteger::valueOf).collect(toList());
+        return Arrays
+                .asList(values)
+                .stream()
+                .map(BigInteger::valueOf)
+                .collect(toList());
     }
 
     public static List<BigInteger> toBigIntegers(String... values) {
-        return Arrays.asList(values).stream().map(BigInteger::new).collect(toList());
+        return Arrays
+                .asList(values)
+                .stream()
+                .map(BigInteger::new)
+                .collect(toList());
     }
 
     public static List<BigInteger> toBigIntegers(BigInteger... values) {
@@ -77,11 +95,17 @@ public class Values {
     }
 
     public static List<BigInteger> toBigIntegerRangeClosed(Integer start, Integer end) {
-        return IntStream.rangeClosed(start, end).mapToObj(BigInteger::valueOf).collect(toList());
+        return IntStream
+                .rangeClosed(start, end)
+                .mapToObj(BigInteger::valueOf)
+                .collect(toList());
     }
 
     public static List<BigInteger> toBigIntegerRangeClosed(Long start, Long end) {
-        return LongStream.rangeClosed(start, end).mapToObj(BigInteger::valueOf).collect(toList());
+        return LongStream
+                .rangeClosed(start, end)
+                .mapToObj(BigInteger::valueOf)
+                .collect(toList());
     }
 
     public static List<BigInteger> toBigIntegerRangeClosed(BigInteger start, BigInteger end) {
@@ -110,8 +134,9 @@ public class Values {
         } else if (start instanceof String && end instanceof String) {
             return toBigIntegerRangeClosed((String) start, (String) end);
         } else {
-            throw new IllegalArgumentException("Unexpected type of arguments: start instance of " + start.getClass()
-                    + ", end instance of " + end.getClass());
+            throw new IllegalArgumentException(
+                    "Unexpected type of arguments: start instance of " + start.getClass() + ", end instance of " +
+                            end.getClass());
         }
     }
 }

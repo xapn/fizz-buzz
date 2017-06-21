@@ -1,11 +1,11 @@
 package software.works.fizzbuzz;
 
-import static software.works.fizzbuzz.Values.toBigIntegers;
+import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
+import software.works.fizzbuzz.engine.build.PlayerBuilder;
 
 import java.util.List;
 
-import software.works.fizzbuzz.FizzBuzzRange.RangeHandler;
-import software.works.fizzbuzz.engine.build.PlayerBuilder;
+import static software.works.fizzbuzz.Values.toBigIntegers;
 
 public class FizzBuzzWordsAsList {
 
@@ -17,11 +17,15 @@ public class FizzBuzzWordsAsList {
 
     @SafeVarargs
     public final <T> List<String> of(T... values) {
-        return playerBuilder.chosenPlayer().playAtFizzBuzzToList(toBigIntegers(values));
+        return playerBuilder
+                .chosenPlayer()
+                .playAtFizzBuzzToList(toBigIntegers(values));
     }
 
     public <T> FizzBuzzRange<T, List<String>> from(T start) {
-        RangeHandler<List<String>> rangeHandler = (values) -> playerBuilder.chosenPlayer().playAtFizzBuzzToList(values);
+        RangeHandler<List<String>> rangeHandler = (values) -> playerBuilder
+                .chosenPlayer()
+                .playAtFizzBuzzToList(values);
         return new FizzBuzzRange<T, List<String>>(rangeHandler).from(start);
     }
 }

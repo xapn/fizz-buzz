@@ -1,9 +1,9 @@
 package software.works.fizzbuzz;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzWordsPrintedOnlyOnceTest {
 
@@ -11,9 +11,9 @@ public class FizzBuzzWordsPrintedOnlyOnceTest {
 
     @Before
     public void prepareFixtures() {
-        fizzBuzz = new FizzBuzz() //
-                .wordsOnlyOnce() //
-                .whenNumberHasFactors() //
+        fizzBuzz = new FizzBuzz()
+                .wordsOnlyOnce()
+                .whenNumberHasFactors()
                 .whenNumberContainsDigits();
     }
 
@@ -29,6 +29,8 @@ public class FizzBuzzWordsPrintedOnlyOnceTest {
 
     @Test
     public void should_get_fizz_or_buzz_given_a_range_of_numbers() {
-        assertThat(fizzBuzz.from(1).to(15)).isEqualTo("1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz Fizz 14 FizzBuzz");
+        assertThat(fizzBuzz
+                .from(1)
+                .to(15)).isEqualTo("1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz Fizz 14 FizzBuzz");
     }
 }

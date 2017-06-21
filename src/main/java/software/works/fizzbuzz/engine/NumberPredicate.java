@@ -1,38 +1,44 @@
 package software.works.fizzbuzz.engine;
 
-import static java.math.BigInteger.ZERO;
+import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
+import software.works.fizzbuzz.engine.FunctionTypes.ValuePredicate;
+import software.works.fizzbuzz.engine.FunctionTypes.WordOccurrencesFunction;
 
 import java.math.BigInteger;
 import java.util.function.BiPredicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import software.works.fizzbuzz.engine.FunctionTypes.PropertyPredicate;
-import software.works.fizzbuzz.engine.FunctionTypes.ValuePredicate;
-import software.works.fizzbuzz.engine.FunctionTypes.WordOccurrencesFunction;
+import static java.math.BigInteger.ZERO;
 
 public class NumberPredicate {
 
-    public static final NumberPredicate IS_MULTIPLE_OF = new NumberPredicate( //
-            (value, factor) -> value.mod(factor).equals(ZERO),
+    public static final NumberPredicate IS_MULTIPLE_OF = new NumberPredicate((value, factor) -> value
+            .mod(factor)
+            .equals(ZERO),
 
             (value, pair) -> {
                 StringBuilder words = new StringBuilder();
                 BigInteger remaining = value;
-                while (remaining.mod(pair.getProperty()).equals(ZERO)) {
+                while (remaining
+                        .mod(pair.getProperty())
+                        .equals(ZERO)) {
                     words.append(pair.getWord());
                     remaining = remaining.divide(pair.getProperty());
                 }
                 return words.toString();
             });
 
-    public static final NumberPredicate CONTAINS_DIGIT = new NumberPredicate( //
-            (value, digit) -> String.valueOf(value).contains(String.valueOf(digit)),
+    public static final NumberPredicate CONTAINS_DIGIT = new NumberPredicate((value, digit) -> String
+            .valueOf(value)
+            .contains(String.valueOf(digit)),
 
             (value, pair) -> {
                 StringBuilder words = new StringBuilder();
-                Matcher digitMatcher = Pattern //
-                        .compile(pair.getProperty().toString()) //
+                Matcher digitMatcher = Pattern
+                        .compile(pair
+                                .getProperty()
+                                .toString())
                         .matcher(value.toString());
                 while (digitMatcher.find()) {
                     words.append(pair.getWord());

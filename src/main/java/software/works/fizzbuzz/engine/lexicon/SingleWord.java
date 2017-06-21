@@ -15,7 +15,7 @@ public class SingleWord implements WordPropertyPair {
 
     private void validate() {
         if (word == null || word.isEmpty() || property == null || property.signum() == -1) {
-            throw new IllegalArgumentException("Invalid word: '" + word
+            throw new IllegalArgumentException("Invalid word: '" + word //
                     + "' must be a word associated to a positive integer '" + property + "' as property!");
         }
     }

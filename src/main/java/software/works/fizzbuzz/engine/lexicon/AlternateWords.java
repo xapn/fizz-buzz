@@ -17,10 +17,11 @@ public class AlternateWords implements WordPropertyPair {
     }
 
     private void validate() {
-        if (words == null || words.isEmpty() || words.stream().anyMatch(word -> word == null || word.isEmpty())
-                || property == null || property.signum() == -1) {
-            throw new IllegalArgumentException("Invalid alternate words: '" //
-                    + words + "' must be a full list of words associated to a positive integer '" + property
+        if (words == null || words.isEmpty() || words
+                .stream()
+                .anyMatch(word -> word == null || word.isEmpty()) || property == null || property.signum() == -1) {
+            throw new IllegalArgumentException("Invalid alternate words: '" + words //
+                    + "' must be a full list of words associated to a positive integer '" + property //
                     + "' as property!");
         }
     }

@@ -1,20 +1,20 @@
 package software.works.fizzbuzz.engine.build;
 
-import static java.util.Collections.unmodifiableList;
-import static java.util.stream.Collectors.toList;
-import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.BUZZ;
-import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.FIZZ;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import software.works.fizzbuzz.FizzBuzzPlayer;
 import software.works.fizzbuzz.engine.PlayConfiguration;
 import software.works.fizzbuzz.engine.lexicon.DictionaryWord;
 import software.works.fizzbuzz.engine.lexicon.WordPropertyPair;
 import software.works.fizzbuzz.engine.play.DivisionPlayer;
 import software.works.fizzbuzz.engine.play.NumberPredicatePlayer;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.toList;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.BUZZ;
+import static software.works.fizzbuzz.engine.lexicon.DictionaryWord.FIZZ;
 
 public class PlayerBuilder {
 
@@ -61,11 +61,17 @@ public class PlayerBuilder {
         FizzBuzzPlayer definitivePlayer = null;
 
         if (configuration.wordsMustBePrintedOnlyOnce()) {
-            definitivePlayer = new WordCentricPlayerBuilder().coupleWordsAndProperties(wordPropertyPairs)
-                    .playThisWay(configuration).assemblyPlayers(players).getPlayer();
+            definitivePlayer = new WordCentricPlayerBuilder()
+                    .coupleWordsAndProperties(wordPropertyPairs)
+                    .playThisWay(configuration)
+                    .assemblyPlayers(players)
+                    .getPlayer();
         } else {
-            definitivePlayer = new PredicateCentricPlayerBuilder().coupleWordsAndProperties(wordPropertyPairs)
-                    .playThisWay(configuration).assemblyPlayers(players).getPlayer();
+            definitivePlayer = new PredicateCentricPlayerBuilder()
+                    .coupleWordsAndProperties(wordPropertyPairs)
+                    .playThisWay(configuration)
+                    .assemblyPlayers(players)
+                    .getPlayer();
         }
 
         return definitivePlayer;
@@ -104,6 +110,9 @@ public class PlayerBuilder {
     }
 
     public List<String> getKnownWords() {
-        return wordPropertyPairs.stream().map(word -> word.getWord()).collect(toList());
+        return wordPropertyPairs
+                .stream()
+                .map(word -> word.getWord())
+                .collect(toList());
     }
 }

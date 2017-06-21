@@ -1,14 +1,12 @@
 package software.works.fizzbuzz.engine.lexicon;
 
-import static java.math.BigInteger.ZERO;
+import org.junit.Test;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.junit.Test;
-
-import software.works.fizzbuzz.engine.lexicon.AlternateWords;
+import static java.math.BigInteger.ZERO;
 
 public class AlternateWordsTest {
 
