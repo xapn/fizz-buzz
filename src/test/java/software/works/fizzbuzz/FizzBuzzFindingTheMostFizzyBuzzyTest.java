@@ -3,7 +3,6 @@ package software.works.fizzbuzz;
 import org.junit.Before;
 import org.junit.Test;
 import testasyouthink.GivenWhenThenDsl.PreparationStage.Given;
-import testasyouthink.TestAsYouThink;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static testasyouthink.TestAsYouThink.givenSutClass;
@@ -20,11 +19,9 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
     @Test
     public void should_find_the_alone_fizzbuzzified_number_given_some_arbitrary_numbers() {
         givenFizzBuzzAsSut
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .in(1, 3, 4);
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .in(1, 3, 4))
                 .then(result -> {
                     assertThat(result.asNumber()).hasValue("3");
                     assertThat(result.asWord()).hasValue("Fizz");
@@ -34,11 +31,9 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
     @Test
     public void should_find_no_fizzbuzzifiable_number_given_some_arbitrary_numbers() {
         givenFizzBuzzAsSut
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .in(1, 2, 4);
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .in(1, 2, 4))
                 .then(result -> {
                     assertThat(result.get()).isEmpty();
                     assertThat(result.asNumber()).isEmpty();
@@ -49,11 +44,9 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_at_least_some_fizzbuzzifiable_numbers() {
         givenFizzBuzzAsSut
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .in(1, 3, 4, 5, 15, 20, 22);
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .in(1, 3, 4, 5, 15, 20, 22))
                 .then(result -> {
                     assertThat(result.asNumber()).hasValue("15");
                     assertThat(result.asWord()).hasValue("FizzBuzz");
@@ -63,14 +56,12 @@ public class FizzBuzzFindingTheMostFizzyBuzzyTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_numbers() {
         givenFizzBuzzAsSut
-                .when(sut -> {
-                    return sut
-                            .whenNumberHasFactors()
-                            .whenNumberContainsDigits()
-                            .findTheMostFizzyBuzzy()
-                            .from(1)
-                            .to(15);
-                })
+                .whenSutReturns(sut -> sut
+                        .whenNumberHasFactors()
+                        .whenNumberContainsDigits()
+                        .findTheMostFizzyBuzzy()
+                        .from(1)
+                        .to(15))
                 .then(result -> {
                     assertThat(result.asNumber()).hasValue("15");
                     assertThat(result.asWord()).hasValue("FizzBuzzBuzz");

@@ -71,11 +71,9 @@ public class FizzBuzzWhenNumberHasFactorsTest {
         givenSut(fizzBuzz)
                 .givenArgument("the most little start", 1)
                 .andArgument("a big enough end", 100)
-                .when((sut, start, end) -> {
-                    return sut
-                            .from(start)
-                            .to(end);
-                })
+                .whenSutReturns((sut, start, end) -> sut
+                        .from(start)
+                        .to(end))
                 .then(result -> {
                     String fizzBuzzResultByDefault = new FizzBuzz()
                             .from(1)

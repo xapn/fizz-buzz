@@ -104,9 +104,7 @@ public class FizzBuzzUsingVariousInputsTest {
                     assertThat(greaterThanIntegerMaxValue).isGreaterThan(valueOf(Long.MAX_VALUE));
                     return greaterThanIntegerMaxValue.toString();
                 })
-                .when((sut, greaterThanIntegerMaxValue) -> {
-                    return sut.of(greaterThanIntegerMaxValue);
-                })
+                .whenSutReturns(FizzBuzz::of)
                 .then(result -> {
                     assertThat(result).isEqualTo("Buzz");
                 });
@@ -159,9 +157,7 @@ public class FizzBuzzUsingVariousInputsTest {
                     assertThat(greaterThanIntegerMaxValue).isGreaterThan(BigInteger.valueOf(Long.MAX_VALUE));
                     return greaterThanIntegerMaxValue;
                 })
-                .when((sut, greaterThanIntegerMaxValue) -> {
-                    return sut.of(greaterThanIntegerMaxValue);
-                })
+                .whenSutReturns(FizzBuzz::of)
                 .then(result -> {
                     assertThat(result).isEqualTo("Buzz");
                 });
@@ -170,11 +166,9 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_long_integers() {
         givenSut(fizzBuzz)
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .in(1L, 3L, 4L, 5L, 15L, 20L, 22L);
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .in(1L, 3L, 4L, 5L, 15L, 20L, 22L))
                 .then(result -> {
                     TheMostFizzyBuzzy expected = fizzBuzz
                             .findTheMostFizzyBuzzy()
@@ -187,11 +181,9 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_numeric_strings() {
         givenSut(fizzBuzz)
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .in("1", "3", "4", "5", "15", "20", "22");
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .in("1", "3", "4", "5", "15", "20", "22"))
                 .then(result -> {
                     TheMostFizzyBuzzy expected = fizzBuzz
                             .findTheMostFizzyBuzzy()
@@ -204,12 +196,10 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_long_integers() {
         givenSut(fizzBuzz)
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .from(1L)
-                            .to(15L);
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .from(1L)
+                        .to(15L))
                 .then(result -> {
                     TheMostFizzyBuzzy expected = fizzBuzz
                             .findTheMostFizzyBuzzy()
@@ -223,12 +213,10 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_numeric_strings() {
         givenSut(fizzBuzz)
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .from("1")
-                            .to("15");
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .from("1")
+                        .to("15"))
                 .then(result -> {
                     TheMostFizzyBuzzy expected = fizzBuzz
                             .findTheMostFizzyBuzzy()
@@ -242,11 +230,9 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_some_arbitrary_big_integers() {
         givenSut(fizzBuzz)
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .in(valueOf(1), valueOf(3), valueOf(4), valueOf(5), valueOf(15), valueOf(20), valueOf(22));
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .in(valueOf(1), valueOf(3), valueOf(4), valueOf(5), valueOf(15), valueOf(20), valueOf(22)))
                 .then(result -> {
                     TheMostFizzyBuzzy expected = fizzBuzz
                             .findTheMostFizzyBuzzy()
@@ -259,12 +245,10 @@ public class FizzBuzzUsingVariousInputsTest {
     @Test
     public void should_find_the_most_fizzybuzzy_given_a_range_of_big_integers() {
         givenSut(fizzBuzz)
-                .when(sut -> {
-                    return sut
-                            .findTheMostFizzyBuzzy()
-                            .from(valueOf(1))
-                            .to(valueOf(15));
-                })
+                .whenSutReturns(sut -> sut
+                        .findTheMostFizzyBuzzy()
+                        .from(valueOf(1))
+                        .to(valueOf(15)))
                 .then(result -> {
                     TheMostFizzyBuzzy expected = fizzBuzz
                             .findTheMostFizzyBuzzy()
