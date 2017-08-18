@@ -3,7 +3,7 @@ package software.works.fizzbuzz;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static testasyouthink.TestAsYouThink.resultOf;
 
 public class FizzBuzzWhenCombiningVariationsTest {
 
@@ -18,26 +18,26 @@ public class FizzBuzzWhenCombiningVariationsTest {
 
     @Test
     public void should_get_number_given_1_as_number() {
-        assertThat(fizzBuzz.of(1)).isEqualTo("1");
+        resultOf(() -> fizzBuzz.of(1)).isEqualTo("1");
     }
 
     @Test
     public void should_get_fizzfizz_given_3_as_number() {
-        assertThat(fizzBuzz.of(3)).isEqualTo("FizzFizz");
+        resultOf(() -> fizzBuzz.of(3)).isEqualTo("FizzFizz");
     }
 
     @Test
     public void should_get_fizzbuzzbuzz_given_15_as_number() {
-        assertThat(fizzBuzz.of(15)).isEqualTo("FizzBuzzBuzz");
+        resultOf(() -> fizzBuzz.of(15)).isEqualTo("FizzBuzzBuzz");
     }
 
     @Test
     public void should_get_fizzfizzbuzz_given_30_as_number() {
-        assertThat(fizzBuzz.of(30)).isEqualTo("FizzFizzBuzz");
+        resultOf(() -> fizzBuzz.of(30)).isEqualTo("FizzFizzBuzz");
     }
 
     @Test
     public void should_get_fizzfizzbuzzbuzz_given_315_as_number() {
-        assertThat(fizzBuzz.of(315)).isEqualTo("FizzFizzBuzzBuzz");
+        resultOf(() -> fizzBuzz.of(315)).isEqualTo("FizzFizzBuzzBuzz");
     }
 }

@@ -2,53 +2,62 @@ package software.works.fizzbuzz;
 
 import org.junit.Before;
 import org.junit.Test;
+import testasyouthink.GivenWhenThenDsl.PreparationStage.Given;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static testasyouthink.TestAsYouThink.givenSutClass;
 
 public class FizzBuzzPlayingWithCustomWordsTest {
 
-    private FizzBuzz fizzBuzz;
+    private Given<FizzBuzz> givenFizzBuzzAsSut;
 
     @Before
     public void prepareFixtures() {
-        fizzBuzz = new FizzBuzz();
+        givenFizzBuzzAsSut = givenSutClass(FizzBuzz.class);
     }
 
     @Test
     public void should_get_foo_given_3_as_number() {
-        assertThat(fizzBuzz
-                .word("Foo", 3)
-                .of(3)).isEqualTo("Foo");
+        givenFizzBuzzAsSut
+                .given(sut -> sut.word("Foo", 3))
+                .whenSutReturns(sut -> sut.of(3))
+                .then("Foo"::equals);
     }
 
     @Test
     public void should_get_foo_or_bar_or_baz_qux_given_some_arbitrary_numbers() {
-        assertThat(fizzBuzz
-                .word("Foo", 3)
-                .word("Bar", 5)
-                .word("Baz", 7)
-                .word("Qux", 11)
-                .of(3, 5, 7, 11)).isEqualTo("Foo Bar Baz Qux");
+        givenFizzBuzzAsSut
+                .given(sut -> sut
+                        .word("Foo", 3)
+                        .word("Bar", 5)
+                        .word("Baz", 7)
+                        .word("Qux", 11))
+                .whenSutReturns(sut -> sut.of(3, 5, 7, 11))
+                .then("Foo Bar Baz Qux"::equals);
     }
 
     @Test
     public void should_get_foobaz_given_21_as_number() {
-        assertThat(fizzBuzz
-                .word("Foo", 3)
-                .word("Bar", 5)
-                .word("Baz", 7)
-                .of(21)).isEqualTo("FooBaz");
+        givenFizzBuzzAsSut
+                .given(sut -> sut
+                        .word("Foo", 3)
+                        .word("Bar", 5)
+                        .word("Baz", 7))
+                .whenSutReturns(sut -> sut.of(21))
+                .then("FooBaz"::equals);
     }
 
     @Test
     public void should_get_foo_or_bar_or_baz_given_a_range_of_numbers() {
-        assertThat(fizzBuzz
-                .word("Foo", 3)
-                .word("Bar", 5)
-                .word("Baz", 7)
-                .whenNumberHasFactors()
-                .whenNumberContainsDigits()
-                .from(1)
-                .to(15)).isEqualTo("1 2 FooFoo 4 BarBar Foo BazBaz 8 Foo Bar 11 Foo Foo Baz FooBarBar");
+        givenFizzBuzzAsSut
+                .given(sut -> sut
+                        .word("Foo", 3)
+                        .word("Bar", 5)
+                        .word("Baz", 7)
+                        .whenNumberHasFactors()
+                        .whenNumberContainsDigits())
+                .whenSutReturns(sut -> sut
+                        .from(1)
+                        .to(15))
+                .then("1 2 FooFoo 4 BarBar Foo BazBaz 8 Foo Bar 11 Foo Foo Baz FooBarBar"::equals);
     }
 }
